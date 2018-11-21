@@ -1,0 +1,56 @@
+#! /usr/bin/env bash
+
+# vim:filetype=sh
+if [[ "x$TODO" = x ]]; then
+  TODO=~/.todo.txt
+else
+  TODO="$TODO"
+fi
+
+function todo_usage() {
+  echo "todo"
+  echo "  -h: Print this help"
+  echo "  -d: delete any todo items matching remaining arguments"
+  echo "  with no flags: add the string passed in to the todo list"
+  echo "  with no arguments: print out todo list"
+}
+
+# Delete from todo list
+function todone() {
+  # $@ is all the arguments passed in.
+  # not sure what d is. Flag to delete anything that matches?
+  sed -i -e 's/^/✓ /' "$TODO";
+  if [[ -f "$TODO" ]]; then
+    if [[ $@ = "" ]]; then
+      echo "Error: Please provide a keyword matching a word in the TODO item to be deleted or the number of the TODO item to be deleted"
+    #elif [[ $@ = *[^0-9]* ]]; then
+    elif [ "$@" -eq "$@" ] 2>/dev/null; then
+      sed -n -e "$@p" "$TODO";
+      sed -i -n -e "$@d" "$TODO";
+    else
+      sed -n "/$@/p" "$TODO";
+      sed -i -e "/$@/d" "$TODO";
+    fi    
+  fi
+  sed -i -e 's/^✓ //' "$TODO";
+}
+
+function todo() {
+  # $# is the number of parameters passed in
+  # command with no args just shows all todos
+
+  if [[ $# == "0" ]]; then
+    if [[ -f "$TODO" ]]; then
+      cat -n "$TODO";
+    fi
+  elif [[ $1 == "-h" ]]; then
+    todo_usage
+  elif [[ $1 == "-d" ]]; then
+    shift
+    todone $@
+  else
+    # adding a new todo
+    # $@ is a string containing all parameters
+    echo "$@" >> "$TODO"
+  fi
+}
