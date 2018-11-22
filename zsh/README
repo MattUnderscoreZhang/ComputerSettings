@@ -17,4 +17,4 @@ Bash files are invisible - use "ls -la" to see them.
 7. Change font in iTerm2 profile to 10pt Meslo LG M Regular for Powerline
 8. Change prompt theme to powerlevel9k
 	cp .zpreztorc ~
-9. Change iTerm2 color scheme to Flatland
+9. Change iTerm2 color scheme to Tomorrow Night Bright

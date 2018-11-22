@@ -1,0 +1,11 @@
+1. Move .vimrc to ~
+2. Install Pathogen
+    mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+3. Install plugins
+    cd ~/.vim/bundle
+    git clone https://github.com/tmhedberg/SimpylFold
+    git clone https://github.com/scrooloose/nerdtree
+    git clone https://github.com/godlygeek/tabular
+    git clone https://github.com/majutsushi/tagbar
+    git clone https://github.com/scrooloose/nerdcommenter
