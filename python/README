@@ -1,0 +1,9 @@
+1. Install Homebrew Python2 and Python3
+    brew install python@2
+    brew install python
+2. Install virtualenv
+    pip install virtualenv
+    pip3 install virtualenv
+3. Set up virtual environments
+    python2 -m virtualenv ~/py2_kernel
+    python3 -m virtualenv ~/py3_kernel
