@@ -191,3 +191,6 @@ nnoremap <silent> <F8> :NERDTree<CR>
 
 " For Tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
+
+" Turn on mouse wheel scrolling
+set mouse=a
