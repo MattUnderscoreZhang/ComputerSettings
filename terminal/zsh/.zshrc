@@ -67,7 +67,7 @@ function bm() {
         mkdir ~/.cd_bookmarks
     fi
     # create bookmark
-    echo "cd `pwd`" > ~/.cd_bookmarks/"$1" ;
+    echo "cd \"`pwd`\"" >| ~/.cd_bookmarks/"$1" ;
 }
 function cd() {
     if [ -f ~/.cd_bookmarks/"$1" ] ; then
@@ -100,6 +100,6 @@ alias kernel3='source ~/py3_kernel/bin/activate'
 # Use Homebrew Python and Ruby
 PATH="/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
-# Virtual python environments
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
-source /usr/local/bin/virtualenvwrapper.sh
+## Virtual python environments
+#VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
+#source /usr/local/bin/virtualenvwrapper.sh
