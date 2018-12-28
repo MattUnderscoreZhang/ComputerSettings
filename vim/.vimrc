@@ -191,3 +191,12 @@ nnoremap <silent> <F8> :NERDTree<CR>
 
 " For Tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
+
+" Autorun Flake8 on Python files
+autocmd BufWritePost *.py call Flake8()
+
+" Split navigation
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l

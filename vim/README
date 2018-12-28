@@ -9,5 +9,6 @@
     git clone https://github.com/godlygeek/tabular
     git clone https://github.com/majutsushi/tagbar
     git clone https://github.com/scrooloose/nerdcommenter
+    git clone https://github.com/nvie/vim-flake8.git
 4. Make directory for temp files
     mkdir ~/.vim/tmp
