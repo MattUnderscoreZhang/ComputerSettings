@@ -55,6 +55,7 @@ alias lx3='ssh -Y -l mzhang60 lx3.hep.uiuc.edu'
 alias mlx3='sudo sshfs -o allow_other -o defer_permissions mzhang60@lx3.hep.uiuc.edu: ~/lx3'
 #alias romulus='ssh -Y matt@192.168.0.103'
 alias romulus='ssh -Y matt@24.13.90.164'
+alias skynet='ssh -Y matt@192.17.211.215' # Local to UIUC
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias ls='ls -G'
