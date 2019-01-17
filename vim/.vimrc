@@ -203,3 +203,6 @@ map <C-l> <C-W>l
 
 " Python line length marker
 "autocmd FileType python setlocal colorcolumn=79
+
+" Colors
+set background=dark
