@@ -12,3 +12,4 @@
     git clone https://github.com/nvie/vim-flake8.git
 4. Make directory for temp files
     mkdir ~/.vim/tmp
+5. Move flake8 to ~/.config/
