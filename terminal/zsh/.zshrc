@@ -45,10 +45,6 @@ export RUCIO_ACCOUNT=mazhang
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias ls='ls -G'
-alias notes='vim ~/Dropbox/Work\ Journal/`date +%Y-%m-%d`.txt'
-alias work='vim ~/Dropbox/Work\ Journal/Work\ Tasks.txt'
-alias points='vim ~/Dropbox/Work\ Journal/Points.cxx'
-alias memory='vim /Users/mattzhang/Google\ Drive/Projects/Memory/memories.txt'
 function bm() {
     if  [ ! -e ~/.cd_bookmarks ] ; then
         mkdir ~/.cd_bookmarks
@@ -90,3 +86,6 @@ export PATH
 ## Virtual python environments
 #VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
 #source /usr/local/bin/virtualenvwrapper.sh
+
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
