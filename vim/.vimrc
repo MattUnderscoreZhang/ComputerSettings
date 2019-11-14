@@ -44,8 +44,6 @@ inoremap <C-U> <C-G>u<C-U>
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=v
-" either set mouse=a and hold shift to copy text as though mouse=a was not set,
-" or set mouse=v and tell iTerm2 to allow scrolling in interactive programs
 endif
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -208,3 +206,9 @@ map <C-l> <C-W>l
 
 " Colors
 set background=dark
+
+" Cursor line
+set cursorline
+
+" Let Vim copy to clipboard by default
+set clipboard=unnamed
