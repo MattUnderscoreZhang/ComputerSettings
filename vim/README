@@ -11,6 +11,7 @@
     git clone https://github.com/scrooloose/nerdcommenter
     git clone https://github.com/nvie/vim-flake8.git
     git clone --recursive https://github.com/davidhalter/jedi-vim.git ~/.vim/bundle/jedi-vim
+    git clone git://github.com/tpope/vim-abolish.git
 4. Make directory for temp files
     mkdir ~/.vim/tmp
 5. Move flake8 to ~/.config/
