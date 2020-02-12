@@ -94,4 +94,4 @@ export VISUAL=/usr/bin/vim
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv anaconda root_indicator background_jobs history time)
 
 # C++ flags
-export CXXFLAGS = "$CXXFLAGS -W -Wall -Werror -pedantic -std=c++14"
+export CXXFLAGS="$CXXFLAGS -W -Wall -Werror -pedantic -std=c++14"
