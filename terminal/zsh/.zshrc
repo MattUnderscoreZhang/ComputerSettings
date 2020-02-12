@@ -92,3 +92,6 @@ export VISUAL=/usr/bin/vim
 
 # add conda environment
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv anaconda root_indicator background_jobs history time)
+
+# C++ flags
+export CXXFLAGS = "$CXXFLAGS -W -Wall -Werror -pedantic -std=c++14"
