@@ -212,3 +212,9 @@ set cursorline
 
 " Let Vim copy to clipboard by default
 set clipboard=unnamed
+
+" Rainbow parentheses
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+let g:rainbow_conf = {
+\    'ctermfgs': ['Brown', 'LightBlue'],
+\}
