@@ -218,3 +218,6 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 let g:rainbow_conf = {
 \    'ctermfgs': ['Brown', 'LightBlue'],
 \}
+
+" Tab limit
+set tabpagemax=100
