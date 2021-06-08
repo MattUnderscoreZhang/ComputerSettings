@@ -7,3 +7,5 @@
 3. Set up virtual environments
     python2 -m virtualenv ~/py2_kernel
     python3 -m virtualenv ~/py3_kernel
+4. Set up PDBPP
+    mv .pdbrc.py ~
