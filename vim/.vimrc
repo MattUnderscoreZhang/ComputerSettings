@@ -226,3 +226,14 @@ set tabpagemax=100
 nnoremap <leader>gd :Gvdiff!<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
+
+" Vim-Test
+let test#python#runner = 'pytest'
+let test#python#pytest#executable = 'python -m pytest'
+let test#python#pytest#options = '-s'
+
+nmap <silent> <Leader>tn :TestNearest<CR>
+nmap <silent> <Leader>tf :TestFile<CR>
+nmap <silent> <Leader>ts :TestSuite<CR>
+nmap <silent> <Leader>tl :TestLast<CR>
+nmap <silent> <Leader>tv :TestVisit<CR>
