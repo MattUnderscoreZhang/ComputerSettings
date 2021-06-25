@@ -95,3 +95,9 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv anaconda root_indicator ba
 
 # C++ flags
 export CXXFLAGS="$CXXFLAGS -W -Wall -Werror -pedantic -std=c++14"
+
+# fzf git diff
+fd() {
+    preview="git diff $@ --color=always -- {-1}"
+    git diff $@ --name-only | fzf -m --ansi --preview $preview
+}

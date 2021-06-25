@@ -1,3 +1,5 @@
+1. Brew install neovim
+2. Move init.vim to ~/.config/nvim/
 1. Move .vimrc to ~
 2. Install Pathogen
     mkdir -p ~/.vim/autoload ~/.vim/bundle && \
@@ -17,6 +19,7 @@
     git clone https://github.com/stevearc/vim-arduino
     git clone https://tpope.io/vim/fugitive.git
     git clone git@github.com:vim-test/vim-test.git
+    git clone https://github.com/nvim-telescope/telescope.nvim.git
 4. Make directory for temp files
     mkdir ~/.vim/tmp
 5. Move flake8 to ~/.config/
