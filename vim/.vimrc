@@ -237,3 +237,9 @@ nmap <silent> <Leader>tf :TestFile<CR>
 nmap <silent> <Leader>ts :TestSuite<CR>
 nmap <silent> <Leader>tl :TestLast<CR>
 nmap <silent> <Leader>tv :TestVisit<CR>
+
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
