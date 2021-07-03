@@ -1,0 +1,23 @@
+[user]
+	name = Matt Zhang
+	email = set.stun@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+
+# define command which will be used when "nvim" is set as a merge tool
+[mergetool "nvim"]
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+# set "nvim" as tool for merging
+[merge]
+    tool = nvim
+# automatically launch merge tool without displaying a prompt
+[mergetool]
+    prompt = false
+    keepBackup = false
