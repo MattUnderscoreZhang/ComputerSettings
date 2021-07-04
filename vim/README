@@ -29,6 +29,7 @@
     git clone https://github.com/neovim/nvim-lspconfig.git
     git clone https://github.com/kyazdani42/nvim-web-devicons.git
     git clone -b 'bugfix/fast_parser_is_default_and_only_parser' git@github.com:flebel/vim-mypy.git
+    git clone git@github.com:neoclide/coc.nvim.git
 4. Make directory for temp files
     mkdir ~/.vim/tmp
 5. Move flake8 to ~/.config/
