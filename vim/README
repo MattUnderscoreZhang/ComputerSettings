@@ -1,5 +1,8 @@
 Brew install neovim
 Move init.lua to ~/.config/nvim/
+Move .vimrc to ~
+Make directory for temp files
+    mkdir ~/.vim/tmp
 Move plugins.lua to ~/.config/nvim/lua/
 Install Packer
     git clone https://github.com/wbthomason/packer.nvim\
@@ -9,10 +12,4 @@ Install packages
 
 -----
 
-Move .vimrc to ~
-Install Pathogen
-    mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-Make directory for temp files
-    mkdir ~/.vim/tmp
 Move flake8 to ~/.config/
