@@ -104,3 +104,9 @@ fd() {
 
 # nvim
 alias vim=nvim
+
+# thefuck
+eval $(thefuck --alias)
+
+# zoxide
+eval "$(zoxide init zsh)"
