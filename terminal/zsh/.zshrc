@@ -87,11 +87,12 @@ fd() {
     git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
-# nvim
+function cd() {
+    builtin cd "$@"
+    ls
+}
+
 alias vim=nvim
-
-# thefuck
 eval $(thefuck --alias)
-
-# zoxide
 eval "$(zoxide init zsh)"
+alias lg lazygit
