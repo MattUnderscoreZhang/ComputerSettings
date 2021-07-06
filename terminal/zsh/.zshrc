@@ -45,21 +45,6 @@ export RUCIO_ACCOUNT=mazhang
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias ls='ls -G'
-function bm() {
-    if  [ ! -e ~/.cd_bookmarks ] ; then
-        mkdir ~/.cd_bookmarks
-    fi
-    # create bookmark
-    echo "cd \"`pwd`\"" >| ~/.cd_bookmarks/"$1" ;
-}
-function cd() {
-    if [ -f ~/.cd_bookmarks/"$1" ] ; then
-        source ~/.cd_bookmarks/"$1"
-    else
-        builtin cd "$@"
-        ls
-    fi
-}
 function killjobs () {
     JOBS="$(jobs -p)";
     if [ -n "${JOBS}" ]; then
