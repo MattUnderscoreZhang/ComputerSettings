@@ -1,35 +1,20 @@
-1. Brew install neovim
-2. Move init.vim to ~/.config/nvim/
+Brew install neovim
+Move init.lua to ~/.config/nvim/
+Move plugins.lua to ~/.config/nvim/lua/
+Install Packer
+    git clone https://github.com/wbthomason/packer.nvim\
+    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+Install packages
+    <in vim> :PackerInstall
+
+
+
+
+
 1. Move .vimrc to ~
 2. Install Pathogen
     mkdir -p ~/.vim/autoload ~/.vim/bundle && \
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-3. Install plugins
-    cd ~/.vim/bundle
-    git clone https://github.com/tmhedberg/SimpylFold
-    git clone https://github.com/scrooloose/nerdtree
-    git clone https://github.com/godlygeek/tabular
-    git clone https://github.com/majutsushi/tagbar
-    git clone https://github.com/scrooloose/nerdcommenter
-    git clone https://github.com/nvie/vim-flake8.git
-    git clone --recursive https://github.com/davidhalter/jedi-vim.git ~/.vim/bundle/jedi-vim
-    git clone git://github.com/tpope/vim-abolish.git
-    git clone https://github.com/luochen1990/rainbow.git
-    git clone git://github.com/JuliaEditorSupport/julia-vim.git
-    git clone https://github.com/stevearc/vim-arduino
-    git clone https://tpope.io/vim/fugitive.git
-    git clone git@github.com:vim-test/vim-test.git
-    git clone https://github.com/nvim-telescope/telescope.nvim.git
-    git clone https://github.com/nvim-lua/plenary.nvim.git
-    git clone https://github.com/nvim-lua/popup.nvim.git
-    git clone https://github.com/sharkdp/bat.git
-    git clone https://github.com/sharkdp/fd.git
-    git clone https://github.com/BurntSushi/ripgrep.git
-    git clone https://github.com/nvim-treesitter/nvim-treesitter.git
-    git clone https://github.com/neovim/nvim-lspconfig.git
-    git clone https://github.com/kyazdani42/nvim-web-devicons.git
-    git clone -b 'bugfix/fast_parser_is_default_and_only_parser' git@github.com:flebel/vim-mypy.git
-    git clone git@github.com:neoclide/coc.nvim.git
 4. Make directory for temp files
     mkdir ~/.vim/tmp
 5. Move flake8 to ~/.config/
