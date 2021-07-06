@@ -7,14 +7,12 @@ Install Packer
 Install packages
     <in vim> :PackerInstall
 
+-----
 
-
-
-
-1. Move .vimrc to ~
-2. Install Pathogen
+Move .vimrc to ~
+Install Pathogen
     mkdir -p ~/.vim/autoload ~/.vim/bundle && \
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-4. Make directory for temp files
+Make directory for temp files
     mkdir ~/.vim/tmp
-5. Move flake8 to ~/.config/
+Move flake8 to ~/.config/
