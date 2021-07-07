@@ -11,8 +11,7 @@ Bash files are invisible - use "ls -la" to see them.
 	  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 	done
 4. Move .zshrc to ~
-5. Install Powerline fonts
-6. Change font in iTerm2 profile to 10pt Meslo LG M Regular for Powerline
-7. Change prompt theme to powerlevel9k
+5. Change font in iTerm2 profile to 12pt CaskaydiaCove Nerd Font
+6. Change prompt theme to powerlevel9k
 	cp .zpreztorc ~
-8. Change iTerm2 color scheme to Tomorrow Night
+7. Change iTerm2 color scheme to Tomorrow Night
