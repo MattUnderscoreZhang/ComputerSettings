@@ -109,7 +109,6 @@ map("n", "<leader>v", "<cmd>FloatermNew lazygit<cr>", options)
 map("n", "s", "<Plug>(easymotion-s2)", {})
 map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferLineCyclePrev<CR>", options)
-map("n", "gt", "<cmd>BufferLineCycleNext<CR>", options)
 --map("n", "gt", "<cmd>BufferLineCycleNext<CR>", options)
 --map("n", "gT", "<cmd>BufferLineCyclePrev<CR>", options)
 --map("n", "gb", "<cmd>BufferLinePick<CR>", options)
@@ -123,7 +122,7 @@ map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symb
 local on_attach = function(client, _)
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = false,  -- turn off LSP text popups
+            virtual_text = true,  -- turn on LSP text popups
             signs = true,  -- warning and error symbols on left
             update_in_insert = false,  -- don't update while typing
         }
@@ -179,7 +178,7 @@ inoremap <Up> <C-o>gk
 
 " Toggle wrap
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
-function ToggleWrap()
+function! ToggleWrap()
     if &wrap
         echo "Wrap OFF"
         setlocal nowrap
