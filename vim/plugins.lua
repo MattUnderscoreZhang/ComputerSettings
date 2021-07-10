@@ -20,13 +20,15 @@ return require('packer').startup(function()
     use 'simrat39/symbols-outline.nvim'  -- code tree view sidebar (*)
     use 'kyazdani42/nvim-tree.lua'  -- file explorer (*)
     use 'majutsushi/tagbar' -- code tree viewer sidebar (*)
-    use 'nvim-treesitter/nvim-treesitter'  -- improves interface for nvim-tree and adds functionality (*)
-    use 'tmhedberg/SimpylFold'  -- code folding for Python
     use 'karb94/neoscroll.nvim'  -- smooth window scrolling
     use 'jremmen/vim-ripgrep'  -- allows using ripgrep inside vim
     use {
         'nvim-telescope/telescope.nvim',  -- file search and grep
          requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
     }
     -- other packages
     use 'godlygeek/tabular'  -- lines stuff up using whitespace

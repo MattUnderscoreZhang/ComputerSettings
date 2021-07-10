@@ -87,8 +87,6 @@ map("n", "<leader>i", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>e", ":NvimTreeFindFile<cr>", options)
 map("n", "<leader>pi", "<cmd>PackerInstall<cr>", options)
 map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
-map("n", "gb", "<c-o>", options)
-map("n", "gn", "<c-^>", options)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
 map("n", "gf", "<cmd>lua require('lspsaga.provider').lsp_finder()<cr>", options)
@@ -112,7 +110,11 @@ map("n", "s", "<Plug>(easymotion-s2)", {})
 map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferLineCyclePrev<CR>", options)
 map("n", "gt", "<cmd>BufferLineCycleNext<CR>", options)
-map("n", "gT", "<cmd>BufferLineCyclePrev<CR>", options)
+--map("n", "gt", "<cmd>BufferLineCycleNext<CR>", options)
+--map("n", "gT", "<cmd>BufferLineCyclePrev<CR>", options)
+--map("n", "gb", "<cmd>BufferLinePick<CR>", options)
+--map("n", "gb", "<c-o>", options)
+map("n", "gn", "<c-^>", options)  -- jump to last used buffer
 map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
 map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
 map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", options)
@@ -227,10 +229,51 @@ require('neoscroll').setup{}
 
 vim.opt.termguicolors = true
 require("bufferline").setup{
-    options = { always_show_bufferline = false }
+    options = {
+        always_show_bufferline = false,  -- do not show for single open buffer
+        show_buffer_close_icons = false,
+        diagnostics = "nvim_lsp",  -- show errors in tab
+        diagnostics_indicator = function(count, level, diagnostics_dict)
+            local icon = level:match("error") and " " or " "
+            return " " .. icon .. count
+        end,
+        enforce_regular_tabs = true,
+        offsets = {{filetype = "NvimTree", text = "", highlight = "Directory", text_align = "left"}}  -- do not draw on top of nvim-tree file browser 
+    }
 }
 
-require('lualine').setup{}
+local function day_percentage()
+    local time = os.date("*t")
+    return os.date("%a %b %d: ") .. string.format("%d", math.floor((time.hour + time.min/60)/24*100) + 1) .. "%%"
+end
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = {'', ''},
+    section_separators = {'', ''},
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode', day_percentage},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
 
 require('compe').setup {
     enabled = true;
