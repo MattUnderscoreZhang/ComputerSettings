@@ -95,4 +95,10 @@ function cd() {
 alias vim=nvim
 eval $(thefuck --alias)
 eval "$(zoxide init zsh)"
+
+function z() {
+    __zoxide_z "$@"
+    ls
+}
+
 alias lg=lazygit
