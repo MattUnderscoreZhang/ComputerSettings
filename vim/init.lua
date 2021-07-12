@@ -89,6 +89,7 @@ map("n", "<leader>pi", "<cmd>PackerInstall<cr>", options)
 map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
+map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename object
 map("n", "gf", "<cmd>lua require('lspsaga.provider').lsp_finder()<cr>", options)
 map("n", "gh", "<cmd>lua require('lspsaga.hover').render_hover_doc()<cr>", options)  -- go to hover documentation
 map("n", "gs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
@@ -161,6 +162,7 @@ lspconfig.lua.setup {
     }
 }
 lspconfig.python.setup { on_attach = on_attach }
+lspconfig.pyright.setup{}
 
 -- line and cursor wrapping
 cmd([[
@@ -221,8 +223,6 @@ require('nvim-treesitter.configs').setup {
         disable = { "c", "rust" },  -- list of language that will be disabled
     },
 }
-
-require('lspconfig').pyright.setup{}
 
 require('neoscroll').setup{}
 
