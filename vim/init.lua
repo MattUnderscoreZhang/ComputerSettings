@@ -243,7 +243,7 @@ require("bufferline").setup{
 
 local function day_percentage()
     local time = os.date("*t")
-    return os.date("%a %b %d: ") .. string.format("%d", math.floor((time.hour + time.min/60)/24*100) + 1) .. "%%"
+    return os.date("%a %b %d %H:%M - ") .. string.format("%d", math.floor((time.hour + time.min/60)/24*100) + 1) .. "%%"
 end
 
 require('lualine').setup {
