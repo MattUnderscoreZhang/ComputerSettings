@@ -110,20 +110,21 @@ map("n", "<leader>v", "<cmd>FloatermNew lazygit<cr>", options)
 map("n", "s", "<Plug>(easymotion-s2)", {})
 map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferLineCyclePrev<CR>", options)
---map("n", "gt", "<cmd>BufferLineCycleNext<CR>", options)
---map("n", "gT", "<cmd>BufferLineCyclePrev<CR>", options)
+map("n", "gt", "<cmd>BufferLineMoveNext<CR>", options)
+map("n", "gT", "<cmd>BufferLineMovePrev<CR>", options)
 --map("n", "gb", "<cmd>BufferLinePick<CR>", options)
 --map("n", "gb", "<c-o>", options)
 map("n", "gn", "<c-^>", options)  -- jump to last used buffer
 map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
 map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
 map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", options)
+map("n", "<leader>m", "`", options)
 
 -- set up LSP
 local on_attach = function(client, _)
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = true,  -- turn on LSP text popups
+            virtual_text = false,  -- turn on LSP text popups
             signs = true,  -- warning and error symbols on left
             update_in_insert = false,  -- don't update while typing
         }
@@ -163,6 +164,9 @@ lspconfig.lua.setup {
 }
 lspconfig.python.setup { on_attach = on_attach }
 lspconfig.pyright.setup{}
+
+-- make error pop up on hovering a cursor over it
+cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])
 
 -- line and cursor wrapping
 cmd([[
