@@ -8,3 +8,4 @@ Install Packer
     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 Install packages
     <in vim> :PackerInstall
+    <in vim> :LspInstall lua
