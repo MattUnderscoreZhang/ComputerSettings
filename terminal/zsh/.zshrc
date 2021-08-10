@@ -105,3 +105,5 @@ alias lg=lazygit
 
 # direnv
 eval "$(direnv hook zsh)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
