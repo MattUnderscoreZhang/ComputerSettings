@@ -102,3 +102,6 @@ function z() {
 }
 
 alias lg=lazygit
+
+# direnv
+eval "$(direnv hook zsh)"
