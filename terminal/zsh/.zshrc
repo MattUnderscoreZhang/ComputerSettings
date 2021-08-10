@@ -62,9 +62,6 @@ else
     /usr/local/bin/python "$@"
 fi
 }
-# Python virtual environments
-alias kernel2='source ~/py2_kernel/bin/activate'
-alias kernel3='source ~/py3_kernel/bin/activate'
 # Use Homebrew Python and Ruby
 PATH="/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
@@ -103,7 +100,9 @@ function z() {
 
 alias lg=lazygit
 
-# direnv
-eval "$(direnv hook zsh)"
+# pyenv
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+alias py37='pyenv activate py37'
+alias py39='pyenv activate py39'
