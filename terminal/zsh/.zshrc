@@ -106,3 +106,6 @@ eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 alias py37='pyenv activate py37'
 alias py39='pyenv activate py39'
+
+# RabbitMQ
+export PATH=$PATH:/usr/local/sbin
