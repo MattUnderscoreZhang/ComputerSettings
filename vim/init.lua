@@ -164,6 +164,7 @@ lspconfig.lua.setup {
 }
 lspconfig.python.setup { on_attach = on_attach }
 lspconfig.pyright.setup{}
+lspconfig.rust.setup { on_attach = on_attach }
 
 -- make error pop up on hovering a cursor over it
 cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])
