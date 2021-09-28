@@ -125,11 +125,15 @@ map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbo
 map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", options)
 map("n", "<leader>m", "`", options)
 -- vimspector
+map("n", "<leader>db", ":call vimspector#ToggleBreakpoint()<CR>", options)
+map("n", "<leader>dx", ":call vimspector#ClearBreakpoints()<CR>", options)
+map("n", "<leader>dc", ":call vimspector#Continue()<CR>", options)
 map("n", "<leader>dd", ":call vimspector#Launch()<CR>", options)
-map("n", "<leader>dx", ":VimspectorReset<CR>", options)
-map("n", "<leader>de", ":VimspectorEval", options)
-map("n", "<leader>dw", ":VimspectorWatch", options)
-map("n", "<leader>do", ":VimspectorShowOutput", options)
+map("n", "<leader>dr", ":call vimspector#Restart()<CR>", options)
+map("n", "<leader>ds", ":call vimspector#StepOver()<CR>", options)
+map("n", "<leader>di", ":call vimspector#StepInto()<CR>", options)
+map("n", "<leader>do", ":call vimspector#StepOut()<CR>", options)
+map("n", "<leader>dw", ":VimspectorWatch ", options)
 
 -- set up LSP
 local on_attach = function(client, _)
@@ -175,7 +179,7 @@ lspconfig.lua.setup {
 }
 lspconfig.python.setup { on_attach = on_attach }
 lspconfig.typescript.setup { on_attach = on_attach }
-lspconfig.pyright.setup{}
+--lspconfig.pyright.setup{}
 
 -- make error pop up on hovering a cursor over it
 cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])
