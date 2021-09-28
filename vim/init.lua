@@ -23,6 +23,7 @@ bo.swapfile = false
 g.floaterm_width = 0.8
 g.floaterm_height = 0.8
 g.nvim_tree_side = 'right'
+g.vimspector_enable_mappings = 'HUMAN'
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -89,6 +90,7 @@ map("n", "<leader>pi", "<cmd>PackerInstall<cr>", options)
 map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
+map("n", "gb", "<c-o>", options)  -- go to references
 map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename object
 map("n", "gf", "<cmd>lua require('lspsaga.provider').lsp_finder()<cr>", options)
 map("n", "gh", "<cmd>lua require('lspsaga.hover').render_hover_doc()<cr>", options)  -- go to hover documentation
@@ -105,8 +107,11 @@ map("n", "<leader>tl", "<cmd>TestLast<cr>", options)
 map("n", "<leader>tv", "<cmd>TestVisit<cr>", options)
 -- map("n", "<leader>ts", "<cmd>TestSuite<cr>", options)
 map("n", "<leader>ts", "<cmd>FloatermNew python /Users/matt/Projects/SimSpace/REDFOR/redfor/tests/run_all_tests.py<cr>", options)
+map("n", "<leader>of", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_frontend.sh<cr>", options)
+map("n", "<leader>ob", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_backend.sh<cr>", options)
+map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attack-designer/; open http://localhost:1234<cr>", options)
 map("n", "<leader>ft", "<cmd>FloatermNew<cr>", options)
-map("n", "<leader>v", "<cmd>FloatermNew lazygit<cr>", options)
+map("n", "<leader>lg", "<cmd>FloatermNew lazygit<cr>", options)
 map("n", "s", "<Plug>(easymotion-s2)", {})
 map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferLineCyclePrev<CR>", options)
@@ -119,6 +124,12 @@ map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
 map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
 map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", options)
 map("n", "<leader>m", "`", options)
+-- vimspector
+map("n", "<leader>dd", ":call vimspector#Launch()<CR>", options)
+map("n", "<leader>dx", ":VimspectorReset<CR>", options)
+map("n", "<leader>de", ":VimspectorEval", options)
+map("n", "<leader>dw", ":VimspectorWatch", options)
+map("n", "<leader>do", ":VimspectorShowOutput", options)
 
 -- set up LSP
 local on_attach = function(client, _)
@@ -163,8 +174,8 @@ lspconfig.lua.setup {
     }
 }
 lspconfig.python.setup { on_attach = on_attach }
+lspconfig.typescript.setup { on_attach = on_attach }
 lspconfig.pyright.setup{}
-lspconfig.rust.setup { on_attach = on_attach }
 
 -- make error pop up on hovering a cursor over it
 cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])
