@@ -42,4 +42,6 @@ return require('packer').startup(function()
     use 'voldikss/vim-floaterm'  -- open floating terminal window in vim
     use 'windwp/nvim-autopairs'  -- autocomplete brackets
     use 'easymotion/vim-easymotion'  -- makes certain vim commands faster to execute (*)
+    use 'puremourning/vimspector'  -- graphical debugger
+    use 'szw/vim-maximizer'  -- maximize split panes
 end)
