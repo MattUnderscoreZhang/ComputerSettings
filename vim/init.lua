@@ -76,7 +76,7 @@ map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>",
 map("n", "<leader>.", "<cmd>lua require('telescope.builtin').file_browser()<cr>", options)
 map("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", options)
 map("n", "<leader>bl", "<cmd>lua require('telescope.builtin').buffers()<cr>", options)
-map("n", "<leader>bd", "<cmd>bd!<cr>", options)
+map("n", "<leader>bd", "<cmd>Bwipeout!<cr>", options)
 map("n", "<leader>x", "<cmd>lua require('telescope.builtin').commands()<cr>", options)
 map("n", "<leader>dl", "<cmd>lua require('telescope.builtin').lsp_document_diagnostics()<cr>", options)
 map("n", "<leader>dc", "<cmd>lua require('lspsaga.diagnostic').show_cursor_diagnostics()<cr>", options)

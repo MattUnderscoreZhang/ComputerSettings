@@ -4,7 +4,6 @@ return require('packer').startup(function()
     use 'p00f/nvim-ts-rainbow'  -- rainbow parentheses
     use 'glepnir/indent-guides.nvim'  -- visually display indent levels
     use 'akinsho/nvim-bufferline.lua'  -- add GUI visuals at top
-    use 'kyazdani42/nvim-web-devicons'  -- adds icons to plugins
     use 'hoob3rt/lualine.nvim'  -- beter status line at bottom
     use {
         'npxbr/gruvbox.nvim',  -- treesitter-consistent color schemes
@@ -18,7 +17,11 @@ return require('packer').startup(function()
     use 'hrsh7th/vim-vsnip' -- LSP-based snippet completion (*)
     -- code navigation
     use 'simrat39/symbols-outline.nvim'  -- code tree view sidebar (*)
-    use 'kyazdani42/nvim-tree.lua'  -- file explorer (*)
+    use {
+        'kyazdani42/nvim-tree.lua',  -- file explorer (*)
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function() require'nvim-tree'.setup () end
+    }
     use 'majutsushi/tagbar' -- code tree viewer sidebar (*)
     use 'karb94/neoscroll.nvim'  -- smooth window scrolling
     use 'jremmen/vim-ripgrep'  -- allows using ripgrep inside vim
@@ -30,6 +33,7 @@ return require('packer').startup(function()
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
+    use 'famiu/bufdelete.nvim' -- cleaner buffer closing
     -- other packages
     use 'godlygeek/tabular'  -- lines stuff up using whitespace
     use 'scrooloose/nerdcommenter'  -- quickly comment and uncomment code
