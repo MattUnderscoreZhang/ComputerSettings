@@ -235,8 +235,11 @@ endfunction
 set whichwrap+=<,>,h,l,[,]
 ]])
 
--- make vim-test print out to terminal
-cmd([[let test#python#pytest#options = '-s']])
+require('nvim-tree').setup {
+    view = {
+        side = 'right'
+    }
+}
 
 require('nvim-treesitter.configs').setup {
     ensure_installed = "maintained",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -246,6 +249,9 @@ require('nvim-treesitter.configs').setup {
         disable = { "c", "rust" },  -- list of language that will be disabled
     },
 }
+
+-- make vim-test print out to terminal
+cmd([[let test#python#pytest#options = '-s']])
 
 require('neoscroll').setup{}
 
