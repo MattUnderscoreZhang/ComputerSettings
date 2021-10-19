@@ -62,6 +62,9 @@ _G.s_tab_complete = function()
     end
 end
 
+-- for CharaChorder
+vim.g.mapleader = ";"
+
 local options = {noremap=true, silent=true}
 map("i", "<tab>", "v:lua.tab_complete()", {expr=true})
 map("s", "<tab>", "v:lua.tab_complete()", {expr=true})
@@ -71,7 +74,6 @@ map("n", "<space>", "za", options)
 map("i", "<cr>", "compe#confirm('<cr>')", {silent=true, expr=true})
 map("i", "jk", "<esc>", options)
 map("t", "jk", "<c-\\><c-n>", options)
-map("n", ";", ":", {noremap=true})
 map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", options)
 map("n", "<leader>.", "<cmd>lua require('telescope.builtin').file_browser()<cr>", options)
 map("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", options)
