@@ -15,6 +15,8 @@ return require('packer').startup(function()
     use 'glepnir/lspsaga.nvim'  -- fancy diagnostics (*)
     use 'onsails/lspkind-nvim'  -- popups for info on autocompletion
     use 'hrsh7th/vim-vsnip' -- LSP-based snippet completion (*)
+    -- LLDB debugging
+    use 'sakhnik/nvim-gdb' -- GDB, LLDB, pdb++ integration
     -- code navigation
     use 'simrat39/symbols-outline.nvim'  -- code tree view sidebar (*)
     use {
