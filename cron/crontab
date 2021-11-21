@@ -1,1 +1,1 @@
-@midnight sh ~/Projects/ComputerSettings/cron/commit.sh
+@midnight ~/Projects/ComputerSettings/cron/crontab sh ~/Projects/ComputerSettings/cron/commit.sh
