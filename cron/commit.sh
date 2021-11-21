@@ -18,7 +18,7 @@ cp ~/.ssh/config ssh/
 cp ~/Library/Application\ Support/lazygit/config.yml terminal/
 cp ~/.config/nvim/init.lua vim/
 cp ~/.config/nvim/lua/plugins.lua vim/
-git add *
+git add .
 git commit -m "Daily commit"
 git pull
 git push
