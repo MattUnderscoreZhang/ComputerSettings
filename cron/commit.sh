@@ -4,13 +4,17 @@ cd ~/Projects/Obsidian/
 git add .
 git commit -m "Daily commit"
 git pull
-git push
+if [ git status | grep -q modified ]; then
+    git push
+fi
 
 cd ~/Projects/VimNotes/
 git add .
 git commit -m "Daily commit"
 git pull
-git push
+if [ git status | grep -q modified ]; then
+    git push
+fi
 
 cd ~/Projects/ComputerSettings/
 [[ $(type -t cp) == "alias" ]] && unalias cp
@@ -23,4 +27,6 @@ cp -rf ~/.config/nvim/lua/plugins.lua vim/
 git add .
 git commit -m "Daily commit"
 git pull
-git push
+if [ git status | grep -q modified ]; then
+    git push
+fi
