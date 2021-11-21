@@ -11,7 +11,7 @@ git pull
 git push
 
 cd ~/Projects/ComputerSettings/
-unalias cp
+[[ $(type -t cp) == "alias" ]] && unalias cp
 rm -rf .config/
 cp -rf ~/.config .
 cp -rf ~/.gitconfig git/
