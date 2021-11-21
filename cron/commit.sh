@@ -14,8 +14,7 @@ git push
 
 cd ~/Projects/ComputerSettings/
 [[ $(type -t cp) == "alias" ]] && unalias cp
-rm -rf .config/
-cp -rf ~/.config .
+rsync -r ~/.config .
 cp -rf ~/.gitconfig git/
 cp -rf ~/.ssh/config ssh/
 cp -rf ~/Library/Application\ Support/lazygit/config.yml terminal/
