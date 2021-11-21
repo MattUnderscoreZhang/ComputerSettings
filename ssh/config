@@ -29,8 +29,9 @@ Host bw
 	HostName bw.ncsa.illinois.edu
     User zhang10
 
+# Amirs personal computer - for calo DNN, use uta
 Host amir
-	HostName dark-demon.duckdns.org # Amirs personal computer - for calo DNN, use uta
+	HostName dark-demon.duckdns.org
     User mzhang60
 
 Host mike
@@ -58,6 +59,6 @@ Host romulus
 	HostName 24.13.90.164
     User matt
 
-Host skynet
-	HostName 192.17.211.215
+Host mattbox
+    HostName 192.168.0.16
     User matt
