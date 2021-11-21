@@ -1,23 +1,24 @@
-cd ~/Projects/Cambion/
-git add *
+cd ~/Projects/Obsidian/
+git add .
 git commit -m "Daily commit"
 git pull
 git push
 
 cd ~/Projects/VimNotes/
-git add *
+git add .
 git commit -m "Daily commit"
 git pull
 git push
 
 cd ~/Projects/ComputerSettings/
+unalias cp
 rm -rf .config/
 cp -rf ~/.config .
-cp ~/.gitconfig git/
-cp ~/.ssh/config ssh/
-cp ~/Library/Application\ Support/lazygit/config.yml terminal/
-cp ~/.config/nvim/init.lua vim/
-cp ~/.config/nvim/lua/plugins.lua vim/
+cp -rf ~/.gitconfig git/
+cp -rf ~/.ssh/config ssh/
+cp -rf ~/Library/Application\ Support/lazygit/config.yml terminal/
+cp -rf ~/.config/nvim/init.lua vim/
+cp -rf ~/.config/nvim/lua/plugins.lua vim/
 git add .
 git commit -m "Daily commit"
 git pull
