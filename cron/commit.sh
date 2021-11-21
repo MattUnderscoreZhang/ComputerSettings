@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd ~/Projects/Obsidian/
 git add .
 git commit -m "Daily commit"
