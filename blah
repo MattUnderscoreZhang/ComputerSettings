@@ -1,0 +1,72 @@
+Cronic detected failure or error output for the command:
+/Users/matt/Projects/ComputerSettings/cron/commit.sh
+
+RESULT CODE: 0
+
+ERROR OUTPUT:
+hint: Pulling without specifying how to reconcile divergent branches is
+hint: discouraged. You can squelch this message by running one of the following
+hint: commands sometime before your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+X11 forwarding request failed on channel 0
+X11 forwarding request failed on channel 0
+Everything up-to-date
+hint: Pulling without specifying how to reconcile divergent branches is
+hint: discouraged. You can squelch this message by running one of the following
+hint: commands sometime before your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+X11 forwarding request failed on channel 0
+X11 forwarding request failed on channel 0
+Everything up-to-date
+/Users/matt/Projects/ComputerSettings/cron/commit.sh: line 14: unalias: cp: not found
+cp: /Users/matt/.config/iterm2/AppSupport/iterm2-daemon-1.socket: Operation not supported on socket
+hint: Pulling without specifying how to reconcile divergent branches is
+hint: discouraged. You can squelch this message by running one of the following
+hint: commands sometime before your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+X11 forwarding request failed on channel 0
+X11 forwarding request failed on channel 0
+remote: This repository moved. Please use the new location:        
+remote:   git@github.com:MattUnderscoreZhang/ComputerSettings.git        
+To github.com:BucketOfFish/ComputerSettings.git
+   14243fb..362b9d4  master -> master
+
+STANDARD OUTPUT:
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+Already up to date.
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+Already up to date.
+[master 362b9d4] Daily commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 blah
+Already up to date.
