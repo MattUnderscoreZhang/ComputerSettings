@@ -4,7 +4,7 @@ cd ~/Projects/Obsidian/
 git add .
 git commit -m "Daily commit"
 git pull
-if git status | grep -q Changes; then
+if git status | grep -q ahead; then
     git push
 fi
 
@@ -12,7 +12,7 @@ cd ~/Projects/VimNotes/
 git add .
 git commit -m "Daily commit"
 git pull
-if git status | grep -q Changes; then
+if git status | grep -q ahead; then
     git push
 fi
 
@@ -27,6 +27,6 @@ cp -rf ~/.config/nvim/lua/plugins.lua vim/
 git add .
 git commit -m "Daily commit"
 git pull
-if git status | grep -q Changes; then
+if git status | grep -q ahead; then
     git push
 fi
