@@ -17,7 +17,6 @@ if git status | grep -q ahead; then
 fi
 
 cd ~/Projects/ComputerSettings/
-[[ $(type -t cp) == "alias" ]] && unalias cp
 rsync -r ~/.config .
 cp -rf ~/.gitconfig git/
 cp -rf ~/.ssh/config ssh/
