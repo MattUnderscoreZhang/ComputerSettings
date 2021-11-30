@@ -254,6 +254,8 @@ require('nvim-treesitter.configs').setup {
 
 -- make vim-test print out to terminal
 cmd([[let test#python#pytest#options = '-s']])
+-- make vim-test use split window
+cmd([[let test#strategy = "neovim"]])
 
 require('neoscroll').setup{}
 
