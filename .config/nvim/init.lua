@@ -160,11 +160,8 @@ local on_attach = function(client, _)
     end
 end
 
-local lsp_install = require('lspinstall')
-lsp_install.setup()
-
 local lspconfig = require('lspconfig')
-lspconfig.lua.setup {
+lspconfig.sumneko_lua.setup {  -- Lua
     settings = {
         Lua = {
             diagnostics = {
@@ -179,9 +176,8 @@ lspconfig.lua.setup {
         }
     }
 }
-lspconfig.python.setup { on_attach = on_attach }
-lspconfig.typescript.setup { on_attach = on_attach }
-lspconfig.pyright.setup{}  -- static type checker
+lspconfig.pyright.setup { on_attach = on_attach }  -- Python
+lspconfig.eslint.setup { on_attach = on_attach }  -- Typescript
 
 -- make error pop up on hovering a cursor over it
 cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])
@@ -200,7 +196,7 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
-" Toggle wrap
+" Toggle cursor line wrap (jump b/w front and end of lines)
 noremap <silent> <Leader>w :call ToggleWrap()<CR>
 function! ToggleWrap()
     if &wrap

@@ -10,8 +10,10 @@ return require('packer').startup(function()
         requires = {"rktjmp/lush.nvim"}  -- (*)
     }
     -- LSP
-    use 'kabouzeid/nvim-lspinstall'  -- adds "LspInstall command for nvim-lspconfig
-    use 'neovim/nvim-lspconfig'  -- automatic launching of LSP servers
+    use {
+        'neovim/nvim-lspconfig',  -- automatic launching of LSP servers
+        'williamboman/nvim-lsp-installer'  -- install language servers for LSP
+    }
     use 'glepnir/lspsaga.nvim'  -- fancy diagnostics (*)
     use 'onsails/lspkind-nvim'  -- popups for info on autocompletion
     use 'hrsh7th/vim-vsnip' -- LSP-based snippet completion (*)

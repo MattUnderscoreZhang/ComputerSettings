@@ -8,3 +8,6 @@ Install packages
     make sure ~/.config/nvim/init.lua and ~/.config/nvim/lua/plugins.lua are present
     <in vim> :PackerInstall
     <in vim> :LspInstall lua
+    <in vim> :LspInstall python
+    <in vim> :LspInstall typescript
+    NOTE: install sumneko_lua, pyright, and eslint language servers
