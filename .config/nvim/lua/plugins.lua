@@ -14,7 +14,11 @@ return require('packer').startup(function()
         'neovim/nvim-lspconfig',  -- automatic launching of LSP servers
         'williamboman/nvim-lsp-installer'  -- install language servers for LSP
     }
-    use 'glepnir/lspsaga.nvim'  -- fancy diagnostics (*)
+    --use { 'tami5/lspsaga.nvim' }  -- error diagnostics on hover (maintained branch)
+    use {
+        'ray-x/navigator.lua',  -- error diagnostics on hover
+        requires = {'ray-x/guihua.lua', run='cd lua/fzy && make'}
+    }
     use 'onsails/lspkind-nvim'  -- popups for info on autocompletion
     use 'hrsh7th/vim-vsnip' -- LSP-based snippet completion (*)
     -- LLDB debugging

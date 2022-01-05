@@ -85,8 +85,9 @@ map("n", "<leader>dc", "<cmd>lua require('lspsaga.diagnostic').show_cursor_diagn
 map("n", "<leader>dp", "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<cr>", options)
 map("n", "<leader>dn", "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<cr>", options)
 map("n", "<leader>sf", "<cmd>luafile %<cr>", options)  -- source current file
+map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
+map("n", "<leader>ib", "<cmd>edit ~/.config/nvim/lua/plugins.lua <cr>", options)
 map("n", "<leader>si", "<cmd>luafile /Users/matt/.config/nvim/init.lua<cr>", options)  -- source lua init file
-map("n", "<leader>i", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>e", ":NvimTreeFindFile<cr>", options)
 map("n", "<leader>pi", "<cmd>PackerInstall<cr>", options)
 map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
@@ -94,11 +95,11 @@ map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to defin
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
 map("n", "gb", "<c-o>", options)  -- go to references
 map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename object
-map("n", "gf", "<cmd>lua require('lspsaga.provider').lsp_finder()<cr>", options)
-map("n", "gh", "<cmd>lua require('lspsaga.hover').render_hover_doc()<cr>", options)  -- go to hover documentation
-map("n", "gs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
-map("n", "<leader>a", "<cmd>lua require('lspsaga.codeaction').code_action()<cr>", options)
-map("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<cr>", options)
+--map("n", "gf", "<cmd>lua require('lspsaga.provider').lsp_finder()<cr>", options)
+--map("n", "gh", "<cmd>lua require('lspsaga.hover').render_hover_doc()<cr>", options)  -- go to hover documentation
+--map("n", "gs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
+--map("n", "<leader>a", "<cmd>lua require('lspsaga.codeaction').code_action()<cr>", options)
+--map("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<cr>", options)
 map("n", "<c-h>", "<c-w>h", options)
 map("n", "<c-j>", "<c-w>j", options)
 map("n", "<c-k>", "<c-w>k", options)
@@ -180,7 +181,7 @@ lspconfig.pyright.setup { on_attach = on_attach }  -- Python
 lspconfig.eslint.setup { on_attach = on_attach }  -- Typescript
 
 -- make error pop up on hovering a cursor over it
-cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])
+--cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])
 
 -- line and cursor wrapping
 cmd([[
@@ -338,8 +339,8 @@ require('nvim-autopairs').setup{}
 
 require('lspkind').init()
 
-require('lspsaga').init_lsp_saga {
-  finder_action_keys = {
-    open = '<cr>'
-  }
-}
+--require('lspsaga').init_lsp_saga {
+  --finder_action_keys = {
+    --open = '<cr>'
+  --}
+--}
