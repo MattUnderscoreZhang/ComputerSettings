@@ -30,16 +30,16 @@ return require('packer').startup(function()
         requires = 'kyazdani42/nvim-web-devicons',
         config = function() require'nvim-tree'.setup () end
     }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
     use 'majutsushi/tagbar' -- code tree viewer sidebar (*)
     use 'karb94/neoscroll.nvim'  -- smooth window scrolling
     use 'jremmen/vim-ripgrep'  -- allows using ripgrep inside vim
     use {
         'nvim-telescope/telescope.nvim',  -- file search and grep
          requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-    }
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
     -- other packages

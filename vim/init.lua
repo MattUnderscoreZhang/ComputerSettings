@@ -81,9 +81,6 @@ map("n", "<leader>bl", "<cmd>lua require('telescope.builtin').buffers()<cr>", op
 map("n", "bd", "<cmd>Bwipeout!<cr>", options)
 map("n", "<leader>x", "<cmd>lua require('telescope.builtin').commands()<cr>", options)
 map("n", "<leader>dl", "<cmd>lua require('telescope.builtin').lsp_document_diagnostics()<cr>", options)
---map("n", "<leader>dc", "<cmd>lua require('lspsaga.diagnostic').show_cursor_diagnostics()<cr>", options)
---map("n", "<leader>dp", "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_prev()<cr>", options)
---map("n", "<leader>dn", "<cmd>lua require('lspsaga.diagnostic').lsp_jump_diagnostic_next()<cr>", options)
 map("n", "<leader>sf", "<cmd>luafile %<cr>", options)  -- source current file
 map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>ib", "<cmd>edit ~/.config/nvim/lua/plugins.lua <cr>", options)
@@ -94,12 +91,7 @@ map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
 map("n", "gb", "<c-o>", options)  -- go to references
---map("n", "gf", "<cmd>lua require('lspsaga.provider').lsp_finder()<cr>", options)
---map("n", "gh", "<cmd>lua require('lspsaga.hover').render_hover_doc()<cr>", options)  -- go to hover documentation
---map("n", "gs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
---map("n", "<leader>a", "<cmd>lua require('lspsaga.codeaction').code_action()<cr>", options)
 map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename object
---map("n", "<leader>rn", "<cmd>lua require('lspsaga.rename').rename()<cr>", options)
 map("n", "<c-h>", "<c-w>h", options)
 map("n", "<c-j>", "<c-w>j", options)
 map("n", "<c-k>", "<c-w>k", options)
@@ -120,8 +112,6 @@ map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferLineCyclePrev<CR>", options)
 map("n", "gt", "<cmd>BufferLineMoveNext<CR>", options)
 map("n", "gT", "<cmd>BufferLineMovePrev<CR>", options)
---map("n", "gb", "<cmd>BufferLinePick<CR>", options)
---map("n", "gb", "<c-o>", options)
 map("n", "gn", "<c-^>", options)  -- jump to last used buffer
 map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
 map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
@@ -180,8 +170,7 @@ lspconfig.sumneko_lua.setup {  -- Lua
 lspconfig.pyright.setup { on_attach = on_attach }  -- Python
 lspconfig.eslint.setup { on_attach = on_attach }  -- Typescript
 
--- make error pop up on hovering a cursor over it
---cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])
+cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])  -- make error pop up on hovering a cursor over it
 
 -- line and cursor wrapping
 cmd([[
@@ -338,9 +327,3 @@ vim.cmd([[colorscheme gruvbox]])
 require('nvim-autopairs').setup{}
 
 require('lspkind').init()
-
---require('lspsaga').init_lsp_saga {
-  --finder_action_keys = {
-    --open = '<cr>'
-  --}
---}
