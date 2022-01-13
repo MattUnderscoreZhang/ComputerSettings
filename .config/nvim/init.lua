@@ -90,7 +90,7 @@ map("n", "<leader>pi", "<cmd>PackerInstall<cr>", options)
 map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
-map("n", "gb", "<c-o>", options)  -- go to references
+--map("n", "gb", "<c-o>", options)  -- go to references
 map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename object
 map("n", "<c-h>", "<c-w>h", options)
 map("n", "<c-j>", "<c-w>j", options)
@@ -108,10 +108,13 @@ map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attac
 map("n", "<leader>ft", "<cmd>FloatermNew<cr>", options)
 map("n", "<leader>lg", "<cmd>FloatermNew lazygit<cr>", options)
 map("n", "s", "<Plug>(easymotion-s2)", {})
-map("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", options)
-map("n", "<s-tab>", "<cmd>BufferLineCyclePrev<CR>", options)
-map("n", "gt", "<cmd>BufferLineMoveNext<CR>", options)
-map("n", "gT", "<cmd>BufferLineMovePrev<CR>", options)
+-- barbar
+map("n", "<tab>", "<cmd>BufferNext<CR>", options)
+map("n", "<s-tab>", "<cmd>BufferPrevious<CR>", options)
+map("n", "gt", "<cmd>BufferMoveNext<CR>", options)
+map("n", "gT", "<cmd>BufferMovePrevious<CR>", options)
+map("n", "<leader>g", "<cmd>BufferPick<CR>", options)
+-- other
 map("n", "gn", "<c-^>", options)  -- jump to last used buffer
 map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
 map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
@@ -246,19 +249,6 @@ cmd([[let test#strategy = "neovim"]])
 require('neoscroll').setup{}
 
 vim.opt.termguicolors = true
-require("bufferline").setup{
-    options = {
-        always_show_bufferline = false,  -- do not show for single open buffer
-        show_buffer_close_icons = false,
-        diagnostics = "nvim_lsp",  -- show errors in tab
-        diagnostics_indicator = function(count, level, diagnostics_dict)
-            local icon = level:match("error") and " " or " "
-            return " " .. icon .. count
-        end,
-        enforce_regular_tabs = true,
-        offsets = {{filetype = "NvimTree", text = "", highlight = "Directory", text_align = "left"}}  -- do not draw on top of nvim-tree file browser 
-    }
-}
 
 local function day_percentage()
     local time = os.date("*t")

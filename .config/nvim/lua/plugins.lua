@@ -3,7 +3,10 @@ return require('packer').startup(function()
     -- visuals
     use 'p00f/nvim-ts-rainbow'  -- rainbow parentheses
     use 'glepnir/indent-guides.nvim'  -- visually display indent levels
-    use 'akinsho/nvim-bufferline.lua'  -- add GUI visuals at top
+    use {
+        'romgrk/barbar.nvim',  -- buffer control
+        requires = {'kyazdani42/nvim-web-devicons'}
+    }
     use 'hoob3rt/lualine.nvim'  -- beter status line at bottom
     use {
         'npxbr/gruvbox.nvim',  -- treesitter-consistent color schemes
@@ -14,7 +17,7 @@ return require('packer').startup(function()
         'neovim/nvim-lspconfig',  -- automatic launching of LSP servers
         'williamboman/nvim-lsp-installer'  -- install language servers for LSP
     }
-    --use { 'tami5/lspsaga.nvim' }  -- error diagnostics on hover (maintained branch)
+    use { 'tami5/lspsaga.nvim' }  -- error diagnostics on hover (maintained branch)
     use {
         'ray-x/navigator.lua',  -- error diagnostics on hover
         requires = {'ray-x/guihua.lua', run='cd lua/fzy && make'}
@@ -56,4 +59,5 @@ return require('packer').startup(function()
     use 'easymotion/vim-easymotion'  -- makes certain vim commands faster to execute (*)
     use 'puremourning/vimspector'  -- graphical debugger
     use 'szw/vim-maximizer'  -- maximize split panes
+    use 'sotte/presenting.vim'  -- slides in vim
 end)
