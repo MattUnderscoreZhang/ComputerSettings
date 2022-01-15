@@ -47,7 +47,7 @@ _G.tab_complete = function()
     elseif check_back_space() then
         return t "<Tab>"
     else
-        return vim.fn['compe#complete']()
+        return vim.fn['cmp#complete']()
     end
 end
 
@@ -72,7 +72,7 @@ map("s", "<tab>", "v:lua.tab_complete()", {expr=true})
 map("i", "<s-tab>", "v:lua.s_tab_complete()", {expr=true})
 map("s", "<s-tab>", "v:lua.s_tab_complete()", {expr=true})
 map("n", "<space>", "za", options)
-map("i", "<cr>", "compe#confirm('<cr>')", {silent=true, expr=true})
+map("i", "<cr>", "cmp#confirm('<cr>')", {silent=true, expr=true})
 map("i", "jk", "<esc>", options)
 map("t", "jk", "<c-\\><c-n>", options)
 map("n", "bd", "<cmd>Bwipeout!<cr>", options)
@@ -170,6 +170,7 @@ local on_attach = function(client, _)
     end
 end
 
+-- lspconfig
 local lspconfig = require('lspconfig')
 lspconfig.sumneko_lua.setup {  -- Lua
     settings = {
@@ -189,6 +190,7 @@ lspconfig.sumneko_lua.setup {  -- Lua
 lspconfig.pyright.setup { on_attach = on_attach }  -- Python
 lspconfig.eslint.setup { on_attach = on_attach }  -- Typescript
 
+-- lspsaga
 cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])  -- make error pop up on hovering a cursor over it
 
 -- line and cursor wrapping
@@ -242,12 +244,7 @@ endfunction
 set whichwrap+=<,>,h,l,[,]
 ]])
 
-require('nvim-tree').setup {
-    view = {
-        side = 'right'
-    }
-}
-
+-- nvim-treesitter
 require('nvim-treesitter.configs').setup {
     ensure_installed = "maintained",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = { "javascript" },  -- List of parsers to ignore installing
@@ -257,76 +254,106 @@ require('nvim-treesitter.configs').setup {
     },
 }
 
--- make vim-test print out to terminal
-cmd([[let test#python#pytest#options = '-s']])
--- make vim-test use split window
-cmd([[let test#strategy = "neovim"]])
+-- vim-test
+cmd([[let test#python#pytest#options = '-s']])  -- make vim-test print out to terminal
+cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
 
-require('neoscroll').setup{}
-
-vim.opt.termguicolors = true
-
+-- lualine
 local function day_percentage()
     local time = os.date("*t")
     return os.date("%a %b %d %H:%M - ") .. string.format("%d", math.floor((time.hour + time.min/60)/24*100) + 1) .. "%%"
 end
 
 require('lualine').setup {
-  options = {
-    icons_enabled = true,
-    theme = 'gruvbox',
-    component_separators = {'', ''},
-    section_separators = {'', ''},
-    disabled_filetypes = {}
-  },
-  sections = {
-    lualine_a = {'mode', day_percentage},
-    lualine_b = {'branch'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  extensions = {}
+    options = {
+        icons_enabled = true,
+        theme = 'gruvbox',
+        component_separators = {'', ''},
+        section_separators = {'', ''},
+        disabled_filetypes = {}
+    },
+    sections = {
+        lualine_a = {'mode', day_percentage},
+        lualine_b = {'branch'},
+        lualine_c = {'filename'},
+        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {'location'}
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {'location'},
+        lualine_y = {},
+        lualine_z = {}
+    },
+    tabline = {},
+    extensions = {}
 }
 
-require('compe').setup {
-    enabled = true;
-    autocomplete = true;
-    debug = false;
-    min_length = 1;
-    preselect = 'enable';
-    throttle_time = 80;
-    source_timeout = 200;
-    incomplete_delay = 400;
-    max_abbr_width = 100;
-    max_kind_width = 100;
-    max_menu_width = 100;
-    documentation = true;
-    source = {
-        path = true;
-        buffer = true;
-        calc = true;
-        nvim_lsp = true;
-        nvim_lua = true;
-        vsnip = true;
-        ultisnips = true;
-    };
+-- luasnip
+local luasnip = require 'luasnip'
+
+-- nvim-cmp
+local cmp = require('cmp')
+cmp.setup {
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
+    },
+    mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        },
+        ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end,
+        ['<S-Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end,
+    },
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+    },
+}
+
+-- nvim-tree
+require('nvim-tree').setup {
+    view = {
+        side = 'right'
+    }
 }
 
 require('indent_guides').setup {
     even_colors = { fg = '#555555', bg = '#555555' };
     odd_colors = { fg = '#444444', bg = '#444444' };
 }
+
+require('neoscroll').setup{}
+
+vim.opt.termguicolors = true
 
 vim.cmd([[colorscheme gruvbox]])
 

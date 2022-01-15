@@ -22,8 +22,14 @@ return require('packer').startup(function()
         'ray-x/navigator.lua',  -- error diagnostics on hover
         requires = {'ray-x/guihua.lua', run='cd lua/fzy && make'}
     }
+    -- autocompletion
+    use 'hrsh7th/nvim-cmp'  -- autocompletion for nvim
+    use 'hrsh7th/cmp-nvim-lsp'  -- autocompletion for nvim
+    use 'hrsh7th/cmp-buffer'  -- autocompletion for nvim
+    use 'hrsh7th/cmp-path'  -- autocompletion for nvim
+    use 'hrsh7th/cmp-cmdline'  -- autocompletion for nvim
     use 'onsails/lspkind-nvim'  -- popups for info on autocompletion
-    use 'hrsh7th/vim-vsnip' -- LSP-based snippet completion (*)
+    use 'L3MON4D3/luasnip'  -- snippets for autocompletion
     -- LLDB debugging
     use 'sakhnik/nvim-gdb' -- GDB, LLDB, pdb++ integration
     -- code navigation
@@ -53,7 +59,6 @@ return require('packer').startup(function()
     use 'JuliaEditorSupport/julia-vim'  -- LaTeX to Unicode for Julia
     use 'stevearc/vim-arduino'  -- Arduino functions
     use 'vim-test/vim-test' -- allows quick unit testing via key bindings
-    use 'hrsh7th/nvim-compe'  -- autocompletion for nvim
     use 'voldikss/vim-floaterm'  -- open floating terminal window in vim
     use 'windwp/nvim-autopairs'  -- autocomplete brackets
     use 'easymotion/vim-easymotion'  -- makes certain vim commands faster to execute (*)
