@@ -22,7 +22,6 @@ wo.number = true
 bo.swapfile = false
 g.floaterm_width = 0.8
 g.floaterm_height = 0.8
-g.floaterm_shell = 'zsh'
 g.nvim_tree_side = 'right'
 g.vimspector_enable_mappings = 'HUMAN'
 
@@ -116,7 +115,7 @@ map("n", "<leader>tv", "<cmd>TestVisit<cr>", options)
 map("n", "<leader>ts", "<cmd>TestSuite<cr>", options)
 -- REDFOR-specific shortcuts
 --map("n", "<leader>ts", "<cmd>FloatermNew python /Users/matt/Projects/SimSpace/REDFOR/redfor/tests/run_all_tests.py<cr>", options)
-map("n", "<leader>tp", "<cmd>FloatermNew! cd " .. vim.fn.getcwd() .. "; py39; python " .. vim.api.nvim_buf_get_name('%') .. "<cr>", options)  -- execute main function of current file
+map("n", "<leader>tp", "<cmd>FloatermNew python " .. vim.api.nvim_buf_get_name('%') .. "<cr>", options)  -- execute main function of current file
 map("n", "<leader>of", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_frontend.sh<cr>", options)
 map("n", "<leader>ob", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_backend.sh<cr>", options)
 map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attack-designer/; open http://localhost:1234<cr>", options)
