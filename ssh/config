@@ -59,6 +59,6 @@ Host romulus
 	HostName 24.13.90.164
     User matt
 
-Host skynet
-	HostName 192.17.211.215
+Host mattbox
+    HostName 192.168.0.16
     User matt
