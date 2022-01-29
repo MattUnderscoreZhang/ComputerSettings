@@ -48,7 +48,7 @@ return require('packer').startup(function()
     use 'jremmen/vim-ripgrep'  -- allows using ripgrep inside vim
     use {
         'nvim-telescope/telescope.nvim',  -- file search and grep
-         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
     -- other packages
@@ -65,4 +65,8 @@ return require('packer').startup(function()
     use 'puremourning/vimspector'  -- graphical debugger
     use 'szw/vim-maximizer'  -- maximize split panes
     use 'sotte/presenting.vim'  -- slides in vim
+    use {
+        'folke/todo-comments.nvim',  -- highlight TODO items
+        requires = 'nvim-lua/plenary.nvim'
+    }
 end)
