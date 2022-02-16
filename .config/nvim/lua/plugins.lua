@@ -22,6 +22,7 @@ return require('packer').startup(function()
         'ray-x/navigator.lua',  -- error diagnostics on hover
         requires = {'ray-x/guihua.lua', run='cd lua/fzy && make'}
     }
+    use 'eddiebergman/nvim-treesitter-pyfold'  -- Python code folding
     -- autocompletion
     use 'hrsh7th/nvim-cmp'  -- autocompletion for nvim
     use 'hrsh7th/cmp-nvim-lsp'  -- autocompletion for nvim
@@ -51,10 +52,12 @@ return require('packer').startup(function()
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
-    -- other packages
+    -- formatting
+    use 'sbdchd/neoformat'  -- code formatter
     use 'godlygeek/tabular'  -- lines stuff up using whitespace
-    use 'scrooloose/nerdcommenter'  -- quickly comment and uncomment code
     use 'nvie/vim-flake8'  -- PEP8 linter using flake8
+    -- other packages
+    use 'scrooloose/nerdcommenter'  -- quickly comment and uncomment code
     use 'tpope/vim-abolish'  -- improved search & replace
     use 'JuliaEditorSupport/julia-vim'  -- LaTeX to Unicode for Julia
     use 'stevearc/vim-arduino'  -- Arduino functions
