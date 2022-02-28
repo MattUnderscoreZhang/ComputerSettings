@@ -17,9 +17,9 @@ if git status | grep -q ahead; then
 fi
 
 cd ~/Projects/ComputerSettings/
-rsync -r ~/.config .
-rsync -r ~/.gitconfig git/
-rsync -r ~/.ssh/config ssh/
+#rsync -r ~/.config .
+#rsync -r ~/.gitconfig git/
+#rsync -r ~/.ssh/config ssh/
 rsync -r ~/Library/Application\ Support/lazygit/config.yml terminal/
 rsync -r ~/.config/kitty/ terminal/kitty/
 rsync -r ~/.config/nvim/init.lua vim/
