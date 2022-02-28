@@ -82,7 +82,7 @@ map("n", "<leader>m", "`", options)
 -- splits
 map("n", "<c-v>", "<c-w>v", options)  -- split vertically
 map("n", "<c-s>", "<c-w>s", options)  -- split horizontally
-map("n", "<c-c>", "<c-w>c", options)  -- close split
+map("n", "<c-x>", "<c-w>c", options)  -- close split
 -- lua config shortcuts
 map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>ib", "<cmd>edit ~/.config/nvim/lua/plugins.lua <cr>", options)
@@ -142,6 +142,8 @@ map("n", "<leader>do", ":call vimspector#StepOut()<CR>", options)
 map("n", "<leader>dw", ":VimspectorWatch ", options)
 -- presenting
 map("n", "<leader>ps", ":PresentingStart<cr>", options)
+-- neoformat
+map("n", "<leader>nf", ":Neoformat<cr>", options)
 
 -- set up LSP
 local on_attach = function(client, _)
@@ -255,9 +257,9 @@ cmd([[let test#python#pytest#options = '-s']])  -- make vim-test print out to te
 cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
 
 -- lualine
-local function day_percentage()
+local function five_minute_counter()
     local time = os.date("*t")
-    return os.date("%a %b %d %H:%M - ") .. string.format("%d", math.floor((time.hour + time.min/60)/24*100) + 1) .. "%%"
+    return os.date("%a %b %d %H:%M - ") .. string.format("%d", math.floor((time.hour*60 + time.min)/5 + 1)) .. " clicks"
 end
 
 require('lualine').setup {
@@ -269,7 +271,7 @@ require('lualine').setup {
         disabled_filetypes = {}
     },
     sections = {
-        lualine_a = {'mode', day_percentage},
+        lualine_a = {'mode', five_minute_counter},
         lualine_b = {'branch'},
         lualine_c = {'filename'},
         lualine_x = {'encoding', 'fileformat', 'filetype'},
@@ -333,6 +335,14 @@ cmp.setup {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
     },
+}
+
+-- nvim-treesitter-pyfold
+require('nvim-treesitter.configs').setup {
+    pyfold = {
+        enable = true,
+        custom_foldtext = true -- Sets provided foldtext on window where module is active
+    }
 }
 
 -- nvim-tree
