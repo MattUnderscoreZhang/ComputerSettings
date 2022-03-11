@@ -23,7 +23,6 @@ wo.number = true
 bo.swapfile = false
 g.floaterm_width = 0.8
 g.floaterm_height = 0.8
-g.floaterm_shell = 'zsh'
 g.nvim_tree_side = 'right'
 g.vimspector_enable_mappings = 'HUMAN'
 
@@ -87,7 +86,7 @@ map("n", "<leader>m", "`", options)
 -- splits
 map("n", "<c-v>", "<c-w>v", options)  -- split vertically
 map("n", "<c-s>", "<c-w>s", options)  -- split horizontally
-map("n", "<c-x>", "<c-w>c", options)  -- close split
+map("n", "<c-c>", "<c-w>c", options)  -- close split
 -- lua config shortcuts
 map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>ib", "<cmd>edit ~/.config/nvim/lua/plugins.lua <cr>", options)
@@ -120,7 +119,7 @@ map("n", "<leader>tv", "<cmd>TestVisit<cr>", options)
 map("n", "<leader>ts", "<cmd>TestSuite<cr>", options)
 -- REDFOR-specific shortcuts
 --map("n", "<leader>ts", "<cmd>FloatermNew python /Users/matt/Projects/SimSpace/REDFOR/redfor/tests/run_all_tests.py<cr>", options)
-map("n", "<leader>tp", "<cmd>FloatermNew! cd " .. vim.fn.getcwd() .. "; py39; python " .. vim.api.nvim_buf_get_name('%') .. "<cr>", options)  -- execute main function of current file
+map("n", "<leader>tp", "<cmd>FloatermNew python " .. vim.api.nvim_buf_get_name('%') .. "<cr>", options)  -- execute main function of current file
 map("n", "<leader>of", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_frontend.sh<cr>", options)
 map("n", "<leader>ob", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_backend.sh<cr>", options)
 map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attack-designer/; open http://localhost:1234<cr>", options)
@@ -154,8 +153,6 @@ map("n", "<leader>fq", ":FlutterQuit<cr>", options)
 map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
 map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
 map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
--- neoformat
-map("n", "<leader>nf", ":Neoformat<cr>", options)
 
 -- nvim-lsp-installer
 -- do not set up lsp-config - let nvim-lsp-installer handle setup
@@ -244,9 +241,9 @@ cmd([[let test#python#pytest#options = '-s']])  -- make vim-test print out to te
 cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
 
 -- lualine
-local function five_minute_counter()
+local function day_percentage()
     local time = os.date("*t")
-    return os.date("%a %b %d %H:%M - ") .. string.format("%d", math.floor((time.hour*60 + time.min)/5 + 1)) .. " clicks"
+    return os.date("%a %b %d %H:%M - ") .. string.format("%d", math.floor((time.hour + time.min/60)/24*100) + 1) .. "%%"
 end
 
 require('lualine').setup {
@@ -258,7 +255,7 @@ require('lualine').setup {
         disabled_filetypes = {}
     },
     sections = {
-        lualine_a = {'mode', five_minute_counter},
+        lualine_a = {'mode', day_percentage},
         lualine_b = {'branch'},
         lualine_c = {'filename'},
         lualine_x = {'encoding', 'fileformat', 'filetype'},
@@ -320,14 +317,6 @@ cmp.setup {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
     },
-}
-
--- nvim-treesitter-pyfold
-require('nvim-treesitter.configs').setup {
-    pyfold = {
-        enable = true,
-        custom_foldtext = true -- Sets provided foldtext on window where module is active
-    }
 }
 
 -- nvim-tree

@@ -23,7 +23,6 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
         'ray-x/navigator.lua',  -- error diagnostics on hover
         requires = {'ray-x/guihua.lua', run='cd lua/fzy && make'}
     }
-    use 'eddiebergman/nvim-treesitter-pyfold'  -- Python code folding
     -- autocompletion
     use 'hrsh7th/nvim-cmp'  -- autocompletion for nvim
     use 'hrsh7th/cmp-nvim-lsp'  -- autocompletion for nvim
@@ -50,7 +49,7 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     use 'jremmen/vim-ripgrep'  -- allows using ripgrep inside vim
     use {
         'nvim-telescope/telescope.nvim',  -- file search and grep
-        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
     -- Flutter
@@ -58,12 +57,10 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
         'thosakwe/vim-flutter',
         requires = 'dart-lang/dart-vim-plugin',
     }
-    -- formatting
-    use 'sbdchd/neoformat'  -- code formatter
-    use 'godlygeek/tabular'  -- lines stuff up using whitespace
-    use 'nvie/vim-flake8'  -- PEP8 linter using flake8
     -- other packages
+    use 'godlygeek/tabular'  -- lines stuff up using whitespace
     use 'scrooloose/nerdcommenter'  -- quickly comment and uncomment code
+    use 'nvie/vim-flake8'  -- PEP8 linter using flake8
     use 'tpope/vim-abolish'  -- improved search & replace
     use 'JuliaEditorSupport/julia-vim'  -- LaTeX to Unicode for Julia
     use 'stevearc/vim-arduino'  -- Arduino functions
@@ -74,8 +71,4 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     use 'puremourning/vimspector'  -- graphical debugger
     use 'szw/vim-maximizer'  -- maximize split panes
     use 'sotte/presenting.vim'  -- slides in vim
-    use {
-        'folke/todo-comments.nvim',  -- highlight TODO items
-        requires = 'nvim-lua/plenary.nvim'
-    }
 end)
