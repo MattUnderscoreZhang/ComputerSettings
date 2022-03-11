@@ -1,4 +1,5 @@
-return require('packer').startup(function()
+return require('packer').startup(function(use)  -- passing use is a hack that prevents lua LSP errors
+    -- package management
     use 'wbthomason/packer.nvim'  -- package manager
     -- visuals
     use 'p00f/nvim-ts-rainbow'  -- rainbow parentheses
@@ -51,6 +52,11 @@ return require('packer').startup(function()
          requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
+    -- Flutter
+    use {
+        'thosakwe/vim-flutter',
+        requires = 'dart-lang/dart-vim-plugin',
+    }
     -- other packages
     use 'godlygeek/tabular'  -- lines stuff up using whitespace
     use 'scrooloose/nerdcommenter'  -- quickly comment and uncomment code

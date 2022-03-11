@@ -5,6 +5,7 @@ local wo = vim.wo  -- window option
 local bo = vim.bo  -- buffer settings
 local g = vim.g  --
 local cmd = vim.cmd
+local opt = vim.opt
 local map = vim.api.nvim_set_keymap
 
 o.termguicolors = true
@@ -24,6 +25,9 @@ g.floaterm_width = 0.8
 g.floaterm_height = 0.8
 g.nvim_tree_side = 'right'
 g.vimspector_enable_mappings = 'HUMAN'
+
+opt.termguicolors = true
+cmd([[colorscheme gruvbox]])
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -59,7 +63,7 @@ _G.s_tab_complete = function()
 end
 
 -- for CharaChorder
-vim.g.mapleader = ";"
+g.mapleader = ";"
 
 local options = {noremap=true, silent=true}
 -- built-in
@@ -142,49 +146,31 @@ map("n", "<leader>do", ":call vimspector#StepOut()<CR>", options)
 map("n", "<leader>dw", ":VimspectorWatch ", options)
 -- presenting
 map("n", "<leader>ps", ":PresentingStart<cr>", options)
+-- vim-flutter
+map("n", "<leader>fxd", ":FlutterRun --debug<cr>", options)
+map("n", "<leader>fxr", ":FlutterRun --release<cr>", options)
+map("n", "<leader>fq", ":FlutterQuit<cr>", options)
+map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
+map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
+map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
 
--- set up LSP
-local on_attach = function(client, _)
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = false,  -- turn on LSP text popups
-            signs = true,  -- warning and error symbols on left
-            update_in_insert = false,  -- don't update while typing
-        }
-    )
-    if client.resolved_capabilities.document_highlight then  -- glow when hovering
-        vim.api.nvim_exec([[
-        hi LspReferenceRead cterm=bold ctermbg=red guibg=#4B5263
-        hi LspReferenceText cterm=bold ctermbg=red guibg=#4B5263
-        hi LspReferenceWrite cterm=bold ctermbg=red guibg=#4B5263
-        augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-        ]], false)
+-- nvim-lsp-installer
+-- do not set up lsp-config - let nvim-lsp-installer handle setup
+require('nvim-lsp-installer').on_server_ready(
+    function(server)
+        local opts = {}
+        if server.name == 'sumneko_lua' then
+            opts.settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {'vim'}  -- remove nvim config errors
+                    }
+                }
+            }
+        end
+        server:setup(opts)
     end
-end
-
--- lspconfig
-local lspconfig = require('lspconfig')
-lspconfig.sumneko_lua.setup {  -- Lua
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim', 'use' }
-            }
-        },
-        workspace = {
-            library = {
-                [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-            }
-        }
-    }
-}
-lspconfig.pyright.setup { on_attach = on_attach }  -- Python
-lspconfig.eslint.setup { on_attach = on_attach }  -- Typescript
+)
 
 -- lspsaga
 cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])  -- make error pop up on hovering a cursor over it
@@ -288,10 +274,8 @@ require('lualine').setup {
     extensions = {}
 }
 
--- luasnip
-local luasnip = require 'luasnip'
-
--- nvim-cmp
+-- luasnip + nvim-cmp
+local luasnip = require('luasnip')
 local cmp = require('cmp')
 cmp.setup {
     snippet = {
@@ -342,17 +326,20 @@ require('nvim-tree').setup {
     }
 }
 
+-- indent_guides
 require('indent_guides').setup {
     even_colors = { fg = '#555555', bg = '#555555' };
     odd_colors = { fg = '#444444', bg = '#444444' };
 }
 
+-- neoscroll
 require('neoscroll').setup{}
 
-vim.opt.termguicolors = true
-
-vim.cmd([[colorscheme gruvbox]])
-
+-- nvim-autopairs
 require('nvim-autopairs').setup{}
 
+-- lspkind
 require('lspkind').init()
+
+-- vim-flutter
+g.flutter_show_log_on_run = "tab"
