@@ -22,6 +22,7 @@ cd ~/Projects/ComputerSettings/
 #rsync -r ~/.ssh/config ssh/
 rsync -r ~/Library/Application\ Support/lazygit/config.yml terminal/
 rsync -r ~/.config/kitty/ terminal/kitty/
+rsync -r ~/.zshrc terminal/zsh/
 rsync -r ~/.config/nvim/init.lua vim/
 rsync -r ~/.config/nvim/lua/plugins.lua vim/
 rsync -r ~/.tmux.conf tmux/

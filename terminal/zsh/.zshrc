@@ -5,28 +5,28 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-# Source Prezto.
+# source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Disable autocorrect guesses
+# disable autocorrect guesses
 unsetopt CORRECT
 
-# Remove username from prompt
+# remove username from prompt
 DEFAULT_USER=`whoami`
 
-# Disable ask on delete
+# disable ask on delete
 unalias rm
 setopt rm_star_silent
 
-# Don't remove trailing slash on cd commands
+# don't remove trailing slash on cd commands
 setopt no_auto_remove_slash
 
 # iTerm2 plugins (from ~/.iterm2_shell_integration.bash)
 alias imgcat=~/.iterm2/imgcat;alias imgls=~/.iterm2/imgls;alias it2attention=~/.iterm2/it2attention;alias it2check=~/.iterm2/it2check;alias it2copy=~/.iterm2/it2copy;alias it2dl=~/.iterm2/it2dl;alias it2getvar=~/.iterm2/it2getvar;alias it2setcolor=~/.iterm2/it2setcolor;alias it2setkeylabel=~/.iterm2/it2setkeylabel;alias it2ul=~/.iterm2/it2ul;alias it2universion=~/.iterm2/it2universion
 
-# Tab completion options
+# tab completion options
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 # use the vi navigation keys in menu completion
@@ -40,10 +40,7 @@ bindkey -M menuselect '^M' .accept-line
 # Start on desktop
 cd ~/Desktop
 
-# Aliases
-export RUCIO_ACCOUNT=mazhang
-alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hidefiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+# aliases
 alias ls='ls -G'
 function killjobs () {
     JOBS="$(jobs -p)";
@@ -52,8 +49,7 @@ function killjobs () {
     fi
 }
 
-# Python settings
-# Fix from matplotlib FAQ about virtual environments
+# fix from matplotlib FAQ about virtual environments
 function frameworkpython {
 if [[ ! -z "$VIRTUAL_ENV" ]]; then
     #PYTHONHOME=$VIRTUAL_ENV /usr/bin/python2.7 "$@"
@@ -62,15 +58,17 @@ else
     /usr/local/bin/python "$@"
 fi
 }
-# Use Homebrew Python and Ruby
+
+# use Homebrew Python and Ruby
 PATH="/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
-## Virtual python environments
-#VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2.7
-#source /usr/local/bin/virtualenvwrapper.sh
 
+# use vim for default editor
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
+
+# set nvim as default editor
+alias vim=nvim
 
 # add conda environment
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status virtualenv anaconda root_indicator background_jobs history time)
@@ -84,20 +82,33 @@ fd() {
     git diff $@ --name-only | fzf -m --ansi --preview $preview
 }
 
+# make ls always follow cd
 function cd() {
     builtin cd "$@"
     ls
 }
 
-alias vim=nvim
+# set up thefuck
 eval $(thefuck --alias)
-eval "$(zoxide init zsh)"
 
+# use z to search-cd
+eval "$(zoxide init zsh)"
 function z() {
     __zoxide_z "$@"
     ls
 }
 
+# set up lazygit
+alias lg=lazygit
+
+# Wasmer
+export WASMER_DIR="/Users/matt/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+# Flutter
+export PATH="$PATH:/Applications/Flutter/bin"
+
+# set up lazygit
 alias lg=lazygit
 
 # pyenv
@@ -106,6 +117,3 @@ eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 alias py37='pyenv activate py37'
 alias py39='pyenv activate py39'
-
-# RabbitMQ
-export PATH=$PATH:/usr/local/sbin
