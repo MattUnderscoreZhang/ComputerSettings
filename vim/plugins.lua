@@ -53,10 +53,8 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
     -- Flutter
-    use {
-        'thosakwe/vim-flutter',
-        requires = 'dart-lang/dart-vim-plugin',
-    }
+    use 'dart-lang/dart-vim-plugin'  -- syntax highlighting and code formatting
+    use 'thosakwe/vim-flutter'  -- run Flutter commands
     -- other packages
     use 'godlygeek/tabular'  -- lines stuff up using whitespace
     use 'scrooloose/nerdcommenter'  -- quickly comment and uncomment code

@@ -105,15 +105,16 @@ alias lg=lazygit
 export WASMER_DIR="/Users/matt/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
 
-# Flutter
+# Flutter + Dart
 export PATH="$PATH:/Applications/Flutter/bin"
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # set up lazygit
 alias lg=lazygit
 
 # pyenv
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-alias py37='pyenv activate py37'
-alias py39='pyenv activate py39'
+alias py3='pyenv activate py3'

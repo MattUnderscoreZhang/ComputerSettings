@@ -149,8 +149,11 @@ map("n", "<leader>ps", ":PresentingStart<cr>", options)
 -- vim-flutter
 map("n", "<leader>fxd", ":FlutterRun --debug<cr>", options)
 map("n", "<leader>fxr", ":FlutterRun --release<cr>", options)
+map("n", "<leader>fxa", ":FlutterEmulatorsLaunch Pixel_2_API_30<cr>", options)
+map("n", "<leader>fxi", ":FlutterEmulatorsLaunch apple_ios_simulator<cr>", options)
 map("n", "<leader>fq", ":FlutterQuit<cr>", options)
 map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
+map("n", "<leader>fd", ":FlutterDevices<cr>", options)
 map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
 map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
 
