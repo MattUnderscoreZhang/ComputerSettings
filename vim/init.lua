@@ -65,6 +65,16 @@ end
 -- for CharaChorder
 g.mapleader = ";"
 
+-- no inline error messages
+vim.diagnostic.config({virtual_text = false, underline = false})
+
+-- error and warning icons in gutter
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 local options = {noremap=true, silent=true}
 -- built-in
 map("i", "<tab>", "v:lua.tab_complete()", {expr=true})
@@ -312,9 +322,6 @@ require('indent_guides').setup {
     even_colors = { fg = '#555555', bg = '#555555' };
     odd_colors = { fg = '#444444', bg = '#444444' };
 }
-
--- trouble
-require('trouble').setup {}
 
 -- lspkind-nvim
 require('lspkind').init()

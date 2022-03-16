@@ -15,7 +15,7 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     }
     -- LSP
     use {
-        'neovim/nvim-lspconfig',  -- automatic launching of LSP servers
+        'neovim/nvim-lspconfig',  -- LSP configuration handling (including error messages and icons)
         'williamboman/nvim-lsp-installer'  -- install language servers for LSP
     }
     use {
@@ -26,10 +26,6 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     use 'puremourning/vimspector'  -- graphical debugger
     use 'sakhnik/nvim-gdb' -- GDB, LLDB, pdb++ integration
     use 'tami5/lspsaga.nvim'  -- error diagnostics on hover (maintained branch of original lspsaga)
-    use {
-        'folke/trouble.nvim',  -- error icons on left and text on right
-        requires = 'kyazdani42/nvim-web-devicons',
-    }
     -- autocompletion
     use 'hrsh7th/nvim-cmp'  -- autocompletion for nvim
     use 'hrsh7th/cmp-nvim-lsp'  -- autocompletion for nvim
