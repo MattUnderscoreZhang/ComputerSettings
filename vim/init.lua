@@ -162,7 +162,24 @@ map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
 map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
 map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
 
--- nvim-lsp-installer
+-- calculator
+cmd([[
+function MyCalc(str)
+    if exists("g:MyCalcRounding")
+        return system("echo 'x=" . a:str . ";d=.5/10^" . g:MyCalcPresition
+        \. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPresition . ";print x/1' | bc -l")
+    else
+        return system("echo 'scale=" . g:MyCalcPresition . " ; print " . a:str . "' | bc -l")
+    endif
+endfunction
+
+let g:MyCalcPresition = 2  " Control the precision with this variable
+let g:MyCalcRounding = 1  " Comment this if you don't want rounding
+
+" replace the current line of math expression(s) by the value of the computation:
+map <silent> <leader>cr :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
+]])
+
 -- do not set up lsp-config - let nvim-lsp-installer handle setup
 require('nvim-lsp-installer').on_server_ready(
     function(server)
