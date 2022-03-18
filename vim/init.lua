@@ -255,6 +255,13 @@ set whichwrap+=<,>,h,l,[,]
 cmd([[let test#python#pytest#options = '-s']])  -- make vim-test print out to terminal
 cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
 
+-- nvim-tree.lua
+require('nvim-tree').setup {
+    view = {
+        side = 'right'
+    }
+}
+
 -- lualine
 local function day_click_count()
     local time = os.date("*t")
@@ -343,13 +350,6 @@ require('indent_guides').setup {
 -- lspkind-nvim
 require('lspkind').init()
 
--- nvim-tree.lua
-require('nvim-tree').setup {
-    view = {
-        side = 'right'
-    }
-}
-
 -- nvim-treesitter
 require('nvim-treesitter.configs').setup {
     ensure_installed = "maintained",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -368,3 +368,6 @@ require('nvim-autopairs').setup{}
 
 -- vim-flutter
 g.flutter_show_log_on_run = "tab"
+
+-- nvim-gdb
+g.loaded_nvimgdb = 1  -- disable
