@@ -49,7 +49,7 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     use 'jremmen/vim-ripgrep'  -- allows using ripgrep inside vim
     use {
         'nvim-telescope/telescope.nvim',  -- file search and grep
-         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
     -- Flutter
