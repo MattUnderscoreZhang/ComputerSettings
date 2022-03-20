@@ -65,6 +65,16 @@ end
 -- for CharaChorder
 g.mapleader = ";"
 
+-- no inline error messages
+vim.diagnostic.config({virtual_text = false, underline = false})
+
+-- error and warning icons in gutter
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 local options = {noremap=true, silent=true}
 -- built-in
 map("i", "<tab>", "v:lua.tab_complete()", {expr=true})
@@ -90,15 +100,14 @@ map("n", "<c-c>", "<c-w>c", options)  -- close split
 -- lua config shortcuts
 map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>ib", "<cmd>edit ~/.config/nvim/lua/plugins.lua <cr>", options)
+map("n", "<leader>si", "<cmd>luafile /Users/matt/.config/nvim/init.lua<cr>", options)  -- source lua init file
 map("n", "<leader>sf", "<cmd>luafile %<cr>", options)  -- source current file
 -- telescope
 map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", options)
-map("n", "<leader>.", "<cmd>lua require('telescope.builtin').file_browser()<cr>", options)
 map("n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", options)
-map("n", "<leader>bl", "<cmd>lua require('telescope.builtin').buffers()<cr>", options)
-map("n", "<leader>x", "<cmd>lua require('telescope.builtin').commands()<cr>", options)
+map("n", "<leader>fh", "<cmd>lua require('telescope.builtin').oldfiles()<cr>", options)
+map("n", "<leader>fm", "<cmd>lua require('telescope.builtin').marks()<cr>", options)
 map("n", "<leader>dl", "<cmd>lua require('telescope.builtin').lsp_document_diagnostics()<cr>", options)
-map("n", "<leader>si", "<cmd>luafile /Users/matt/.config/nvim/init.lua<cr>", options)  -- source lua init file
 map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", options)
 map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", options)
 -- nvim-tree
@@ -125,7 +134,8 @@ map("n", "<leader>ob", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./r
 map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attack-designer/; open http://localhost:1234<cr>", options)
 -- vim-floatterm
 map("n", "<leader>ft", "<cmd>FloatermNew<cr>", options)
-map("n", "<leader>lg", "<cmd>FloatermNew lazygit<cr>", options)
+-- lazygit
+map("n", "<leader>lg", "<cmd>LazyGit<cr>", options)
 -- vim-easymotion
 map("n", "s", "<Plug>(easymotion-s2)", {})
 -- barbar
@@ -144,20 +154,36 @@ map("n", "<leader>ds", ":call vimspector#StepOver()<CR>", options)
 map("n", "<leader>di", ":call vimspector#StepInto()<CR>", options)
 map("n", "<leader>do", ":call vimspector#StepOut()<CR>", options)
 map("n", "<leader>dw", ":VimspectorWatch ", options)
--- presenting
-map("n", "<leader>ps", ":PresentingStart<cr>", options)
 -- vim-flutter
 map("n", "<leader>fxd", ":FlutterRun --debug<cr>", options)
 map("n", "<leader>fxr", ":FlutterRun --release<cr>", options)
-map("n", "<leader>fxa", ":FlutterEmulatorsLaunch Pixel_2_API_30<cr>", options)
-map("n", "<leader>fxi", ":FlutterEmulatorsLaunch apple_ios_simulator<cr>", options)
 map("n", "<leader>fq", ":FlutterQuit<cr>", options)
 map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
-map("n", "<leader>fd", ":FlutterDevices<cr>", options)
 map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
 map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
 
--- nvim-lsp-installer
+-- calculator via bash bc
+cmd([[
+function MyCalc(str)
+    return system("echo 'x=" . a:str . ";d=.5/10^" . g:MyCalcPrecision
+    \. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l")
+endfunction
+
+function DayCalcPercent(str)
+    return system("echo -n \\\(; echo 'x=(" . a:str . ")*100;d=.5/10^" . g:MyCalcPrecision
+    \. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l; echo -n \\\%\\\)")
+endfunction
+
+function MyCalcNoRound(str)
+    return system("echo 'scale=" . g:MyCalcPrecision . " ; print " . a:str . "' | bc -l")
+endfunction
+
+let g:MyCalcPrecision = 2  " Control the precision with this variable
+
+map <silent> <leader>cr :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
+map <silent> <leader>cp :s/\$\(.*\)\$/\=DayCalcPercent(submatch(1))/g<CR>:noh<CR>
+]])
+
 -- do not set up lsp-config - let nvim-lsp-installer handle setup
 require('nvim-lsp-installer').on_server_ready(
     function(server)
@@ -229,19 +255,16 @@ endfunction
 set whichwrap+=<,>,h,l,[,]
 ]])
 
--- nvim-treesitter
-require('nvim-treesitter.configs').setup {
-    ensure_installed = "maintained",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    ignore_install = { "javascript" },  -- List of parsers to ignore installing
-    highlight = {
-        enable = true,  -- false will disable the whole extension
-        disable = { "c", "rust" },  -- list of language that will be disabled
-    },
-}
-
 -- vim-test
 cmd([[let test#python#pytest#options = '-s']])  -- make vim-test print out to terminal
 cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
+
+-- nvim-tree.lua
+require('nvim-tree').setup {
+    view = {
+        side = 'right'
+    }
+}
 
 -- lualine
 local function day_click_count()
@@ -322,17 +345,23 @@ cmp.setup {
     },
 }
 
--- nvim-tree
-require('nvim-tree').setup {
-    view = {
-        side = 'right'
-    }
-}
-
--- indent_guides
+-- indent-guides
 require('indent_guides').setup {
     even_colors = { fg = '#555555', bg = '#555555' };
     odd_colors = { fg = '#444444', bg = '#444444' };
+}
+
+-- lspkind-nvim
+require('lspkind').init()
+
+-- nvim-treesitter
+require('nvim-treesitter.configs').setup {
+    ensure_installed = "maintained",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ignore_install = { "norg", "phpdoc", "swift" },  -- List of parsers to ignore installing
+    highlight = {
+        enable = true,  -- false will disable the whole extension
+        --disable = { "c", "rust" },  -- list of language that will be disabled
+    },
 }
 
 -- neoscroll
@@ -341,8 +370,8 @@ require('neoscroll').setup{}
 -- nvim-autopairs
 require('nvim-autopairs').setup{}
 
--- lspkind
-require('lspkind').init()
-
 -- vim-flutter
 g.flutter_show_log_on_run = "tab"
+
+-- nvim-gdb
+g.loaded_nvimgdb = 1  -- disable
