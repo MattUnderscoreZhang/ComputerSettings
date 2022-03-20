@@ -162,22 +162,26 @@ map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
 map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
 map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
 
--- calculator
+-- calculator via bash bc
 cmd([[
 function MyCalc(str)
-    if exists("g:MyCalcRounding")
-        return system("echo 'x=" . a:str . ";d=.5/10^" . g:MyCalcPresition
-        \. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPresition . ";print x/1' | bc -l")
-    else
-        return system("echo 'scale=" . g:MyCalcPresition . " ; print " . a:str . "' | bc -l")
-    endif
+    return system("echo 'x=" . a:str . ";d=.5/10^" . g:MyCalcPrecision
+    \. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l")
 endfunction
 
-let g:MyCalcPresition = 2  " Control the precision with this variable
-let g:MyCalcRounding = 1  " Comment this if you don't want rounding
+function DayCalcPercent(str)
+    return system("echo -n \\\(; echo 'x=(" . a:str . ")*100;d=.5/10^" . g:MyCalcPrecision
+    \. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l; echo -n \\\%\\\)")
+endfunction
 
-" replace the current line of math expression(s) by the value of the computation:
+function MyCalcNoRound(str)
+    return system("echo 'scale=" . g:MyCalcPrecision . " ; print " . a:str . "' | bc -l")
+endfunction
+
+let g:MyCalcPrecision = 2  " Control the precision with this variable
+
 map <silent> <leader>cr :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
+map <silent> <leader>cp :s/\$\(.*\)\$/\=DayCalcPercent(submatch(1))/g<CR>:noh<CR>
 ]])
 
 -- do not set up lsp-config - let nvim-lsp-installer handle setup
