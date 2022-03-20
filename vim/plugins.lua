@@ -3,7 +3,7 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     use 'wbthomason/packer.nvim'  -- package manager
     -- visuals
     use 'p00f/nvim-ts-rainbow'  -- rainbow parentheses
-    use 'glepnir/indent-guides.nvim'  -- visually display indent levels
+    use 'lukas-reineke/indent-blankline.nvim'  -- visually display indent levels
     use {
         'romgrk/barbar.nvim',  -- buffer control
         requires = 'kyazdani42/nvim-web-devicons'
@@ -12,6 +12,11 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     use {
         'npxbr/gruvbox.nvim',  -- treesitter-consistent color schemes
         requires = 'rktjmp/lush.nvim'
+    }
+    use {
+        'lewis6991/gitsigns.nvim',  -- gutter and endline messages
+        requires = 'nvim-lua/plenary.nvim',
+        -- tag = 'release' -- To use the latest release
     }
     -- LSP
     use {
@@ -48,6 +53,7 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
+    use 'nacro90/numb.nvim' -- line number peaking
     -- Flutter
     use {
         'thosakwe/vim-flutter',  -- Flutter development shortcuts

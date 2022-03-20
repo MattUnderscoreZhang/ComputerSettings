@@ -82,7 +82,7 @@ map("s", "<tab>", "v:lua.tab_complete()", {expr=true})
 map("i", "<s-tab>", "v:lua.s_tab_complete()", {expr=true})
 map("s", "<s-tab>", "v:lua.s_tab_complete()", {expr=true})
 map("n", "<space>", "za", options)
-map("i", "<cr>", "cmp#confirm('<cr>')", {silent=true, expr=true})
+--map("i", "<cr>", "cmp#confirm('<cr>')", {silent=true, expr=true})
 map("i", "jk", "<esc>", options)
 map("t", "jk", "<c-\\><c-n>", options)
 map("n", "bd", "<cmd>Bwipeout!<cr>", options)
@@ -161,6 +161,8 @@ map("n", "<leader>fq", ":FlutterQuit<cr>", options)
 map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
 map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
 map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
+-- gitsigns
+map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", options)
 
 -- calculator via bash bc
 cmd([[
@@ -200,6 +202,8 @@ require('nvim-lsp-installer').on_server_ready(
         server:setup(opts)
     end
 )
+
+-- look in ~/.config/pycodestyle to set Python style-based warnings
 
 -- lspsaga
 cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])  -- make error pop up on hovering a cursor over it
@@ -345,10 +349,15 @@ cmp.setup {
     },
 }
 
--- indent-guides
-require('indent_guides').setup {
-    even_colors = { fg = '#555555', bg = '#555555' };
-    odd_colors = { fg = '#444444', bg = '#444444' };
+-- indent-blankline
+opt.list = true
+opt.listchars:append("space:⋅")
+opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    --show_current_context_start = true,
 }
 
 -- lspkind-nvim
@@ -375,3 +384,15 @@ g.flutter_show_log_on_run = "tab"
 
 -- nvim-gdb
 g.loaded_nvimgdb = 1  -- disable
+
+-- gitsigns
+require('gitsigns').setup{
+    current_line_blame = true,
+    current_line_blame_opts = {
+        virtual_text = false,
+        delay = 0,
+    },
+}
+
+-- numb
+require('numb').setup()
