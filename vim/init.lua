@@ -14,7 +14,7 @@ o.clipboard = [[unnamed,unnamedplus]]
 o.inccommand = 'nosplit'
 o.expandtab = true
 o.showmode = false
-o.completeopt = [[menuone,noselect]]
+o.completeopt = [[menu,menuone,noselect]]
 o.updatetime = 300  -- update time for hovering
 o.hidden = true
 o.shiftwidth = 4
@@ -23,7 +23,6 @@ wo.number = true
 bo.swapfile = false
 g.floaterm_width = 0.8
 g.floaterm_height = 0.8
-g.nvim_tree_side = 'right'
 g.vimspector_enable_mappings = 'HUMAN'
 
 opt.termguicolors = true
@@ -42,26 +41,6 @@ local check_back_space = function()
     end
 end
 
--- context-sensitive tab
-_G.tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-n>"
-    elseif check_back_space() then
-        return t "<Tab>"
-    else
-        return vim.fn['cmp#complete']()
-    end
-end
-
--- context-sensitive shift+tab
-_G.s_tab_complete = function()
-    if vim.fn.pumvisible() == 1 then
-        return t "<C-p>"
-    else
-        return t "<S-Tab>"
-    end
-end
-
 -- for CharaChorder
 g.mapleader = ";"
 
@@ -77,10 +56,6 @@ end
 
 local options = {noremap=true, silent=true}
 -- built-in
-map("i", "<tab>", "v:lua.tab_complete()", {expr=true})
-map("s", "<tab>", "v:lua.tab_complete()", {expr=true})
-map("i", "<s-tab>", "v:lua.s_tab_complete()", {expr=true})
-map("s", "<s-tab>", "v:lua.s_tab_complete()", {expr=true})
 map("n", "<space>", "za", options)
 --map("i", "<cr>", "cmp#confirm('<cr>')", {silent=true, expr=true})
 map("i", "jk", "<esc>", options)
@@ -164,19 +139,20 @@ map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
 -- gitsigns
 map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", options)
 
+-- don't redefine these functions on config reload
 -- calculator via bash bc
 cmd([[
-function MyCalc(str)
+function! MyCalc(str)
     return system("echo 'x=" . a:str . ";d=.5/10^" . g:MyCalcPrecision
     \. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l")
 endfunction
 
-function DayCalcPercent(str)
+function! DayCalcPercent(str)
     return system("echo -n \\\(; echo 'x=(" . a:str . ")*100;d=.5/10^" . g:MyCalcPrecision
     \. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l; echo -n \\\%\\\)")
 endfunction
 
-function MyCalcNoRound(str)
+function! MyCalcNoRound(str)
     return system("echo 'scale=" . g:MyCalcPrecision . " ; print " . a:str . "' | bc -l")
 endfunction
 
@@ -185,28 +161,6 @@ let g:MyCalcPrecision = 2  " Control the precision with this variable
 map <silent> <leader>cr :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
 map <silent> <leader>cp :s/\$\(.*\)\$/\=DayCalcPercent(submatch(1))/g<CR>:noh<CR>
 ]])
-
--- do not set up lsp-config - let nvim-lsp-installer handle setup
-require('nvim-lsp-installer').on_server_ready(
-    function(server)
-        local opts = {}
-        if server.name == 'sumneko_lua' then
-            opts.settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = {'vim'}  -- remove nvim config errors
-                    }
-                }
-            }
-        end
-        server:setup(opts)
-    end
-)
-
--- look in ~/.config/pycodestyle to set Python style-based warnings
-
--- lspsaga
-cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])  -- make error pop up on hovering a cursor over it
 
 -- line and cursor wrapping
 cmd([[
@@ -259,21 +213,39 @@ endfunction
 set whichwrap+=<,>,h,l,[,]
 ]])
 
+-- do not set up lsp-config - let nvim-lsp-installer handle setup
+require('nvim-lsp-installer').on_server_ready(
+    function(server)
+        local opts = {}
+        if server.name == 'sumneko_lua' then
+            opts.settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {'vim'}  -- remove nvim config errors
+                    }
+                }
+            }
+        end
+        server:setup(opts)
+    end
+)
+
+-- look in ~/.config/pycodestyle to set Python style-based warnings
+
+-- lspsaga
+cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])  -- make error pop up on hovering a cursor over it
+
 -- vim-test
 cmd([[let test#python#pytest#options = '-s']])  -- make vim-test print out to terminal
 cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
 
 -- nvim-tree.lua
-require('nvim-tree').setup {
-    view = {
-        side = 'right'
-    }
-}
+-- I had to set view.side = 'right' manually in packer/start/nvim-tree.lua/lua/nvim-tree.lua
 
 -- lualine
 local function day_click_count()
     local time = os.date("*t")
-    return os.date("%a %b %d %H:%M - ") .. string.format("%d", math.floor((time.hour + time.min/60)*12+1)) .. ' clicks'
+    return os.date("%a %b %d %h:%m - ") .. string.format("%d", math.floor((time.hour + time.min/60)*12+1)) .. ' clicks'
 end
 
 require('lualine').setup {
@@ -314,17 +286,8 @@ cmp.setup {
         end,
     },
     mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        },
-        ['<Tab>'] = function(fallback)
+        ['<cr>'] = cmp.mapping.confirm({ select = true }),
+        ['<tab>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
@@ -333,7 +296,7 @@ cmp.setup {
                 fallback()
             end
         end,
-        ['<S-Tab>'] = function(fallback)
+        ['<s-tab>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
@@ -366,7 +329,7 @@ require('lspkind').init()
 -- nvim-treesitter
 require('nvim-treesitter.configs').setup {
     ensure_installed = "maintained",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    ignore_install = { "norg", "phpdoc", "swift" },  -- List of parsers to ignore installing
+    ignore_install = { "norg", "phpdoc", "swift" },  -- list of parsers to ignore installing
     highlight = {
         enable = true,  -- false will disable the whole extension
         --disable = { "c", "rust" },  -- list of language that will be disabled
