@@ -24,6 +24,8 @@ bo.swapfile = false
 g.floaterm_width = 0.8
 g.floaterm_height = 0.8
 g.vimspector_enable_mappings = 'HUMAN'
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 opt.termguicolors = true
 cmd([[colorscheme gruvbox]])
