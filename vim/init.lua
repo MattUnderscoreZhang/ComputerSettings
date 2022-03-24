@@ -247,7 +247,7 @@ cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
 -- lualine
 local function day_click_count()
     local time = os.date("*t")
-    return os.date("%a %b %d %h:%m - ") .. string.format("%d", math.floor((time.hour + time.min/60)*12+1)) .. ' clicks'
+    return os.date("%a %b %d %H:%M - ") .. string.format("%d", math.floor((time.hour + time.min/60)*12+1)) .. ' clicks'
 end
 
 require('lualine').setup {
@@ -259,10 +259,11 @@ require('lualine').setup {
         disabled_filetypes = {}
     },
     sections = {
-        lualine_a = {'mode', day_click_count},
+        lualine_a = {day_click_count},
         lualine_b = {'branch'},
         lualine_c = {'filename'},
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        --lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_x = {'mode'},
         lualine_y = {'progress'},
         lualine_z = {'location'}
     },
