@@ -242,6 +242,11 @@ cmd([[let test#python#pytest#options = '-s']])  -- make vim-test print out to te
 cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
 
 -- nvim-tree.lua
+require('nvim-tree').setup{
+    view = {
+        side = "right",
+    },
+}
 -- I had to set view.side = 'right' manually in packer/start/nvim-tree.lua/lua/nvim-tree.lua
 
 -- lualine
