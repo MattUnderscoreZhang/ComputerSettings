@@ -56,6 +56,10 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- disable folding on startup (zi to enable)
+cmd([[autocmd! FileType text setlocal foldmethod=indent]])
+vim.api.nvim_exec([[set foldenable!]], false)
+
 local options = {noremap=true, silent=true}
 -- built-in
 map("n", "<space>", "za", options)
@@ -109,8 +113,6 @@ map("n", "<leader>tp", "<cmd>FloatermNew python " .. vim.api.nvim_buf_get_name('
 map("n", "<leader>of", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_frontend.sh<cr>", options)
 map("n", "<leader>ob", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_backend.sh<cr>", options)
 map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attack-designer/; open http://localhost:1234<cr>", options)
--- vim-floatterm
-map("n", "<leader>ft", "<cmd>FloatermNew<cr>", options)
 -- lazygit
 map("n", "<leader>lg", "<cmd>LazyGit<cr>", options)
 -- vim-easymotion
@@ -138,6 +140,9 @@ map("n", "<leader>fq", ":FlutterQuit<cr>", options)
 map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
 map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
 map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
+-- flutter testing
+map("n", "<leader>ftt", "<cmd>FloatermNew flutter test " .. vim.api.nvim_buf_get_name('%') .. "<cr>", options)
+map("n", "<leader>fta", "<cmd>FloatermNew flutter test <cr>", options)
 -- gitsigns
 map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", options)
 

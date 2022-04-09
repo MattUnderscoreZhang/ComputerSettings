@@ -72,4 +72,5 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     use 'easymotion/vim-easymotion'  -- quick search in file
     use 'szw/vim-maximizer'  -- maximize split panes
     use 'kdheepak/lazygit.nvim'  -- lazygit integration
+    use 'konfekt/fastfold'  -- prevent over-eager code folding
 end)
