@@ -27,6 +27,11 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
         'nvim-treesitter/nvim-treesitter',
         run = ":TSUpdate",
     }
+    use {
+        'iamcco/markdown-preview.nvim',  -- Markdown preview in browser
+        run = function() vim.fn['mkdp#util#install']() end,
+        ft = {'markdown'}
+    }
     -- debugging
     use 'puremourning/vimspector'  -- graphical debugger
     use 'sakhnik/nvim-gdb' -- GDB, LLDB, pdb++ integration
