@@ -61,8 +61,8 @@ return require('packer').startup(function(use)  -- passing use is a hack that pr
     use 'nacro90/numb.nvim' -- line number peaking
     -- Flutter
     use {
-        'thosakwe/vim-flutter',  -- Flutter development shortcuts
-        requires = 'dart-lang/dart-vim-plugin',
+        'akinsho/flutter-tools.nvim',  -- Flutter tools
+        requires = 'nvim-lua/plenary.nvim',
     }
     -- other packages
     use 'godlygeek/tabular'  -- lines stuff up using whitespace

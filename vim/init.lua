@@ -133,13 +133,15 @@ map("n", "<leader>ds", ":call vimspector#StepOver()<CR>", options)
 map("n", "<leader>di", ":call vimspector#StepInto()<CR>", options)
 map("n", "<leader>do", ":call vimspector#StepOut()<CR>", options)
 map("n", "<leader>dw", ":VimspectorWatch ", options)
--- vim-flutter
+-- flutter-tools
 map("n", "<leader>fxd", ":FlutterRun --debug<cr>", options)
 map("n", "<leader>fxr", ":FlutterRun --release<cr>", options)
+map("n", "<leader>fd", ":FlutterDevices<cr>", options)
+map("n", "<leader>fe", ":FlutterEmulators<cr>", options)
+map("n", "<leader>fr", ":FlutterReload<cr>", options)
+map("n", "<leader>fR", ":FlutterRestart<cr>", options)
 map("n", "<leader>fq", ":FlutterQuit<cr>", options)
-map("n", "<leader>fr", ":FlutterHotReload<cr>", options)
-map("n", "<leader>fR", ":FlutterHotRestart<cr>", options)
-map("n", "<leader>fD", ":FlutterVisualDebug<cr>", options)
+map("n", "<leader>fo", ":FlutterOutlineToggle<cr>", options)
 -- flutter testing
 map("n", "<leader>ftt", "<cmd>FloatermNew flutter test " .. vim.api.nvim_buf_get_name('%') .. "<cr>", options)
 map("n", "<leader>fta", "<cmd>FloatermNew flutter test <cr>", options)
@@ -341,7 +343,7 @@ require('lspkind').init()
 
 -- nvim-treesitter
 require('nvim-treesitter.configs').setup {
-    ensure_installed = "maintained",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+    ensure_installed = "all",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = { "norg", "phpdoc", "swift" },  -- list of parsers to ignore installing
     highlight = {
         enable = true,  -- false will disable the whole extension
@@ -355,8 +357,8 @@ require('neoscroll').setup{}
 -- nvim-autopairs
 require('nvim-autopairs').setup{}
 
--- vim-flutter
-g.flutter_show_log_on_run = "tab"
+-- flutter-tools
+require('flutter-tools').setup{}
 
 -- nvim-gdb
 g.loaded_nvimgdb = 1  -- disable
