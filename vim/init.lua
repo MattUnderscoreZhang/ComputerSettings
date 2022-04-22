@@ -116,7 +116,7 @@ map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attac
 -- lazygit
 map("n", "<leader>lg", "<cmd>LazyGit<cr>", options)
 -- vim-easymotion
-map("n", "s", "<Plug>(easymotion-s2)", {})
+map("n", "f", "<Plug>(easymotion-s2)", {})
 -- barbar
 map("n", "<tab>", "<cmd>BufferNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferPrevious<CR>", options)
