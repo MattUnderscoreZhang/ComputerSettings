@@ -74,6 +74,8 @@ map("n", "<c-l>", "<c-w>l", options)
 map("n", "gn", "<c-^>", options)  -- jump to last used buffer
 map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
 map("n", "<leader>m", "`", options)
+-- black
+map("n", "<leader>bl", "<cmd>!black " .. vim.api.nvim_buf_get_name('%') .. "<cr>", options)  -- run Black on current file
 -- splits
 map("n", "<c-v>", "<c-w>v", options)  -- split vertically
 map("n", "<c-s>", "<c-w>s", options)  -- split horizontally
