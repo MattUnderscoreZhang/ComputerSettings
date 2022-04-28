@@ -144,9 +144,10 @@ map("n", "<leader>fr", ":FlutterReload<cr>", options)
 map("n", "<leader>fR", ":FlutterRestart<cr>", options)
 map("n", "<leader>fq", ":FlutterQuit<cr>", options)
 map("n", "<leader>fo", ":FlutterOutlineToggle<cr>", options)
--- flutter testing
+-- flutter stuff
 map("n", "<leader>ftt", "<cmd>FloatermNew flutter test " .. vim.api.nvim_buf_get_name('%') .. "<cr>", options)
 map("n", "<leader>fta", "<cmd>FloatermNew flutter test <cr>", options)
+map("n", "<leader>fbr", "<cmd>!flutter packages pub run build_runner build<cr>", options)
 -- gitsigns
 map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", options)
 
