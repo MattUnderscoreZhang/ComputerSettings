@@ -21,8 +21,8 @@ map("n", "<c-c>", "<c-w>c", options)  -- close split
 map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>ib", "<cmd>edit ~/.config/nvim/lua/plugins.lua <cr>", options)
 map("n", "<leader>ic", "<cmd>edit ~/.config/nvim/lua/mapping.lua <cr>", options)
-map("n", "<leader>si", "<cmd>luafile /Users/matt/.config/nvim/init.lua<cr>", options)  -- source lua init file
-map("n", "<leader>sf", "<cmd>luafile %<cr>", options)  -- source current file
+map("n", "<leader>id", "<cmd>edit ~/.config/nvim/lua/options.lua <cr>", options)
+map("n", "<leader>si", "<cmd>luafile ~/.config/nvim/init.lua<cr>", options)  -- source lua init file
 -- telescope
 map("n", "<leader>fp", ":Telescope projects<cr>", options)
 map("n", "<leader>ff", "<cmd>lua require('telescope.builtin').find_files()<cr>", options)
@@ -52,7 +52,7 @@ map("n", "<leader>tv", "<cmd>TestVisit<cr>", options)
 map("n", "<leader>ts", "<cmd>TestSuite<cr>", options)
 -- REDFOR-specific shortcuts
 --map("n", "<leader>ts", "<cmd>FloatermNew python /Users/matt/Projects/SimSpace/REDFOR/redfor/tests/run_all_tests.py<cr>", options)
-map("n", "<leader>tp", "<cmd>FloatermNew python " .. vim.api.nvim_buf_get_name(0) .. "<cr>", options)  -- execute main function of current file
+map("n", "<leader>tp", ":FloatermNew python " .. vim.api.nvim_buf_get_name(0) .. "<cr>", options)  -- execute main function of current file
 map("n", "<leader>of", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_frontend.sh<cr>", options)
 map("n", "<leader>ob", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_backend.sh<cr>", options)
 map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attack-designer/; open http://localhost:1234<cr>", options)
@@ -92,3 +92,25 @@ map("n", "<leader>fbr", "<cmd>!flutter packages pub run build_runner build<cr>",
 -- gitsigns
 map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", options)
 
+-- calculator via bash bc
+-- don't redefine these functions on config reload
+vim.cmd([[
+function! MyCalc(str)
+return system("echo 'x=" . a:str . ";d=.5/10^" . g:MyCalcPrecision
+\. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l")
+endfunction
+
+function! DayCalcPercent(str)
+return system("echo -n \\\(; echo 'x=(" . a:str . ")*100;d=.5/10^" . g:MyCalcPrecision
+\. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l; echo -n \\\%\\\)")
+endfunction
+
+function! MyCalcNoRound(str)
+return system("echo 'scale=" . g:MyCalcPrecision . " ; print " . a:str . "' | bc -l")
+endfunction
+
+let g:MyCalcPrecision = 2  " Control the precision with this variable
+
+map <silent> <leader>cr :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
+map <silent> <leader>cp :s/\$\(.*\)\$/\=DayCalcPercent(submatch(1))/g<CR>:noh<CR>
+]])
