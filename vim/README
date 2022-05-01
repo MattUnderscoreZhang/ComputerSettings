@@ -7,7 +7,7 @@ Install Packer
 Install pyenv-pyright to make Pyright work properly with virtual environments
     git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins/pyenv-pyright
 Install packages
-    make sure ~/.config/nvim/init.lua and ~/.config/nvim/lua/plugins.lua are present
+    make sure ~/.config/nvim/init.lua and ~/.config/nvim/lua/ are present
     <in vim> :PackerInstall
     <in vim> :LspInstall lua
     <in vim> :LspInstall python
