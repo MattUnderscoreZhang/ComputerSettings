@@ -57,7 +57,7 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'hrsh7th/cmp-buffer'  -- autocompletion for nvim
     use 'hrsh7th/cmp-path'  -- autocompletion for nvim
     use 'hrsh7th/cmp-cmdline'  -- autocompletion for nvim
-    --use 'onsails/lspkind-nvim'  -- popups for info on autocompletion
+    use 'onsails/lspkind-nvim'  -- icons for autocompletion popup window
     use "saadparwaiz1/cmp_luasnip" -- snippet completions
     -- snippets
     use 'L3MON4D3/luasnip'  -- snippet engine
@@ -171,9 +171,10 @@ require('lualine').setup {
     extensions = {}
 }
 
--- luasnip + nvim-cmp (https://www.youtube.com/watch?v=GuIcGxYqaQQ)
+-- luasnip + nvim-cmp + lspkind-nvim (https://www.youtube.com/watch?v=GuIcGxYqaQQ)
 local luasnip = require('luasnip')
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 require('luasnip/loaders/from_vscode').load({
     paths = {
@@ -185,34 +186,6 @@ local check_backspace = function()
     local col = vim.fn.col "." - 1
     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
-
-local kind_icons = {
-    Text = "",
-    Method = "m",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
-    TypeParameter = "",
-}
 
 cmp.setup {
     snippet = {
@@ -271,18 +244,21 @@ cmp.setup {
     },
     formatting = {
         fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-            -- Kind icons
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-            vim_item.menu = ({
-                nvim_lsp = "[LSP]",
-                luasnip = "[Snippet]",
-                buffer = "[Buffer]",
-                path = "[Path]",
-            })[entry.source.name]
-            return vim_item
-        end,
+        format = lspkind.cmp_format({
+            mode = 'symbol',  -- show only symbol annotations
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            before = function (entry, vim_item)
+                vim_item.menu = ({
+                    nvim_lsp = "[LSP]",
+                    luasnip = "[Snippet]",
+                    buffer = "[Buffer]",
+                    path = "[Path]",
+                })[entry.source.name]
+                return vim_item
+            end
+        })
     },
     sources = {
         --{ name = "nvim_lsp" },
@@ -309,9 +285,6 @@ require("indent_blankline").setup {
     show_current_context = true,
     --show_current_context_start = true,
 }
-
--- lspkind-nvim
---require('lspkind').init()
 
 -- nvim-treesitter
 require('nvim-treesitter.configs').setup {

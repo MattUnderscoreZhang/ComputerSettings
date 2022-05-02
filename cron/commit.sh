@@ -26,6 +26,7 @@ rsync -r ~/.zshrc terminal/zsh/
 rsync -r ~/.config/nvim/init.lua vim/
 rsync -r ~/.config/nvim/lua vim/
 rsync -r ~/.tmux.conf tmux/
+rsync -r ~/.config/zathura/zathurarc zathura/
 git add .
 git commit -m "Daily commit"
 git pull
