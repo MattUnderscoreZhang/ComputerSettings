@@ -45,7 +45,7 @@ map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename 
 -- vim-autoformat
 map("n", "<leader>af", ":Autoformat<cr>", options)  -- go to references
 -- vim-test
-map("n", "<leader>tn", "<cmd>TestNearest<cr>", options)
+map("n", "<leader>tn", "<cmd>TestNearest --verbose<cr>", options)
 map("n", "<leader>tf", "<cmd>TestFile<cr>", options)
 map("n", "<leader>tl", "<cmd>TestLast<cr>", options)
 map("n", "<leader>tv", "<cmd>TestVisit<cr>", options)
