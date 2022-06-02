@@ -111,6 +111,6 @@ endfunction
 
 let g:MyCalcPrecision = 2  " Control the precision with this variable
 
-map <silent> <leader>cc :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
+map <silent> <leader>cr :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
 map <silent> <leader>cp :s/\$\(.*\)\$/\=DayCalcPercent(submatch(1))/g<CR>:noh<CR>
 ]])
