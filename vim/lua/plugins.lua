@@ -125,14 +125,21 @@ end
 -- look in ~/.config/pycodestyle to set Python style-based warnings
 
 -- nvim-tree.lua
--- I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
+-- In a previous version I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
 require('nvim-tree').setup {
+    create_in_closed_folder = true,
+    reload_on_bufenter = true,
     update_focused_file = {
         enable = true,
         update_cwd = true,
     },
     view = {
         side = "right",
+    },
+    renderer = {
+        group_empty = true,
+        highlight_git = true,
+        highlight_opened_files = "all",
     },
 }
 
