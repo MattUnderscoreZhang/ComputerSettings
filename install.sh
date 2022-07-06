@@ -5,6 +5,7 @@
 brew install fzf 
 brew install bat 
 brew install lazygit 
+brew install thefuck 
 brew install zoxide 
 
 # all configs
@@ -31,6 +32,7 @@ cp git/.gitconfig ~
 
 # pyenv
 brew install pyenv
+brew install pyenv-virtualenv
 pyenv install 3.9.10
 pyenv virtualenv 3.9.10 py39
 # install pyenv-pyright to make Pyright work properly with virtual environments
@@ -52,10 +54,11 @@ git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pac
 cp -r nvim ~/.config/
 
 # nvim
+# in ~/.config/nvim/init.lua, comment out the first function, and replace ReloadModule with require for first time opening nvim
 # <in vim> :PackerInstall
-# <in vim> :LspInstall lua
-# <in vim> :LspInstall python
-# <in vim> :LspInstall typescript
+# <in vim> :LspInstall lua (sumneko_lua)
+# <in vim> :LspInstall python (pyright)
+# <in vim> :LspInstall typescript (eslint)
 # NOTE: install sumneko_lua, pyright, and eslint language servers
 
 # ignore zathura
