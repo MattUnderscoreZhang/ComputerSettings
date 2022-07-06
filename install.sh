@@ -3,8 +3,7 @@
 
 # brew install stuff
 brew install fzf 
-brew install bat 
-brew install lazygit 
+brew install bat brew install lazygit 
 brew install thefuck 
 brew install zoxide 
 
@@ -35,6 +34,9 @@ brew install pyenv
 brew install pyenv-virtualenv
 pyenv install 3.9.10
 pyenv virtualenv 3.9.10 py39
+
+# Pyright
+brew install pyright
 # install pyenv-pyright to make Pyright work properly with virtual environments
 git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins/pyenv-pyright
 
@@ -59,6 +61,11 @@ cp -r nvim ~/.config/
 # <in vim> :LspInstall lua (sumneko_lua)
 # <in vim> :LspInstall python (pyright)
 # <in vim> :LspInstall typescript (eslint)
-# NOTE: install sumneko_lua, pyright, and eslint language servers
 
 # ignore zathura
+
+# install CaskaydiaCover Nerd Font
+
+# set cron jobs
+# crontab -e
+# copy-paste cron/crontab in there
