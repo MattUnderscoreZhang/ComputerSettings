@@ -1,0 +1,61 @@
+# Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# brew install stuff
+brew install fzf 
+brew install bat 
+brew install lazygit 
+brew install zoxide 
+
+# all configs
+cp -r .config ~/
+
+# Prezto
+git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto 
+setopt EXTENDED_GLOB 
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do 
+    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" 
+done 
+
+# zsh
+cp zsh/.zshrc ~ 
+cp zsh/.zshenv ~ 
+cp zsh/.zpreztorc ~ 
+cp zsh/.zprofile ~ 
+
+# git
+cp git/.gitconfig ~
+
+# lazygit
+# cp lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml 
+
+# pyenv
+brew install pyenv
+pyenv install 3.9.10
+pyenv virtualenv 3.9.10 py39
+# install pyenv-pyright to make Pyright work properly with virtual environments
+git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins/pyenv-pyright
+
+# pdb
+cp python/.pdbrc.py ~
+
+# ssh
+cp ssh/config ~/.ssh/
+
+# tmux
+cp tmux/.tmux.conf ~
+
+# nvim
+brew install neovim
+mkdir ~/.vim/tmp
+git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+cp -r nvim ~/.config/
+
+# nvim
+# <in vim> :PackerInstall
+# <in vim> :LspInstall lua
+# <in vim> :LspInstall python
+# <in vim> :LspInstall typescript
+# NOTE: install sumneko_lua, pyright, and eslint language servers
+
+# ignore zathura

@@ -23,8 +23,8 @@ cd ~/Projects/ComputerSettings/
 rsync -r ~/Library/Application\ Support/lazygit/config.yml terminal/
 rsync -r ~/.config/kitty/ terminal/kitty/
 rsync -r ~/.zshrc terminal/zsh/
-rsync -r ~/.config/nvim/init.lua vim/
-rsync -r ~/.config/nvim/lua vim/
+rsync -r ~/.config/nvim/init.lua nvim/
+rsync -r ~/.config/nvim/lua nvim/
 rsync -r ~/.tmux.conf tmux/
 rsync -r ~/.config/zathura/zathurarc zathura/
 git add .
