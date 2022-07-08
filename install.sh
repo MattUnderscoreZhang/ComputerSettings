@@ -8,6 +8,7 @@ brew install lazygit
 brew install thefuck
 brew install zoxide
 brew install rg
+brew install dtrx
 
 # all configs
 cp -r .config ~/
