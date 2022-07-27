@@ -9,6 +9,7 @@ brew install thefuck
 brew install zoxide
 brew install rg
 brew install dtrx
+brew install postgresql
 
 # all configs
 cp -r .config ~/
