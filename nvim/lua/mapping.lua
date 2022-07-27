@@ -114,3 +114,18 @@ let g:MyCalcPrecision = 2  " Control the precision with this variable
 map <silent> <leader>cr :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
 map <silent> <leader>cp :s/\$\(.*\)\$/\=DayCalcPercent(submatch(1))/g<CR>:noh<CR>
 ]])
+
+-- cycle case of highlighted words with ~
+vim.cmd([[
+function! TwiddleCase(str)
+    if a:str ==# toupper(a:str)
+        let result = tolower(a:str)
+    elseif a:str ==# tolower(a:str)
+        let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+    else
+        let result = toupper(a:str)
+    endif
+    return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+]])
