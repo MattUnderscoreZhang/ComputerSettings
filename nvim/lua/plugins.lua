@@ -59,15 +59,9 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'hrsh7th/cmp-cmdline'  -- autocompletion for nvim
     use 'onsails/lspkind-nvim'  -- icons for autocompletion popup window
     use "saadparwaiz1/cmp_luasnip" -- snippet completions
-    use {
-        "zbirenbaum/copilot-cmp",  -- copilot autocompletion
-        module = "copilot_cmp",
-    }
     -- snippets
     use 'L3MON4D3/luasnip'  -- snippet engine
     use 'rafamadriz/friendly-snippets'  -- a bunch of snippets to use
-    -- copilot
-    use 'github/copilot.vim'  -- GitHub Copilot
     -- code navigation
     use 'simrat39/symbols-outline.nvim'  -- code tree view sidebar (*)
     use {
@@ -131,14 +125,21 @@ end
 -- look in ~/.config/pycodestyle to set Python style-based warnings
 
 -- nvim-tree.lua
--- I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
+-- In a previous version I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
 require('nvim-tree').setup {
+    create_in_closed_folder = true,
+    reload_on_bufenter = true,
     update_focused_file = {
         enable = true,
         update_cwd = true,
     },
     view = {
         side = "right",
+    },
+    renderer = {
+        group_empty = true,
+        highlight_git = true,
+        highlight_opened_files = "all",
     },
 }
 
@@ -257,7 +258,6 @@ cmp.setup {
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
             before = function (entry, vim_item)
                 vim_item.menu = ({
-                    copilot = "[Copilot]",
                     nvim_lsp = "[LSP]",
                     luasnip = "[Snippet]",
                     buffer = "[Buffer]",
@@ -268,7 +268,6 @@ cmp.setup {
         })
     },
     sources = {
-        { name = "copilot", group_index = 2 },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
