@@ -98,6 +98,7 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'szw/vim-maximizer'  -- maximize split panes
     use 'kdheepak/lazygit.nvim'  -- lazygit integration
     use 'konfekt/fastfold'  -- prevent over-eager code folding
+    use 'tpope/vim-unimpaired'  -- advanced mappings
 end
 )
 
