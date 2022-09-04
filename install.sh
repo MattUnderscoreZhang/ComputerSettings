@@ -10,6 +10,7 @@ brew install zoxide
 brew install rg
 brew install dtrx
 brew install postgresql
+brew install flyway
 
 # all configs
 cp -r .config ~/
