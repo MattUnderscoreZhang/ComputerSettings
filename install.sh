@@ -34,16 +34,20 @@ cp git/.gitconfig ~
 # lazygit
 # cp lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml 
 
-# pyenv
-brew install pyenv
-brew install pyenv-virtualenv
-pyenv install 3.9.10
-pyenv virtualenv 3.9.10 py39
+## pyenv
+#brew install pyenv
+#brew install pyenv-virtualenv
+#pyenv install 3.9.10
+#pyenv virtualenv 3.9.10 py39
 
-# Pyright
-brew install pyright
-# install pyenv-pyright to make Pyright work properly with virtual environments
-git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins/pyenv-pyright
+## Pyright
+#brew install pyright
+## install pyenv-pyright to make Pyright work properly with virtual environments
+#git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins/pyenv-pyright
+
+# poetry
+# https://python-poetry.org/docs/
+curl -sSL https://install.python-poetry.org | python3 -
 
 # pdb
 cp python/.pdbrc.py ~
