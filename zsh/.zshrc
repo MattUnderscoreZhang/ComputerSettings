@@ -109,15 +109,16 @@ export WASMER_DIR="/Users/matt/.wasmer"
 export PATH="$PATH:/Applications/Flutter/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
-# set up lazygit
-alias lg=lazygit
-
-# pyenv
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-alias py3='pyenv activate py3'
+## pyenv
+#eval "$(pyenv init --path)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+#alias py3='pyenv activate py3'
 
 # poetry
 alias poetry='~/Library/Application\ Support/pypoetry/venv/bin/poetry'
+
+# DSD
+alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.20.35 simspace@10.10.210.55'
+alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.10.210.55'
