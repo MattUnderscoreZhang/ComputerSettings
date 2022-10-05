@@ -77,6 +77,8 @@ map("n", "<leader>di", ":call vimspector#StepInto()<CR>", options)
 map("n", "<leader>do", ":call vimspector#StepOut()<CR>", options)
 map("n", "<leader>dw", ":VimspectorWatch ", options)
 -- flutter-tools
+--map("n", "<leader>fxd", ":FlutterRun --debug -d web-server --web-hostname localhost --web-port 3000<cr>", options)
+--map("n", "<leader>fxr", ":FlutterRun --release -d web-server --web-hostname localhost --web-port 3000<cr>", options)
 map("n", "<leader>fxd", ":FlutterRun --debug<cr>", options)
 map("n", "<leader>fxr", ":FlutterRun --release<cr>", options)
 map("n", "<leader>fd", ":FlutterDevices<cr>", options)
