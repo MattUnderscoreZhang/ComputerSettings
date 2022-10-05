@@ -37,9 +37,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # single enter for selection
 bindkey -M menuselect '^M' .accept-line
 
-# Start on desktop
-cd ~/Desktop
-
 # aliases
 alias ls='ls -G'
 function killjobs () {
