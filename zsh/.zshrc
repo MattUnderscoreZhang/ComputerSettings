@@ -117,7 +117,7 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 #alias py3='pyenv activate py3'
 
 # poetry
-alias poetry='~/Library/Application\ Support/pypoetry/venv/bin/poetry'
+alias poetry='/Users/matt/.local/bin/poetry'
 
 # DSD
 alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.20.35 simspace@10.10.210.55'
