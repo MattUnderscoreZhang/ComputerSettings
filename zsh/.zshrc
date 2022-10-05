@@ -122,3 +122,6 @@ alias poetry='~/Library/Application\ Support/pypoetry/venv/bin/poetry'
 # DSD
 alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.20.35 simspace@10.10.210.55'
 alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.10.210.55'
+
+# node.js
+export PATH="/usr/local/opt/node@16/bin:$PATH"
