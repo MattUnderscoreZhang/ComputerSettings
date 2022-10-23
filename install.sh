@@ -13,6 +13,7 @@ brew install postgresql
 brew install flyway
 brew install node@16  # for copilot
 brew install awscli  # AWS CLI
+brew install ruby
 
 # all configs
 cp -r .config ~/

@@ -122,3 +122,6 @@ alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.1
 
 # node.js
 export PATH="/usr/local/opt/node@16/bin:$PATH"
+
+# Ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
