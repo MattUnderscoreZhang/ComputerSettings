@@ -126,7 +126,3 @@ export PATH="/usr/local/opt/node@16/bin:$PATH"
 
 # Ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-# poetry
-alias poetry='/Users/matt/.local/bin/poetry'
-poetry completions zsh > ~/.zfunc/_poetry
