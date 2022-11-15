@@ -40,6 +40,7 @@ map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
 -- lsp
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
+map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", options)  -- go to definition
 --map("n", "gb", "<c-o>", options)  -- go to references
 map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename object
 -- vim-autoformat
