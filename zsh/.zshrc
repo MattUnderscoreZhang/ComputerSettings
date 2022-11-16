@@ -128,4 +128,5 @@ export PATH="/usr/local/opt/node@16/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # sapling repo size limit
+unalias sl
 ulimit -n 1048576 1048576
