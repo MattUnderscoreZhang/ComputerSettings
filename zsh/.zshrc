@@ -126,3 +126,6 @@ export PATH="/usr/local/opt/node@16/bin:$PATH"
 
 # Ruby
 export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# sapling repo size limit
+ulimit -n 1048576 1048576
