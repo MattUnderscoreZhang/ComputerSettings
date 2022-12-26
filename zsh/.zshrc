@@ -113,12 +113,20 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 #export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 #alias py3='pyenv activate py3'
 
-# poetry
-alias poetry='/Users/matt/.local/bin/poetry'
-
 # DSD
-alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.20.35 simspace@10.10.210.55'
-alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.10.210.55'
+alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.22.42 simspace@10.10.0.127'
+alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.10.210.55'  # out of date
+# 10.40.104.24 = orchestrator-dev with internet access
+# 10.40.22.42 - simspace-mgmt on binary-star (may have to log on and do "hostname -I" to find the IP)
+# 10.10.210.55 - chimera-dev on binary-star
+# 10.10.0.127 - redfor on binary-star
 
 # node.js
 export PATH="/usr/local/opt/node@16/bin:$PATH"
+
+# Ruby
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# sapling repo size limit
+unalias sl
+ulimit -n 1048576 1048576
