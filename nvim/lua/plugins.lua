@@ -68,11 +68,27 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
             end
         end
     }
+    --use {
+        --"zbirenbaum/copilot.lua",  -- copilot written in Lua for speed
+        --event = "VimEnter",
+        --config = function()
+            --vim.defer_fn(function()
+                --require("copilot").setup()
+            --end, 100)
+        --end,
+    --}
+    --use {
+        --"zbirenbaum/copilot-cmp",  -- autocompletion for Lua copilot
+        --after = { "copilot.lua" },
+        --config = function ()
+            --require("copilot_cmp").setup()
+        --end
+    --}
     use 'onsails/lspkind-nvim'  -- icons for autocompletion popup window
     use 'saadparwaiz1/cmp_luasnip'  -- snippet completions
     -- snippets
-    use 'L3MON4D3/luasnip'  -- snippet engine
-    use 'rafamadriz/friendly-snippets'  -- a bunch of snippets to use
+    --use 'L3MON4D3/luasnip'  -- snippet engine
+    --use 'rafamadriz/friendly-snippets'  -- a bunch of snippets to use
     -- code navigation
     use 'simrat39/symbols-outline.nvim'  -- code tree view sidebar (*)
     use {
@@ -193,27 +209,27 @@ require('lualine').setup {
 }
 
 -- luasnip + nvim-cmp + lspkind-nvim (https://www.youtube.com/watch?v=GuIcGxYqaQQ)
-local luasnip = require('luasnip')
+--local luasnip = require('luasnip')
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
-require('luasnip/loaders/from_vscode').load({
-    paths = {
-        "~/.local/share/nvim/site/pack/packer/start/friendly-snippets"
-    }
-})
+--require('luasnip/loaders/from_vscode').load({
+    --paths = {
+        --"~/.local/share/nvim/site/pack/packer/start/friendly-snippets"
+    --}
+--})
 
-local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
+--local check_backspace = function()
+    --local col = vim.fn.col "." - 1
+    --return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+--end
 
 cmp.setup {
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body) -- For `luasnip` users.
-        end,
-    },
+    --snippet = {
+        --expand = function(args)
+            --luasnip.lsp_expand(args.body) -- For `luasnip` users.
+        --end,
+    --},
     mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -227,17 +243,20 @@ cmp.setup {
         },
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm { select = false },
+        --["<CR>"] = cmp.mapping.confirm { select = false },
+        ["<CR>"] = cmp.mapping.confirm({
+            select = false,
+        }),
         ["<Tab>"] = cmp.mapping(
             function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item()
-                elseif luasnip.expandable() then
-                    luasnip.expand()
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                elseif check_backspace() then
-                    fallback()
+                --elseif luasnip.expandable() then
+                    --luasnip.expand()
+                --elseif luasnip.expand_or_jumpable() then
+                    --luasnip.expand_or_jump()
+                --elseif check_backspace() then
+                    --fallback()
                 else
                     fallback()
                 end
@@ -251,8 +270,8 @@ cmp.setup {
             function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
+                --elseif luasnip.jumpable(-1) then
+                    --luasnip.jump(-1)
                 else
                     fallback()
                 end
@@ -274,7 +293,7 @@ cmp.setup {
                 vim_item.menu = ({
                     copilot = "[Copilot]",
                     nvim_lsp = "[LSP]",
-                    luasnip = "[Snippet]",
+                    --luasnip = "[Snippet]",
                     buffer = "[Buffer]",
                     path = "[Path]",
                 })[entry.source.name]
@@ -285,7 +304,7 @@ cmp.setup {
     sources = {
         { name = "copilot" },
         { name = "nvim_lsp" },
-        { name = "luasnip" },
+        --{ name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
     },
