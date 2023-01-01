@@ -125,3 +125,6 @@ export PATH="/usr/local/Cellar/node/19.2.0/bin:$PATH"
 
 # API keys
 source ~/api_keys.sh
+
+# add GCloud components
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
