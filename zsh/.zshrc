@@ -113,20 +113,18 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 #export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 #alias py3='pyenv activate py3'
 
+# poetry
+alias poetry='~/Library/Application\ Support/pypoetry/venv/bin/poetry'
+
 # DSD
-alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.22.42 simspace@10.10.0.127'
-alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.10.210.55'  # out of date
-# 10.40.104.24 = orchestrator-dev with internet access
-# 10.40.22.42 - simspace-mgmt on binary-star (may have to log on and do "hostname -I" to find the IP)
-# 10.10.210.55 - chimera-dev on binary-star
-# 10.10.0.127 - redfor on binary-star
+alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.20.35 simspace@10.10.210.55'
+alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.10.210.55'
 
 # node.js
-export PATH="/usr/local/opt/node@16/bin:$PATH"
+export PATH="/usr/local/Cellar/node/19.2.0/bin:$PATH"
 
-# Ruby
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+# API keys
+source ~/api_keys.sh
 
-# sapling repo size limit
-unalias sl
-ulimit -n 1048576 1048576
+# add GCloud components
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
