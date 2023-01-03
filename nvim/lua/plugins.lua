@@ -64,7 +64,7 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
         config = function()
             local sysname = vim.loop.os_uname().sysname
             if sysname == "Darwin" then
-                vim.g.copilot_node_command = "/usr/local/Cellar/node/19.2.0/bin/node"  -- have to use version 16 because higher versions aren't supported for now
+                vim.g.copilot_node_command = "/usr/local/opt/node@16/bin/node"  -- have to use version 16 because higher versions aren't supported for now
             end
         end
     }
@@ -102,7 +102,7 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
         'nvim-telescope/telescope.nvim',  -- file search and grep
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
-    use 'famiu/bufdelete.nvim' -- cleaner buffer closing; using a old commit to avoid upgrading to nvim 0.8.0
+    use 'famiu/bufdelete.nvim' -- cleaner buffer closing
     use 'nacro90/numb.nvim' -- line number peaking
     use 'ahmedkhalf/project.nvim'  -- project management and navigation
     -- Flutter
@@ -128,9 +128,6 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'tpope/vim-unimpaired'  -- advanced mappings
 end
 )
-
--- bufdelete
-require("bufdelete")
 
 -- project.nvim
 require("project_nvim").setup {}
@@ -158,6 +155,7 @@ end
 -- nvim-tree.lua
 -- In a previous version I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
 require('nvim-tree').setup {
+    create_in_closed_folder = true,
     reload_on_bufenter = true,
     update_focused_file = {
         enable = true,
