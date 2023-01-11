@@ -110,3 +110,12 @@ for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
+
+-- word wrap for txt files
+vim.api.nvim_command("augroup wrap_txt")
+vim.api.nvim_command("    autocmd!")
+vim.api.nvim_command("    autocmd FileType txt setlocal textwidth=0")
+vim.api.nvim_command("    autocmd FileType txt setlocal wrapmargin=0")
+vim.api.nvim_command("    autocmd FileType txt setlocal linebreak")
+vim.api.nvim_command("    autocmd FileType txt setlocal columns=80")
+vim.api.nvim_command("augroup END")
