@@ -40,6 +40,7 @@ map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
 -- lsp
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
+map("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", options)  -- go to definition
 --map("n", "gb", "<c-o>", options)  -- go to references
 map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename object
 -- vim-autoformat
@@ -59,7 +60,7 @@ map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attac
 -- lazygit
 map("n", "<leader>lg", "<cmd>LazyGit<cr>", options)
 -- vim-easymotion
-map("n", "f", "<Plug>(easymotion-sn)", {})
+map("n", "<c-f>", "<Plug>(easymotion-sn)", {})
 -- barbar
 map("n", "<tab>", "<cmd>BufferNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferPrevious<CR>", options)
@@ -77,8 +78,6 @@ map("n", "<leader>di", ":call vimspector#StepInto()<CR>", options)
 map("n", "<leader>do", ":call vimspector#StepOut()<CR>", options)
 map("n", "<leader>dw", ":VimspectorWatch ", options)
 -- flutter-tools
---map("n", "<leader>fxd", ":FlutterRun --debug -d web-server --web-hostname localhost --web-port 3000<cr>", options)
---map("n", "<leader>fxr", ":FlutterRun --release -d web-server --web-hostname localhost --web-port 3000<cr>", options)
 map("n", "<leader>fxd", ":FlutterRun --debug<cr>", options)
 map("n", "<leader>fxr", ":FlutterRun --release<cr>", options)
 map("n", "<leader>fd", ":FlutterDevices<cr>", options)
