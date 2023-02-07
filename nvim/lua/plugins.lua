@@ -64,15 +64,31 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
         config = function()
             local sysname = vim.loop.os_uname().sysname
             if sysname == "Darwin" then
-                vim.g.copilot_node_command = "/usr/local/Cellar/node/19.2.0/bin/node"  -- have to use version 16 because higher versions aren't supported for now
+                vim.g.copilot_node_command = "/usr/local/opt/node@16/bin/node"  -- have to use version 16 because higher versions aren't supported for now
             end
         end
     }
+    --use {
+        --"zbirenbaum/copilot.lua",  -- copilot written in Lua for speed
+        --event = "VimEnter",
+        --config = function()
+            --vim.defer_fn(function()
+                --require("copilot").setup()
+            --end, 100)
+        --end,
+    --}
+    --use {
+        --"zbirenbaum/copilot-cmp",  -- autocompletion for Lua copilot
+        --after = { "copilot.lua" },
+        --config = function ()
+            --require("copilot_cmp").setup()
+        --end
+    --}
     use 'onsails/lspkind-nvim'  -- icons for autocompletion popup window
     use 'saadparwaiz1/cmp_luasnip'  -- snippet completions
     -- snippets
-    use 'L3MON4D3/luasnip'  -- snippet engine
-    use 'rafamadriz/friendly-snippets'  -- a bunch of snippets to use
+    --use 'L3MON4D3/luasnip'  -- snippet engine
+    --use 'rafamadriz/friendly-snippets'  -- a bunch of snippets to use
     -- code navigation
     use 'simrat39/symbols-outline.nvim'  -- code tree view sidebar (*)
     use {
@@ -86,7 +102,7 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
         'nvim-telescope/telescope.nvim',  -- file search and grep
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
-    use 'famiu/bufdelete.nvim' -- cleaner buffer closing; using a old commit to avoid upgrading to nvim 0.8.0
+    use 'famiu/bufdelete.nvim' -- cleaner buffer closing
     use 'nacro90/numb.nvim' -- line number peaking
     use 'ahmedkhalf/project.nvim'  -- project management and navigation
     -- Flutter
@@ -112,9 +128,6 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'tpope/vim-unimpaired'  -- advanced mappings
 end
 )
-
--- bufdelete
-require("bufdelete")
 
 -- project.nvim
 require("project_nvim").setup {}
@@ -142,6 +155,7 @@ end
 -- nvim-tree.lua
 -- In a previous version I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
 require('nvim-tree').setup {
+    create_in_closed_folder = true,
     reload_on_bufenter = true,
     update_focused_file = {
         enable = true,
@@ -193,27 +207,27 @@ require('lualine').setup {
 }
 
 -- luasnip + nvim-cmp + lspkind-nvim (https://www.youtube.com/watch?v=GuIcGxYqaQQ)
-local luasnip = require('luasnip')
+--local luasnip = require('luasnip')
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
-require('luasnip/loaders/from_vscode').load({
-    paths = {
-        "~/.local/share/nvim/site/pack/packer/start/friendly-snippets"
-    }
-})
+--require('luasnip/loaders/from_vscode').load({
+    --paths = {
+        --"~/.local/share/nvim/site/pack/packer/start/friendly-snippets"
+    --}
+--})
 
-local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
+--local check_backspace = function()
+    --local col = vim.fn.col "." - 1
+    --return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+--end
 
 cmp.setup {
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body) -- For `luasnip` users.
-        end,
-    },
+    --snippet = {
+        --expand = function(args)
+            --luasnip.lsp_expand(args.body) -- For `luasnip` users.
+        --end,
+    --},
     mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),
@@ -227,17 +241,20 @@ cmp.setup {
         },
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm { select = false },
+        --["<CR>"] = cmp.mapping.confirm { select = false },
+        ["<CR>"] = cmp.mapping.confirm({
+            select = false,
+        }),
         ["<Tab>"] = cmp.mapping(
             function(fallback)
                 if cmp.visible() then
                     cmp.select_next_item()
-                elseif luasnip.expandable() then
-                    luasnip.expand()
-                elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-                elseif check_backspace() then
-                    fallback()
+                --elseif luasnip.expandable() then
+                    --luasnip.expand()
+                --elseif luasnip.expand_or_jumpable() then
+                    --luasnip.expand_or_jump()
+                --elseif check_backspace() then
+                    --fallback()
                 else
                     fallback()
                 end
@@ -251,8 +268,8 @@ cmp.setup {
             function(fallback)
                 if cmp.visible() then
                     cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
+                --elseif luasnip.jumpable(-1) then
+                    --luasnip.jump(-1)
                 else
                     fallback()
                 end
@@ -274,7 +291,7 @@ cmp.setup {
                 vim_item.menu = ({
                     copilot = "[Copilot]",
                     nvim_lsp = "[LSP]",
-                    luasnip = "[Snippet]",
+                    --luasnip = "[Snippet]",
                     buffer = "[Buffer]",
                     path = "[Path]",
                 })[entry.source.name]
@@ -285,7 +302,7 @@ cmp.setup {
     sources = {
         { name = "copilot" },
         { name = "nvim_lsp" },
-        { name = "luasnip" },
+        --{ name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
     },
