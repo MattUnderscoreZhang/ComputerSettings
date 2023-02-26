@@ -110,6 +110,7 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'kdheepak/lazygit.nvim'  -- lazygit integration
     use 'konfekt/fastfold'  -- prevent over-eager code folding
     use 'tpope/vim-unimpaired'  -- advanced mappings
+    --use 'petobens/poet-v'  -- auto-detects Python virtual environments inside Poetry folder
 end
 )
 
@@ -339,3 +340,8 @@ require('gitsigns').setup{
 
 -- numb
 require('numb').setup()
+
+---- poet-v
+--vim.cmd([[
+    --g:poetv_auto_activate = 1
+--]])

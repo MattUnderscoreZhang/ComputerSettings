@@ -1,21 +1,5 @@
 #!/bin/bash
 
-cd ~/Projects/Obsidian/
-git add .
-git commit -m "Daily commit"
-git pull
-if git status | grep -q ahead; then
-    git push
-fi
-
-cd ~/Projects/VimNotes/
-git add .
-git commit -m "Daily commit"
-git pull
-if git status | grep -q ahead; then
-    git push
-fi
-
 cd ~/Projects/ComputerSettings/
 #rsync -r ~/.config .
 #rsync -r ~/.gitconfig git/
