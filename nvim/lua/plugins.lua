@@ -35,7 +35,8 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     -- LSP
     use {
         'neovim/nvim-lspconfig',  -- LSP configuration handling (including error messages and icons)
-        'williamboman/nvim-lsp-installer'  -- install language servers for LSP
+        'williamboman/mason.nvim',  -- install LSP and DAP servers, linters, and formatters
+        'williamboman/mason-lspconfig.nvim'  -- bridges mason and nvim-lspconfig
     }
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -110,7 +111,6 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'kdheepak/lazygit.nvim'  -- lazygit integration
     use 'konfekt/fastfold'  -- prevent over-eager code folding
     use 'tpope/vim-unimpaired'  -- advanced mappings
-    --use 'petobens/poet-v'  -- auto-detects Python virtual environments inside Poetry folder
 end
 )
 
@@ -121,22 +121,22 @@ require("bufdelete")
 require("project_nvim").setup {}
 require("telescope").load_extension('projects')
 
--- do not set up lsp-config - let nvim-lsp-installer handle setup
-require('nvim-lsp-installer').on_server_ready(
-function(server)
-    local opts = {}
-    if server.name == 'sumneko_lua' then
-        opts.settings = {
-            Lua = {
-                diagnostics = {
-                    globals = {'vim'}  -- remove nvim config errors
-                }
-            }
-        }
+-- do not set up nvim-lspconfig - let mason handle setup
+require('mason').setup()  -- use :Mason to open GUI
+require('mason-lspconfig').setup()
+require("mason-lspconfig").setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {}
+    end,
+    -- Next, you can provide a dedicated handler for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
+    ["rust_analyzer"] = function ()
+        require("rust-tools").setup {}
     end
-    server:setup(opts)
-end
-)
+}
 
 -- look in ~/.config/pycodestyle to set Python style-based warnings
 
@@ -340,8 +340,3 @@ require('gitsigns').setup{
 
 -- numb
 require('numb').setup()
-
----- poet-v
---vim.cmd([[
-    --g:poetv_auto_activate = 1
---]])
