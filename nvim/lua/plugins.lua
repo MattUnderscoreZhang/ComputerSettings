@@ -58,17 +58,17 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'hrsh7th/cmp-buffer'  -- autocompletion for nvim
     use 'hrsh7th/cmp-path'  -- autocompletion for nvim
     use 'hrsh7th/cmp-cmdline'  -- autocompletion for nvim
-    --use 'hrsh7th/cmp-copilot'  -- autocompletion for copilot
-    --use {
-        --'github/copilot.vim',  -- AI code completion
-        --branch = "release",
-        --config = function()
-            --local sysname = vim.loop.os_uname().sysname
-            --if sysname == "Darwin" then
-                --vim.g.copilot_node_command = "/usr/local/Cellar/node/19.2.0/bin/node"  -- have to use version 16 because higher versions aren't supported for now
-            --end
-        --end
-    --}
+    use 'hrsh7th/cmp-copilot'  -- autocompletion for copilot
+    use {
+        'github/copilot.vim',  -- AI code completion
+        branch = "release",
+        config = function()
+            local sysname = vim.loop.os_uname().sysname
+            if sysname == "Darwin" then
+                vim.g.copilot_node_command = "/usr/local/Cellar/node/19.2.0/bin/node"  -- have to use version 16 because higher versions aren't supported for now
+            end
+        end
+    }
     use 'onsails/lspkind-nvim'  -- icons for autocompletion popup window
     use 'saadparwaiz1/cmp_luasnip'  -- snippet completions
     -- snippets
@@ -273,7 +273,7 @@ cmp.setup {
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
             before = function (entry, vim_item)
                 vim_item.menu = ({
-                    --copilot = "[Copilot]",
+                    copilot = "[Copilot]",
                     nvim_lsp = "[LSP]",
                     luasnip = "[Snippet]",
                     buffer = "[Buffer]",
@@ -284,7 +284,7 @@ cmp.setup {
         })
     },
     sources = {
-        --{ name = "copilot" },
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
