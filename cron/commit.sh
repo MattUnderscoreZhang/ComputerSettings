@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd ~/Projects/ComputerSettings/
-rsync -r ~/.config .
 rsync -r ~/.gitconfig git/
 rsync -r ~/.ssh/config ssh/
 rsync -r ~/Library/Application\ Support/lazygit/config.yml terminal/
