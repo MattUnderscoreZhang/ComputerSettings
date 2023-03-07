@@ -140,7 +140,6 @@ require("mason-lspconfig").setup_handlers {
 -- nvim-tree.lua
 -- In a previous version I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
 require('nvim-tree').setup {
-    create_in_closed_folder = true,
     reload_on_bufenter = true,
     update_focused_file = {
         enable = true,
