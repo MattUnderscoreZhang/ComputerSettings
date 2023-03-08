@@ -1,9 +1,9 @@
-Host *github.com
-    ForwardX11 no
-
 Host *
     ForwardAgent yes
     ForwardX11 yes
+
+Host github.com
+    ForwardX11 no
 
 ###########
 # ALIASES #
@@ -59,6 +59,6 @@ Host romulus
 	HostName 24.13.90.164
     User matt
 
-Host mattbox
-    HostName 192.168.0.16
+Host skynet
+	HostName 192.17.211.215
     User matt

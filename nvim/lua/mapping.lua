@@ -52,7 +52,7 @@ map("n", "<leader>tl", "<cmd>TestLast<cr>", options)
 map("n", "<leader>tv", "<cmd>TestVisit<cr>", options)
 map("n", "<leader>ts", "<cmd>TestSuite<cr>", options)
 -- REDFOR-specific shortcuts
---map("n", "<leader>ts", "<cmd>FloatermNew python /Users/matt/Projects/SimSpace/REDFOR/redfor/tests/run_all_tests.py<cr>", options)
+map("n", "<leader>tt", "<cmd>FloatermNew<cr>", options)
 map("n", "<leader>tp", ":FloatermNew python " .. vim.api.nvim_buf_get_name(0) .. "<cr>", options)  -- execute main function of current file
 map("n", "<leader>of", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_frontend.sh<cr>", options)
 map("n", "<leader>ob", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_backend.sh<cr>", options)

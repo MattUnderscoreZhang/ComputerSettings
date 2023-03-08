@@ -1,11 +1,6 @@
 [user]
 	name = Matt Zhang
 	email = set.stun@gmail.com
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [diff]
 	tool = vimdiff
 [difftool]
@@ -21,5 +16,3 @@
 [mergetool]
     prompt = false
     keepBackup = false
-[pull]
-	rebase = false
