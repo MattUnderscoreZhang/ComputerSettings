@@ -56,9 +56,11 @@ else
 fi
 }
 
-# use Homebrew Python and Ruby
-PATH="/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+# use Homebrew Python
+PATH="/usr/local/bin:/usr/local/Cellar/python@3.11/3.11.2_1/bin/${PATH}"
 export PATH
+alias python=python3
+alias pip=pip3
 
 # use vim for default editor
 export EDITOR=/usr/bin/vim
