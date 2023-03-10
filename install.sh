@@ -66,6 +66,7 @@ brew install neovim
 mkdir ~/.vim/tmp
 git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 cp -r nvim ~/.config/
+cp nvim/.vimrc ~
 
 # nvim
 # in ~/.config/nvim/init.lua, comment out the first function, and replace ReloadModule with require for first time opening nvim
