@@ -125,8 +125,5 @@ alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.1
 # node.js
 export PATH="/usr/local/Cellar/node/19.7.0/bin:$PATH"
 
-# API keys
-source ~/api_keys.sh
-
 # add GCloud components
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
