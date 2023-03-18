@@ -127,3 +127,5 @@ export PATH="/usr/local/Cellar/node/19.7.0/bin:$PATH"
 
 # add GCloud components
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+
+alias gpt_assist='python ~/Projects/gpt_assist/main.py'
