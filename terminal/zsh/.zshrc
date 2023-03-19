@@ -129,3 +129,10 @@ export PATH="/usr/local/Cellar/node/19.7.0/bin:$PATH"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 alias gpt_assist='python ~/Projects/gpt_assist/main.py'
+
+# PEP 582 for pdm
+if [ -n "$PYTHONPATH" ]; then
+    export PYTHONPATH='/usr/local/Cellar/pdm/2.4.9/libexec/lib/python3.11/site-packages/pdm/pep582':$PYTHONPATH
+else
+    export PYTHONPATH='/usr/local/Cellar/pdm/2.4.9/libexec/lib/python3.11/site-packages/pdm/pep582'
+fi
