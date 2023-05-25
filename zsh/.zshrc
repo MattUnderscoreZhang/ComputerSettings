@@ -56,9 +56,11 @@ else
 fi
 }
 
-# use Homebrew Python and Ruby
-PATH="/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+# use Homebrew Python
+PATH="/usr/local/bin:/usr/local/Cellar/python@3.11/3.11.2_1/bin/${PATH}"
 export PATH
+alias python=python3
+alias pip=pip3
 
 # use vim for default editor
 export EDITOR=/usr/bin/vim
@@ -121,10 +123,20 @@ alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.20.35 simspace@10.
 alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.10.210.55'
 
 # node.js
-export PATH="/usr/local/Cellar/node/19.2.0/bin:$PATH"
-
-# API keys
-source ~/api_keys.sh
+export PATH="/usr/local/Cellar/node/19.7.0/bin:$PATH"
 
 # add GCloud components
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+
+# singularity
+alias singularity='python ~/Projects/Singularity/main.py'
+
+# PEP 582 for pdm
+if [ -n "$PYTHONPATH" ]; then
+    export PYTHONPATH='/usr/local/Cellar/pdm/2.4.9/libexec/lib/python3.11/site-packages/pdm/pep582':$PYTHONPATH
+else
+    export PYTHONPATH='/usr/local/Cellar/pdm/2.4.9/libexec/lib/python3.11/site-packages/pdm/pep582'
+fi
+
+# activate pdm venv
+alias activate='source .venv/bin/activate'
