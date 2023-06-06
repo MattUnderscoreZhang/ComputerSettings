@@ -247,7 +247,7 @@ cmp.setup {
                 vim_item.menu = ({
                     copilot = "[Copilot]",
                     nvim_lsp = "[LSP]",
-                    buffer = "[Buffer]",
+                    --buffer = "[Buffer]",
                     path = "[Path]",
                 })[entry.source.name]
                 return vim_item
@@ -257,7 +257,7 @@ cmp.setup {
     sources = {
         { name = "copilot" },
         { name = "nvim_lsp" },
-        { name = "buffer" },
+        --{ name = "buffer" },
         { name = "path" },
     },
     confirm_opts = {
