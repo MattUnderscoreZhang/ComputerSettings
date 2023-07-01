@@ -37,8 +37,11 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # single enter for selection
 bindkey -M menuselect '^M' .accept-line
 
-# aliases
-alias ls='ls -G'
+# ls alias
+#alias ls='ls -G'
+alias ls='exa'
+
+# killjobs function
 function killjobs () {
     JOBS="$(jobs -p)";
     if [ -n "${JOBS}" ]; then
