@@ -12,7 +12,7 @@ map("n", "<c-k>", "<c-w>k", options)
 map("n", "<c-l>", "<c-w>l", options)
 map("n", "gn", "<c-^>", options)  -- jump to last used buffer
 map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
-map("n", "<leader>m", "`", options)
+--map("n", "<leader>m", "`", options)
 -- splits
 map("n", "<c-v>", "<c-w>v", options)  -- split vertically
 map("n", "<c-s>", "<c-w>s", options)  -- split horizontally
@@ -92,6 +92,11 @@ map("n", "<leader>fo", ":FlutterOutlineToggle<cr>", options)
 map("n", "<leader>ftt", "<cmd>FloatermNew flutter test " .. vim.api.nvim_buf_get_name(0) .. "<cr>", options)
 map("n", "<leader>fta", "<cmd>FloatermNew flutter test <cr>", options)
 map("n", "<leader>fbr", "<cmd>!flutter packages pub run build_runner build<cr>", options)
+-- vim-mocha
+map("n", "<leader>mn", ":call RunNearestSpec()<CR>", options)
+map("n", "<leader>mf", ":call RunCurrentSpecFile()<CR>", options)
+map("n", "<leader>ml", ":call RunLastSpec()<CR>", options)
+map("n", "<leader>ma", ":call RunAllSpecs()<CR>", options)
 -- gitsigns
 map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", options)
 -- copilot
