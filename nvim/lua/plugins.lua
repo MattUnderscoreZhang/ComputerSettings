@@ -92,8 +92,6 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
         'akinsho/flutter-tools.nvim',  -- Flutter tools
         requires = 'nvim-lua/plenary.nvim',
     }
-    -- Mocha (JS)
-    use 'geekjuice/vim-mocha'  -- Mocha test runner
     -- other packages
     use 'famiu/nvim-reload'  -- reload nvim configs
     use 'godlygeek/tabular'  -- lines stuff up using whitespace

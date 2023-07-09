@@ -60,7 +60,7 @@ map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attac
 -- lazygit
 map("n", "<leader>lg", "<cmd>LazyGit<cr>", options)
 -- vim-easymotion
-map("n", "f", "<Plug>(easymotion-sn)", {})
+map("n", "g", "<Plug>(easymotion-sn)", {})
 -- barbar
 map("n", "<tab>", "<cmd>BufferNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferPrevious<CR>", options)
@@ -92,11 +92,6 @@ map("n", "<leader>fo", ":FlutterOutlineToggle<cr>", options)
 map("n", "<leader>ftt", "<cmd>FloatermNew flutter test " .. vim.api.nvim_buf_get_name(0) .. "<cr>", options)
 map("n", "<leader>fta", "<cmd>FloatermNew flutter test <cr>", options)
 map("n", "<leader>fbr", "<cmd>!flutter packages pub run build_runner build<cr>", options)
--- vim-mocha
-map("n", "<leader>mn", ":call RunNearestSpec()<CR>", options)
-map("n", "<leader>mf", ":call RunCurrentSpecFile()<CR>", options)
-map("n", "<leader>ml", ":call RunLastSpec()<CR>", options)
-map("n", "<leader>ma", ":call RunAllSpecs()<CR>", options)
 -- gitsigns
 map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", options)
 -- copilot
