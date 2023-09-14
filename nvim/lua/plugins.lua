@@ -153,6 +153,9 @@ require('nvim-tree').setup {
         highlight_git = true,
         highlight_opened_files = "all",
     },
+    filters = {
+        custom = {"__pycache__", "__pypackages__", ".DS_Store" },
+    },
 }
 
 -- lualine
