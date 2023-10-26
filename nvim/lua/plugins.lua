@@ -92,6 +92,9 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
         'akinsho/flutter-tools.nvim',  -- Flutter tools
         requires = 'nvim-lua/plenary.nvim',
     }
+    -- html
+    use 'kylechui/nvim-surround'  -- edit surrounding tags
+    use 'ap/vim-css-color'  -- show hex colors
     -- other packages
     use 'famiu/nvim-reload'  -- reload nvim configs
     use 'godlygeek/tabular'  -- lines stuff up using whitespace
@@ -110,6 +113,9 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'tpope/vim-unimpaired'  -- advanced mappings
 end
 )
+
+-- nvim-surround
+require("nvim-surround").setup {}
 
 -- bufdelete
 require("bufdelete")
@@ -274,13 +280,6 @@ cmp.setup {
         ghost_text = false,
         native_menu = false,
     },
-}
-
--- indent-blankline
-require("indent_blankline").setup {
-    space_char_blankline = " ",
-    show_current_context = true,
-    --show_current_context_start = true,
 }
 
 -- nvim-treesitter
