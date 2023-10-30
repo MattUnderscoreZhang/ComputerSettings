@@ -11,7 +11,7 @@ brew install rg
 brew install dtrx
 brew install postgresql
 brew install flyway
-brew install node@16  # for copilot
+#brew install node@16  # for copilot
 brew install awscli  # AWS CLI
 brew install ruby
 
