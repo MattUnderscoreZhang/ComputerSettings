@@ -21,11 +21,6 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
         requires = 'kyazdani42/nvim-web-devicons'
     }
     use 'hoob3rt/lualine.nvim'  -- better status line at bottom
-    use {
-        'lewis6991/gitsigns.nvim',  -- gutter and endline messages
-        requires = 'nvim-lua/plenary.nvim',
-        -- tag = 'release' -- To use the latest release
-    }
     -- themes
     use {
         'npxbr/gruvbox.nvim',
@@ -95,6 +90,13 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     -- html
     use 'kylechui/nvim-surround'  -- edit surrounding tags
     use 'ap/vim-css-color'  -- show hex colors
+    -- git
+    use {
+        'lewis6991/gitsigns.nvim',  -- git changes on left, git blame on right
+        requires = 'nvim-lua/plenary.nvim',
+        -- tag = 'release' -- To use the latest release
+    }
+    use 'kdheepak/lazygit.nvim'  -- lazygit integration
     -- other packages
     use 'famiu/nvim-reload'  -- reload nvim configs
     use 'godlygeek/tabular'  -- lines stuff up using whitespace
@@ -108,7 +110,6 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     use 'windwp/nvim-autopairs'  -- autocomplete brackets
     use 'easymotion/vim-easymotion'  -- quick search in file
     use 'szw/vim-maximizer'  -- maximize split panes
-    use 'kdheepak/lazygit.nvim'  -- lazygit integration
     use 'konfekt/fastfold'  -- prevent over-eager code folding
     use 'tpope/vim-unimpaired'  -- advanced mappings
 end

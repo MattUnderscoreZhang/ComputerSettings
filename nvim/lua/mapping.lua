@@ -93,7 +93,7 @@ map("n", "<leader>ftt", "<cmd>FloatermNew flutter test " .. vim.api.nvim_buf_get
 map("n", "<leader>fta", "<cmd>FloatermNew flutter test <cr>", options)
 map("n", "<leader>fbr", "<cmd>!flutter packages pub run build_runner build<cr>", options)
 -- gitsigns
-map("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<cr>", options)
+map("n", "<leader>b", ":Gitsigns toggle_current_line_blame<cr>", options)
 -- copilot
 map("n", "<leader>cp", ":Copilot panel<cr>", options)
 

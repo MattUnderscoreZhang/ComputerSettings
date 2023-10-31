@@ -126,7 +126,9 @@ alias binarystar='ssh -J simspace@10.40.104.24,simspace@10.40.20.35 simspace@10.
 alias purplefor='ssh -J simspace@10.40.104.24,simspace@10.40.22.55 simspace@10.10.210.55'
 
 # node.js
-export PATH="/usr/local/Cellar/node/20.2.0/bin:$PATH"
+export NVM_DIR="/usr/local/opt/nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+    [ -s "$NVM_DIR/etc/bash_completion.d/nvm" ] && \. "$NVM_DIR/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # add GCloud components
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
