@@ -90,6 +90,8 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
     -- html
     use 'kylechui/nvim-surround'  -- edit surrounding tags
     use 'ap/vim-css-color'  -- show hex colors
+    -- writing
+    use 'junegunn/limelight.vim'  -- highlight current paragraph
     -- git
     use {
         'lewis6991/gitsigns.nvim',  -- git changes on left, git blame on right

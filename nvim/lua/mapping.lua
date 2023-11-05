@@ -96,6 +96,8 @@ map("n", "<leader>fbr", "<cmd>!flutter packages pub run build_runner build<cr>",
 map("n", "<leader>b", ":Gitsigns toggle_current_line_blame<cr>", options)
 -- copilot
 map("n", "<leader>cp", ":Copilot panel<cr>", options)
+-- limelight
+map("n", "<leader>ll", ":Limelight!!<cr>", options)
 
 ---- calculator via bash bc
 ---- don't redefine these functions on config reload
