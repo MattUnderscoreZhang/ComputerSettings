@@ -34,9 +34,6 @@ map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbo
 map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", options)
 -- nvim-tree
 map("n", "<leader>e", ":NvimTreeFindFile<cr>", options)  -- should get this to call NvimTreeOpen if the buffer is empty
--- packer
-map("n", "<leader>pi", "<cmd>PackerInstall<cr>", options)
-map("n", "<leader>pc", "<cmd>PackerClean<cr>", options)
 -- lsp
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
@@ -98,6 +95,20 @@ map("n", "<leader>b", ":Gitsigns toggle_current_line_blame<cr>", options)
 map("n", "<leader>cp", ":Copilot panel<cr>", options)
 -- limelight
 map("n", "<leader>ll", ":Limelight!!<cr>", options)
+-- self-written Pencil alternative
+vim.cmd([[
+function! ToggleTextWidth()
+    if !exists('b:orig_n_columns')
+        let b:orig_n_columns = &columns
+        setlocal columns=60 linebreak
+    else
+        setlocal nolinebreak
+        let &l:columns = b:orig_n_columns
+        unlet b:orig_n_columns
+    endif
+endfun
+]])
+map("n", "<leader>pc", ":call ToggleTextWidth()<cr>", options)
 
 ---- calculator via bash bc
 ---- don't redefine these functions on config reload
