@@ -112,11 +112,11 @@ export PATH="$PATH:/Applications/Flutter/bin"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 ## pyenv
-#eval "$(pyenv init --path)"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-#export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-#alias py3='pyenv activate py3'
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+alias py3='pyenv activate py3'
 
 # poetry
 alias poetry='~/Library/Application\ Support/pypoetry/venv/bin/poetry'
