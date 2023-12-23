@@ -117,6 +117,11 @@ function(use)  -- passing use is a hack that prevents lua LSP errors
 end
 )
 
+-- nerdcommenter
+vim.g.NERDCustomDelimiters = {
+    ['text'] = { left = '- ', right = '' }
+}
+
 -- nvim-surround
 require("nvim-surround").setup {}
 
