@@ -5,6 +5,9 @@ Host *
 Host github.com
     ForwardX11 no
 
+Host *.vast.ai
+    SetEnv TERM=xterm
+
 ###########
 # ALIASES #
 ###########
