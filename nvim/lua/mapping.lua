@@ -14,9 +14,9 @@ map("n", "gn", "<c-^>", options)  -- jump to last used buffer
 map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
 --map("n", "<leader>m", "`", options)
 -- splits
-map("n", "<c-v>", "<c-w>v", options)  -- split vertically
-map("n", "<c-s>", "<c-w>s", options)  -- split horizontally
-map("n", "<c-c>", "<c-w>c", options)  -- close split
+map("n", "<c-v>", "<c-w>|", options)  -- split vertically
+map("n", "<c-s>", "<c-w>-", options)  -- split horizontally
+map("n", "<c-c>", "<c-w>w", options)  -- close split
 -- lua config shortcuts
 map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>ib", "<cmd>edit ~/.config/nvim/lua/plugins.lua <cr>", options)
