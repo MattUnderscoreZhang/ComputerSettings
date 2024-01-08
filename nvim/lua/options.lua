@@ -22,14 +22,10 @@ g.floaterm_height = 0.8
 g.vimspector_enable_mappings = 'HUMAN'
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
-g.python3_host_prog = "/Users/matt/.pyenv/shims/python"
+--g.python3_host_prog = "/Users/matt/.pyenv/shims/python"
 
 o.termguicolors = true
 opt.termguicolors = true
-cmd([[colorscheme everforest]])
-
--- for CharaChorder
-g.mapleader = ";"
 
 -- nvim-gdb
 g.loaded_nvimgdb = 1  -- disable
@@ -38,13 +34,6 @@ g.loaded_nvimgdb = 1  -- disable
 opt.list = true
 opt.listchars:append("space:⋅")
 opt.listchars:append("eol:↴")
-
--- lspsaga
-cmd([[autocmd CursorHold * lua require'lspsaga.diagnostic'.show_line_diagnostics()]])  -- make error pop up on hovering a cursor over it
-
--- vim-test
-cmd([[let test#python#pytest#options = '-s']])  -- make vim-test print out to terminal
-cmd([[let test#strategy = "neovim"]])  -- make vim-test use split window
 
 -- line and cursor wrapping
 cmd([[
@@ -59,39 +48,6 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
-
-" Toggle cursor line wrap (jump b/w front and end of lines)
-noremap <silent> <Leader>w :call ToggleWrap()<CR>
-function! ToggleWrap()
-if &wrap
-    echo "Wrap OFF"
-    setlocal nowrap
-    set virtualedit=all
-    silent! nunmap <buffer> <Up>
-    silent! nunmap <buffer> <Down>
-    silent! nunmap <buffer> <Home>
-    silent! nunmap <buffer> <End>
-    silent! iunmap <buffer> <Up>
-    silent! iunmap <buffer> <Down>
-    silent! iunmap <buffer> <Home>
-    silent! iunmap <buffer> <End>
-else
-    echo "Wrap ON"
-    setlocal wrap linebreak nolist
-    set virtualedit=
-    setlocal display+=lastline
-    nnoremap j gj
-    nnoremap k gk
-    vnoremap j gj
-    vnoremap k gk
-    nnoremap <Down> gj
-    nnoremap <Up> gk
-    vnoremap <Down> gj
-    vnoremap <Up> gk
-    inoremap <Down> <C-o>gj
-    inoremap <Up> <C-o>gk
-    endif
-    endfunction
 
 " Cursor Wrap
 set whichwrap+=<,>,h,l,[,]

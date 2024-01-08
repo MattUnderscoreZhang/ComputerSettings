@@ -1,5 +1,8 @@
 local map = vim.api.nvim_set_keymap
 local options = {noremap=true, silent=true}
+
+vim.g.mapleader = ";"
+
 -- built-in
 map("n", "<space>", "za", options)
 --map("i", "<cr>", "cmp#confirm('<cr>')", {silent=true, expr=true})
@@ -19,9 +22,6 @@ map("n", "<c-s>", "<c-w>-", options)  -- split horizontally
 map("n", "<c-c>", "<c-w>w", options)  -- close split
 -- lua config shortcuts
 map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
-map("n", "<leader>ib", "<cmd>edit ~/.config/nvim/lua/plugins.lua <cr>", options)
-map("n", "<leader>ic", "<cmd>edit ~/.config/nvim/lua/mapping.lua <cr>", options)
-map("n", "<leader>id", "<cmd>edit ~/.config/nvim/lua/options.lua <cr>", options)
 map("n", "<leader>si", "<cmd>luafile ~/.config/nvim/init.lua<cr>", options)  -- source lua init file
 -- telescope
 map("n", "<leader>fp", ":Telescope projects<cr>", options)
@@ -34,7 +34,7 @@ map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbo
 map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", options)
 -- nvim-tree
 map("n", "<leader>e", ":NvimTreeFindFile<cr>", options)  -- should get this to call NvimTreeOpen if the buffer is empty
--- lsp
+-- lsp (see `:help vim.lsp.*` for documentation)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
 map("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>", options)  -- info about object
@@ -48,16 +48,13 @@ map("n", "<leader>tf", "<cmd>TestFile<cr>", options)
 map("n", "<leader>tl", "<cmd>TestLast<cr>", options)
 map("n", "<leader>tv", "<cmd>TestVisit<cr>", options)
 map("n", "<leader>ts", "<cmd>TestSuite<cr>", options)
--- REDFOR-specific shortcuts
+-- floaterm
 map("n", "<leader>tt", "<cmd>FloatermNew<cr>", options)
 map("n", "<leader>tp", ":FloatermNew python " .. vim.api.nvim_buf_get_name(0) .. "<cr>", options)  -- execute main function of current file
-map("n", "<leader>of", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_frontend.sh<cr>", options)
-map("n", "<leader>ob", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/; ./run_backend.sh<cr>", options)
-map("n", "<leader>ol", "<cmd>:term cd /Users/matt/Projects/SimSpace/REDFOR/attack-designer/; open http://localhost:1234<cr>", options)
 -- lazygit
 map("n", "<leader>lg", "<cmd>LazyGit<cr>", options)
 -- vim-easymotion
---map("n", "g", "<Plug>(easymotion-sn)", {})
+map("n", "/", "<Plug>(easymotion-sn)", {})
 -- barbar
 map("n", "<tab>", "<cmd>BufferNext<CR>", options)
 map("n", "<s-tab>", "<cmd>BufferPrevious<CR>", options)
@@ -95,6 +92,7 @@ map("n", "<leader>b", ":Gitsigns toggle_current_line_blame<cr>", options)
 map("n", "<leader>cp", ":Copilot panel<cr>", options)
 -- limelight
 map("n", "<leader>ll", ":Limelight!!<cr>", options)
+
 -- self-written Pencil alternative
 vim.cmd([[
 function! ToggleTextWidth()
@@ -110,40 +108,56 @@ endfun
 ]])
 map("n", "<leader>pc", ":call ToggleTextWidth()<cr>", options)
 
----- calculator via bash bc
----- don't redefine these functions on config reload
---vim.cmd([[
---function! MyCalc(str)
---return system("echo 'x=" . a:str . ";d=.5/10^" . g:MyCalcPrecision
---\. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l")
---endfunction
-
---function! DayCalcPercent(str)
---return system("echo -n \\\(; echo 'x=(" . a:str . ")*100;d=.5/10^" . g:MyCalcPrecision
---\. ";if (x<0) d=-d; x+=d; scale=" . g:MyCalcPrecision . ";print x/1' | bc -l; echo -n \\\%\\\)")
---endfunction
-
---function! MyCalcNoRound(str)
---return system("echo 'scale=" . g:MyCalcPrecision . " ; print " . a:str . "' | bc -l")
---endfunction
-
---let g:MyCalcPrecision = 2  " Control the precision with this variable
-
---map <silent> <leader>cr :s/\$\(.*\)\$/\=MyCalc(submatch(1))/g<CR>:noh<CR>
---map <silent> <leader>cp :s/\$\(.*\)\$/\=DayCalcPercent(submatch(1))/g<CR>:noh<CR>
---]])
-
 -- cycle case of highlighted words with ~
 vim.cmd([[
 function! TwiddleCase(str)
-    if a:str ==# toupper(a:str)
-        let result = tolower(a:str)
-    elseif a:str ==# tolower(a:str)
-        let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
-    else
-        let result = toupper(a:str)
+    if visualmode() ==# 'v' || visualmode() ==# 'V' || visualmode() ==# "\<C-V>" 
+        let selected_text = @"
+        if selected_text ==# toupper(selected_text)
+            let result = tolower(selected_text)
+        elseif selected_text ==# tolower(selected_text)
+            let result = substitute(selected_text,'\(\<\w\+\>\)', '\u\1', 'g')
+        else
+            let result = toupper(selected_text)
+        endif
+        silent! execute ":call setreg('', result, getregtype(''))"
+        silent! execute "gv\"\"Pgv"
     endif
-    return result
 endfunction
-vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
 ]])
+map("n", "~", ":call TwiddleCase()<CR>", options)
+
+-- toggle cursor line wrap (jump b/w front and end of lines)
+vim.cmd([[
+function! ToggleWrap()
+    if &wrap
+        echo "Wrap OFF"
+        setlocal nowrap
+        set virtualedit=all
+        silent! nunmap <buffer> <Up>
+        silent! nunmap <buffer> <Down>
+        silent! nunmap <buffer> <Home>
+        silent! nunmap <buffer> <End>
+        silent! iunmap <buffer> <Up>
+        silent! iunmap <buffer> <Down>
+        silent! iunmap <buffer> <Home>
+        silent! iunmap <buffer> <End>
+    else
+        echo "Wrap ON"
+        setlocal wrap linebreak nolist
+        set virtualedit=
+        setlocal display+=lastline
+        nnoremap j gj
+        nnoremap k gk
+        vnoremap j gj
+        vnoremap k gk
+        nnoremap <Down> gj
+        nnoremap <Up> gk
+        vnoremap <Down> gj
+        vnoremap <Up> gk
+        inoremap <Down> <C-o>gj
+        inoremap <Up> <C-o>gk
+    endif
+endfunction
+]])
+map("n", "<leader>w", ":call ToggleWrap()<cr>", options)
