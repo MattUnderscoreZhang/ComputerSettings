@@ -4,7 +4,7 @@ local options = {noremap=true, silent=true}
 vim.g.mapleader = ";"
 
 -- built-in
-map("n", "<space>", "za", options)
+map("n", "<space><space>", "za", options)
 --map("i", "<cr>", "cmp#confirm('<cr>')", {silent=true, expr=true})
 map("i", "jk", "<esc>", options)
 map("t", "jk", "<c-\\><c-n>", options)
@@ -34,12 +34,6 @@ map("n", "<leader>sd", "<cmd>lua require('telescope.builtin').lsp_document_symbo
 map("n", "<leader>sw", "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>", options)
 -- nvim-tree
 map("n", "<leader>e", ":NvimTreeFindFile<cr>", options)  -- should get this to call NvimTreeOpen if the buffer is empty
--- lsp (see `:help vim.lsp.*` for documentation)
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
-map("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>", options)  -- info about object
---map("n", "gb", "<c-o>", options)  -- go to references
-map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", options)  -- rename object
 -- vim-autoformat
 map("n", "<leader>af", ":Autoformat<cr>", options)  -- go to references
 -- vim-test
@@ -92,6 +86,20 @@ map("n", "<leader>b", ":Gitsigns toggle_current_line_blame<cr>", options)
 map("n", "<leader>cp", ":Copilot panel<cr>", options)
 -- limelight
 map("n", "<leader>ll", ":Limelight!!<cr>", options)
+-- ruff-lsp + built-in lsp (see `:help vim.lsp.*` for documentation)
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
+map("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>", options)  -- info about object
+map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", options)
+map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", options)
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", options)
+map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", options)
+map("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", options)
+map("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", options)
+map("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", options)
+map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", options)
+map("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", options)
+map("n", "<leader>f", ":echo 'Code formatted'<cr><cmd>lua vim.lsp.buf.format { async = false }<cr>", options)
 
 -- self-written Pencil alternative
 vim.cmd([[

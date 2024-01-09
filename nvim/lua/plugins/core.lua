@@ -23,6 +23,28 @@ M.setup = function(use)
     }
 end
 
+-- diagnostics on hover
+-- https://neovim.discourse.group/t/how-to-show-diagnostics-on-hover/3830/2
+function OpenDiagnostic()
+    vim.diagnostic.open_float(0, {
+        scope = "line",
+        focusable = false,
+        close_events = {
+            "CursorMoved",
+            "CursorMovedI",
+            "BufHidden",
+            "InsertCharPre",
+            "WinLeave",
+        },
+    })
+end
+vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+    pattern = "*",
+    command = "lua OpenDiagnostic()",
+    group = "lsp_diagnostics_hold",
+})
+
 require('mason').setup()  -- use :Mason to open GUI
 require('mason-lspconfig').setup()  -- do not set up nvim-lspconfig - let mason handle setup
 require("mason-lspconfig").setup_handlers {
