@@ -6,8 +6,8 @@ M.setup = function(use)
         requires = 'rktjmp/lush.nvim'
     }
     use 'sainnhe/everforest'
-end
 
-vim.cmd([[colorscheme everforest]])
+    vim.cmd([[colorscheme everforest]])
+end
 
 return M

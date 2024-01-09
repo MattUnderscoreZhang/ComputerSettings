@@ -21,24 +21,24 @@ M.setup = function(use)
     use 'stevearc/vim-arduino'
     -- Python
     use 'astral-sh/ruff-lsp'
-end
 
-require("nvim-surround").setup {}
-require('flutter-tools').setup{}
+    require("nvim-surround").setup {}
+    require('flutter-tools').setup{}
 
-require('lspconfig').ruff_lsp.setup {
-    on_attach = function(client, bufnr)
-        -- enable autocompletion
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-        -- disable hover in favor of pyright
-        client.server_capabilities.hoverProvider = false
-    end,
-    init_options = {
-        settings = {
-            -- Any extra CLI arguments for `ruff` go here.
-            args = {},
+    require('lspconfig').ruff_lsp.setup {
+        on_attach = function(client, bufnr)
+            -- enable autocompletion
+            vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+            -- disable hover in favor of pyright
+            client.server_capabilities.hoverProvider = false
+        end,
+        init_options = {
+            settings = {
+                -- Any extra CLI arguments for `ruff` go here.
+                args = {},
+            }
         }
     }
-}
+end
 
 return M

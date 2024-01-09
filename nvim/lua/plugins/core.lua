@@ -21,73 +21,73 @@ M.setup = function(use)
         'kyazdani42/nvim-tree.lua',  -- file explorer (*)
         requires = 'kyazdani42/nvim-web-devicons',
     }
-end
 
--- diagnostics on hover
--- https://neovim.discourse.group/t/how-to-show-diagnostics-on-hover/3830/2
-function OpenDiagnostic()
-    vim.diagnostic.open_float(0, {
-        scope = "line",
-        focusable = false,
-        close_events = {
-            "CursorMoved",
-            "CursorMovedI",
-            "BufHidden",
-            "InsertCharPre",
-            "WinLeave",
-        },
-    })
-end
-vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
-vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-    pattern = "*",
-    command = "lua OpenDiagnostic()",
-    group = "lsp_diagnostics_hold",
-})
-
-require('mason').setup()  -- use :Mason to open GUI
-require('mason-lspconfig').setup()  -- do not set up nvim-lspconfig - let mason handle setup
-require("mason-lspconfig").setup_handlers {
-    -- The first entry (without a key) will be the default handler
-    -- and will be called for each installed server that doesn't have
-    -- a dedicated handler.
-    function (server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {}
-    end,
-    -- Next, you can provide a dedicated handler for specific servers.
-    -- For example, a handler override for the `rust_analyzer`:
-    ["rust_analyzer"] = function ()
-        require("rust-tools").setup {}
+    -- diagnostics on hover
+    -- https://neovim.discourse.group/t/how-to-show-diagnostics-on-hover/3830/2
+    function OpenDiagnostic()
+        vim.diagnostic.open_float(0, {
+            scope = "line",
+            focusable = false,
+            close_events = {
+                "CursorMoved",
+                "CursorMovedI",
+                "BufHidden",
+                "InsertCharPre",
+                "WinLeave",
+            },
+        })
     end
-}
+    vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
+    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        pattern = "*",
+        command = "lua OpenDiagnostic()",
+        group = "lsp_diagnostics_hold",
+    })
 
-require('nvim-treesitter.configs').setup {
-    ensure_installed = "all",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-    ignore_install = { "norg", "phpdoc", "swift" },  -- list of parsers to ignore installing
-    highlight = {
-        enable = true,  -- false will disable the whole extension
-        --disable = { "c", "rust" },  -- list of language that will be disabled
-    },
-}
+    require('mason').setup()  -- use :Mason to open GUI
+    require('mason-lspconfig').setup()  -- do not set up nvim-lspconfig - let mason handle setup
+    require("mason-lspconfig").setup_handlers {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function (server_name) -- default handler (optional)
+            require("lspconfig")[server_name].setup {}
+        end,
+        -- Next, you can provide a dedicated handler for specific servers.
+        -- For example, a handler override for the `rust_analyzer`:
+        ["rust_analyzer"] = function ()
+            require("rust-tools").setup {}
+        end
+    }
 
--- In a previous version I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
-require('nvim-tree').setup {
-    reload_on_bufenter = true,
-    update_focused_file = {
-        enable = true,
-        update_cwd = true,
-    },
-    view = {
-        side = "right",
-    },
-    renderer = {
-        group_empty = true,
-        highlight_git = true,
-        highlight_opened_files = "all",
-    },
-    filters = {
-        custom = {"__pycache__", "__pypackages__", ".DS_Store" },
-    },
-}
+    require('nvim-treesitter.configs').setup {
+        ensure_installed = "all",  -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+        ignore_install = { "norg", "phpdoc", "swift" },  -- list of parsers to ignore installing
+        highlight = {
+            enable = true,  -- false will disable the whole extension
+            --disable = { "c", "rust" },  -- list of language that will be disabled
+        },
+    }
+
+    -- In a previous version I had to set these options manually in ~/.local/share/nvim/site/pack/packer/start/nvim-tree.lua/lua/nvim-tree.lua
+    require('nvim-tree').setup {
+        reload_on_bufenter = true,
+        update_focused_file = {
+            enable = true,
+            update_cwd = true,
+        },
+        view = {
+            side = "right",
+        },
+        renderer = {
+            group_empty = true,
+            highlight_git = true,
+            highlight_opened_files = "all",
+        },
+        filters = {
+            custom = {"__pycache__", "__pypackages__", ".DS_Store" },
+        },
+    }
+end
 
 return M

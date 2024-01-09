@@ -5,36 +5,36 @@ M.setup = function(use)
     use 'lukas-reineke/indent-blankline.nvim'  -- visually display indent levels
     use 'hoob3rt/lualine.nvim'  -- better status line at bottom
     use 'junegunn/limelight.vim'  -- highlight current paragraph
+
+    require("rainbow-delimiters.setup").setup {}
+
+    require('lualine').setup {
+        options = {
+            icons_enabled = true,
+            theme = 'gruvbox',
+            component_separators = {'', ''},
+            section_separators = {'', ''},
+            disabled_filetypes = {}
+        },
+        sections = {
+            lualine_a = {'branch'},
+            lualine_b = {'filename'},
+            --lualine_x = {'encoding', 'fileformat', 'filetype'},
+            lualine_x = {'mode'},
+            lualine_y = {'progress'},
+            lualine_z = {'location'}
+        },
+        inactive_sections = {
+            lualine_a = {},
+            lualine_b = {},
+            lualine_c = {'filename'},
+            lualine_x = {'location'},
+            lualine_y = {},
+            lualine_z = {}
+        },
+        tabline = {},
+        extensions = {}
+    }
 end
-
-require("rainbow-delimiters.setup").setup {}
-
-require('lualine').setup {
-    options = {
-        icons_enabled = true,
-        theme = 'gruvbox',
-        component_separators = {'', ''},
-        section_separators = {'', ''},
-        disabled_filetypes = {}
-    },
-    sections = {
-        lualine_a = {'branch'},
-        lualine_b = {'filename'},
-        --lualine_x = {'encoding', 'fileformat', 'filetype'},
-        lualine_x = {'mode'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {'filename'},
-        lualine_x = {'location'},
-        lualine_y = {},
-        lualine_z = {}
-    },
-    tabline = {},
-    extensions = {}
-}
 
 return M

@@ -12,12 +12,12 @@ M.setup = function(use)
         requires = 'kyazdani42/nvim-web-devicons'
     }
     use 'famiu/bufdelete.nvim' -- cleaner buffer closing
-end
 
-require('neoscroll').setup{}
-require("bufdelete")
-require('numb').setup()
-require("project_nvim").setup {}
-require("telescope").load_extension('projects')
+    require('neoscroll').setup{}
+    require("bufdelete")
+    require('numb').setup()
+    require("project_nvim").setup {}
+    require("telescope").load_extension('projects')
+end
 
 return M
