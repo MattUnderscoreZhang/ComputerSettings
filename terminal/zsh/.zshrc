@@ -62,8 +62,9 @@ fi
 # use Homebrew Python
 PATH="/usr/local/bin:/usr/local/Cellar/python@3.11/3.11.2_1/bin/${PATH}"
 export PATH
-alias python=python3
-alias pip=pip3
+# causes too many problems with virtualenvs
+#alias python=python3
+#alias pip=pip3
 
 # use vim for default editor
 export EDITOR=/usr/bin/vim
