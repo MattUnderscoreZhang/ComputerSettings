@@ -5,6 +5,7 @@ M.setup = function(use)
     use 'lukas-reineke/indent-blankline.nvim'  -- visually display indent levels
     use 'hoob3rt/lualine.nvim'  -- better status line at bottom
     use 'junegunn/limelight.vim'  -- highlight current paragraph
+    use 'Yggdroot/indentLine'  -- visually display indent levels
 
     require("rainbow-delimiters.setup").setup {}
 
