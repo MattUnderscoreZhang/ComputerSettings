@@ -135,7 +135,7 @@ export NVM_DIR="/usr/local/opt/nvm"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 # singularity
-alias singularity='python ~/Projects/Singularity/main.py'
+alias singularity='python3 ~/Projects/Singularity/main.py'
 
 # PEP 582 for pdm
 if [ -n "$PYTHONPATH" ]; then
