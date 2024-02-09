@@ -60,6 +60,7 @@ cp zsh/.zshrc ~
 cp zsh/.zshenv ~ 
 cp zsh/.zpreztorc ~ 
 cp zsh/.zprofile ~ 
+touch ~/.hushlogin  # don't display message on new shell
 
 ##########
 # PYTHON #
