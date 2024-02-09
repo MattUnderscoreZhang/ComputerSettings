@@ -1,55 +1,21 @@
-#
-# Executes commands at login pre-zshrc.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
-#
-# Browser
-#
-
-if [[ "$OSTYPE" == darwin* ]]; then
-  export BROWSER='open'
-fi
-
-#
-# Editors
-#
-
-export EDITOR='nano'
-export VISUAL='nano'
+# Editor
+export EDITOR='vim'
+export VISUAL='vim'
 export PAGER='less'
 
-#
 # Language
-#
-
 if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
 
-#
-# Paths
-#
-
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
-
-# Set the list of directories that cd searches.
-# cdpath=(
-#   $cdpath
-# )
 
 # Set the list of directories that Zsh searches for programs.
 path=(
   /usr/local/{bin,sbin}
   $path
 )
-
-#
-# Less
-#
 
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
@@ -65,3 +31,7 @@ fi
 # Alias vim to macvim
 alias vim='mvim -v'
 eval "$(pyenv init --path)"
+
+# Add homebrew to PATH
+eval "$(pyenv init --path)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
