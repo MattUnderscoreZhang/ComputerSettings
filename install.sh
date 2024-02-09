@@ -1,22 +1,50 @@
+########
+# BREW #
+########
+
 # Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # brew install stuff
-brew install fzf
-brew install bat
-brew install lazygit
-brew install thefuck
-brew install zoxide
-brew install rg
-brew install dtrx
-brew install postgresql
-brew install flyway
-#brew install node@16  # for copilot
+brew install fzf  # fuzzy find
+brew install bat  # cat with syntax highlighting and git markup
+brew install lazygit  # simple git GUI
+brew install thefuck  # correct previous command
+brew install zoxide  # quick cd to previously seen directory
+brew install rg  # code-optimized quick grep
+brew install dtrx  # do the right extraction
+brew install postgresql  # postgres
+brew install flyway  # database migration
+brew install node  # JavaScript runtime environment
 brew install awscli  # AWS CLI
-brew install ruby
+brew install ruby  # Ruby interpreter and tools
+brew install fish  # fish shell
+
+###########
+# CONFIGS #
+###########
 
 # all configs
 cp -r .config ~/
+
+# git
+cp git/.gitconfig ~
+
+# lazygit
+# cp lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml 
+
+# pdb
+cp python/.pdbrc.py ~
+
+# ssh
+cp ssh/config ~/.ssh/
+
+# tmux
+cp tmux/.tmux.conf ~
+
+###########
+# Z SHELL #
+###########
 
 # Prezto
 git clone --recursive https://github.com/sorin-ionescu/prezto.git ~/.zprezto 
@@ -31,35 +59,22 @@ cp zsh/.zshenv ~
 cp zsh/.zpreztorc ~ 
 cp zsh/.zprofile ~ 
 
-# git
-cp git/.gitconfig ~
+##########
+# PYTHON #
+##########
 
-# lazygit
-# cp lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml 
-
-## pyenv
-#brew install pyenv
-#brew install pyenv-virtualenv
-#pyenv install 3.9.10
-#pyenv virtualenv 3.9.10 py39
+# pyenv
+brew install pyenv
+brew install pyenv-virtualenv
 
 ## Pyright
 #brew install pyright
 ## install pyenv-pyright to make Pyright work properly with virtual environments
 #git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins/pyenv-pyright
 
-# poetry
-# https://python-poetry.org/docs/
-curl -sSL https://install.python-poetry.org | python3 -
-
-# pdb
-cp python/.pdbrc.py ~
-
-# ssh
-cp ssh/config ~/.ssh/
-
-# tmux
-cp tmux/.tmux.conf ~
+##########
+# NEOVIM #
+##########
 
 # nvim
 brew install neovim
@@ -67,8 +82,12 @@ mkdir ~/.vim/tmp
 git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 cp -r nvim/ ~/.config/
 cp nvim/.vimrc ~
-pip install pynvim
+#pip install pynvim
 pip install ruff-lsp
+
+##########
+# MANUAL #
+##########
 
 # nvim
 # in ~/.config/nvim/init.lua, comment out the first function, and replace ReloadModule with require for first time opening nvim
@@ -77,9 +96,7 @@ pip install ruff-lsp
 # <in vim> :LspInstall python (pyright)
 # <in vim> :LspInstall typescript (eslint)
 
-# ignore zathura
-
-# install CaskaydiaCover Nerd Font
+# install CaskaydiaCove Nerd Font
 
 # set cron jobs
 # crontab -e
