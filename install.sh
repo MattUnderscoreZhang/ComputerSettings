@@ -98,8 +98,6 @@ pip install ruff-lsp
 # <in vim> :LspInstall python (pyright)
 # <in vim> :LspInstall typescript (eslint)
 
-# install CaskaydiaCove Nerd Font
-
 # set cron jobs
 # crontab -e
 # copy-paste cron/crontab in there
