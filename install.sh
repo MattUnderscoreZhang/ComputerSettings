@@ -29,6 +29,8 @@ cp -r .config ~/
 
 # git
 cp git/.gitconfig ~
+git config --global user.name "Matt Zhang"
+git config --global user.email "set.stun@gmail.com"
 
 # lazygit
 # cp lazygit/config.yml ~/Library/Application\ Support/lazygit/config.yml 
