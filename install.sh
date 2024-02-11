@@ -68,6 +68,7 @@ touch ~/.hushlogin  # don't display message on new shell
 
 # pyenv
 brew install pyenv
+pyenv install 3.11  # install Python 3.11
 brew install pyenv-virtualenv
 
 ## Pyright

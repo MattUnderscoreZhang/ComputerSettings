@@ -179,10 +179,6 @@ set tw=0
 set wrapmargin=0
 set formatoptions-=t
 
-" Use pathogen plugin (for giving other plugins their own directories in ~/.vim/bundle)
-execute pathogen#infect()
-call pathogen#helptags()
-
 " For NERD autocommenter
 filetype plugin on
 
