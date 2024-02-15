@@ -33,7 +33,7 @@ g.loaded_nvimgdb = 1  -- disable
 -- indent-blankline
 opt.list = true
 opt.listchars:append("space:⋅")
-opt.listchars:append("eol:↴")
+--opt.listchars:append("eol:↴")
 
 -- line and cursor wrapping
 cmd([[
