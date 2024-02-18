@@ -86,8 +86,10 @@ mkdir ~/.vim/tmp
 git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 cp -r nvim ~/.config/
 cp nvim/.vimrc ~
+
+# system Python plugins for nvim
 #pip install pynvim
-pip install ruff-lsp
+pip install ruff-lsp  # required for error checking
 
 ##########
 # MANUAL #
