@@ -96,6 +96,7 @@ function z() {
     __zoxide_z "$@"
     ls
 }
+alias z=z
 
 # set up lazygit
 alias lg=lazygit
