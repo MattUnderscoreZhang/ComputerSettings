@@ -4,7 +4,6 @@ M.setup = function(use)
     use 'scrooloose/nerdcommenter'  -- quickly comment and uncomment code
     use 'Chiel92/vim-autoformat'  -- autoformatter
     use 'famiu/nvim-reload'  -- reload nvim configs
-    use 'godlygeek/tabular'  -- lines stuff up using whitespace
     use 'nvie/vim-flake8'  -- PEP8 linter using flake8
     use 'tpope/vim-abolish'  -- improved search & replace
     use 'JuliaEditorSupport/julia-vim'  -- LaTeX to Unicode for Julia
@@ -39,7 +38,7 @@ M.setup = function(use)
                 local prev_char = opts.line:sub(opts.col - 2, opts.col - 1)
                 return not (prev_char == "''")
             end
-        )  -- prevent single triple quotes
+        )  -- prevent closing of triple single quotes
     autopairs.remove_rule('"""')
     autopairs.get_rules('"')[1]
         :with_pair(
@@ -47,7 +46,15 @@ M.setup = function(use)
                 local prev_char = opts.line:sub(opts.col - 2, opts.col - 1)
                 return not (prev_char == '""')
             end
-        )  -- prevent double triple quotes
+        )  -- prevent closing of triple double quotes
+    autopairs.remove_rule("```")
+    autopairs.get_rules("`")[1]
+        :with_pair(
+            function(opts)
+                local prev_char = opts.line:sub(opts.col - 2, opts.col - 1)
+                return not (prev_char == "``")
+            end
+        )  -- prevent closing of triple backticks
 end
 
 return M

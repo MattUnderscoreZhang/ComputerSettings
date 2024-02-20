@@ -5,7 +5,8 @@ M.setup = function(use)
     use 'lukas-reineke/indent-blankline.nvim'  -- visually display indent levels
     use 'hoob3rt/lualine.nvim'  -- better status line at bottom
     use 'junegunn/limelight.vim'  -- highlight current paragraph
-    use 'Yggdroot/indentLine'  -- visually display indent levels
+    use 'preservim/vim-indent-guides'  -- visually display indent levels
+    use 'godlygeek/tabular'  -- lines stuff up using whitespace
 
     require("rainbow-delimiters.setup").setup {}
 
@@ -36,6 +37,10 @@ M.setup = function(use)
         tabline = {},
         extensions = {}
     }
+
+    --vim-indent-guides
+    vim.g.indent_guides_enable_on_vim_startup = 1
+    vim.g.indent_guides_guide_size = 1
 end
 
 return M
