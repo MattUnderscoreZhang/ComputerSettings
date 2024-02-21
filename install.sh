@@ -95,6 +95,8 @@ pip install ruff-lsp  # required for error checking
 # MANUAL #
 ##########
 
+# install SF Mono font
+
 # nvim
 # in ~/.config/nvim/init.lua, comment out the first function, and replace ReloadModule with require for first time opening nvim
 # <in vim> :PackerInstall
