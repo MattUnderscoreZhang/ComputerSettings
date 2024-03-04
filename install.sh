@@ -87,9 +87,9 @@ git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pac
 cp -r nvim ~/.config/
 cp nvim/.vimrc ~
 
-# system Python plugins for nvim
-#pip install pynvim
-pip install ruff-lsp  # required for error checking
+# system Python plugins for nvim - needs to be in every virtualenv
+pip install pynvim  # removes "requires nvim compiled with python3" error
+pip install ruff-lsp  # required for real-time error checking
 
 ##########
 # MANUAL #

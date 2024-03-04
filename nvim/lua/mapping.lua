@@ -100,6 +100,8 @@ map("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_fol
 map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>", options)
 map("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", options)
 map("n", "<leader>f", ":echo 'Code formatted'<cr><cmd>lua vim.lsp.buf.format { async = false }<cr>", options)
+-- oil
+map("n", "-", "<CMD>Oil --float<CR>", options)
 
 -- self-written Pencil alternative
 vim.cmd([[
