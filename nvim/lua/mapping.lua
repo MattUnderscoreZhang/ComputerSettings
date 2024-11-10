@@ -90,6 +90,7 @@ map("n", "<leader>ll", ":Limelight!!<cr>", options)
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", options)  -- go to definition
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", options)  -- go to references
 map("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>", options)  -- info about object
+map("n", "<leader>p", "<cmd>lua vim.lsp.buf.peek_definition()<CR>", options)  -- info about object
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", options)
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", options)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", options)
