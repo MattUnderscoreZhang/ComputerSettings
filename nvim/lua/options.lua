@@ -61,7 +61,7 @@ vim.api.nvim_exec([[set foldenable!]], false)
 vim.diagnostic.config({virtual_text = false, underline = false})
 
 -- error and warning icons in gutter
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
