@@ -1,14 +1,12 @@
-local M = {}
-
 -- The color scheme to use.
 
-M.setup = function(use)
-    --use {
-        --'npxbr/gruvbox.nvim',
-        --requires = 'rktjmp/lush.nvim'
-    --}
-    use 'sainnhe/everforest'
-    vim.cmd([[colorscheme everforest]])
-end
-
-return M
+return {
+    'neanias/everforest-nvim',
+    version = false,
+    lazy = false,
+    priority = 1000,  -- load this before all other plugins
+    config = function()
+        require('everforest').setup()
+        require('everforest').load()
+    end,
+}

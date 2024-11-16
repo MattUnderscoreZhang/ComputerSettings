@@ -14,5 +14,9 @@ vim.opt.rtp:prepend(lazypath)  -- adds repo to runtimepath
 
 -- set leader keys before loading lazy.nvim
 vim.g.mapleader = ";"
---vim.g.maplocalleader = " "  -- don't think I need this
 require("lazy").setup("plugins")
+
+-- set nvim configs
+require('options')
+require('mappings')
+require('functions')
