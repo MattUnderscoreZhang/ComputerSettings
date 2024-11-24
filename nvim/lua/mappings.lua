@@ -14,7 +14,6 @@ map("n", "<c-j>", "<c-w>j", options)
 map("n", "<c-k>", "<c-w>k", options)
 map("n", "<c-l>", "<c-w>l", options)
 map("n", "gn", "<c-^>", options)  -- jump to last used buffer
-map("n", "<leader>o", "<cmd>SymbolsOutline<cr>", options)
 --map("n", "<leader>m", "`", options)
 -- splits
 map("n", "<c-v>", "<c-w>|", options)  -- split vertically
