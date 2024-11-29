@@ -51,6 +51,9 @@ inoremap <Up> <C-o>gk
 
 " Cursor Wrap
 set whichwrap+=<,>,h,l,[,]
+
+" Word wrap keeps indentation
+set breakindent
 ]])
 
 -- disable folding on startup (zi to enable)
