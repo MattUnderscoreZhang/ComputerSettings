@@ -1,3 +1,14 @@
+vim.api.nvim_set_keymap(
+    'n',
+    'bd',
+    "<cmd>Bwipeout!<cr>",
+    {
+        noremap=true,
+        silent=true,
+        desc = "Close current buffer",
+    }
+)
+
 vim.keymap.set(
     'n',
     'bl',
@@ -7,7 +18,7 @@ vim.keymap.set(
         for i = 1, #bufs do
             local buf = bufs[i]
             if buf ~= current_buf then
-                vim.cmd('bwipeout ' .. buf)
+                vim.cmd('bwipeout! ' .. buf)
             else
                 break
             end
@@ -29,7 +40,7 @@ vim.keymap.set(
         for i = #bufs, 1, -1 do
             local buf = bufs[i]
             if buf ~= current_buf then
-                vim.cmd('bwipeout ' .. buf)
+                vim.cmd('bwipeout! ' .. buf)
             else
                 break
             end
@@ -51,7 +62,7 @@ vim.keymap.set(
         for i = 1, #bufs do
             local buf = bufs[i]
             if buf ~= current_buf then
-                vim.cmd('bwipeout ' .. buf)
+                vim.cmd('bwipeout! ' .. buf)
             end
         end
     end,
