@@ -15,9 +15,8 @@ map("n", "<c-l>", "<c-w>l", options)
 map("n", "gn", "<c-^>", options)  -- jump to last used buffer
 --map("n", "<leader>m", "`", options)
 -- splits
-map("n", "<c-v>", "<c-w>|", options)  -- split vertically
-map("n", "<c-s>", "<c-w>-", options)  -- split horizontally
-map("n", "<c-c>", "<c-w>w", options)  -- close split
+map("n", "<leader>sv", "<cmd>vsp<cr>", options)  -- split vertically
+map("n", "<leader>sh", "<cmd>sp<cr>", options)  -- split horizontally
 -- lua config shortcuts
 map("n", "<leader>ia", "<cmd>edit ~/.config/nvim/init.lua <cr>", options)
 map("n", "<leader>si", "<cmd>luafile ~/.config/nvim/init.lua<cr>", options)  -- source lua init file
@@ -92,7 +91,7 @@ map("n", "<leader>p", "<cmd>lua vim.lsp.buf.peek_definition()<CR>", options)  --
 map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", options)
 map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>", options)
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", options)
-map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", options)
+--map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<cr>", options)
 map("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", options)
 map("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", options)
 map("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>", options)
