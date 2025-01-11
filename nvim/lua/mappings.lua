@@ -100,3 +100,6 @@ map("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", options)
 map("n", "<leader>f", ":echo 'Code formatted'<cr><cmd>lua vim.lsp.buf.format { async = false }<cr>", options)
 -- oil
 map("n", "-", "<CMD>Oil --float<CR>", options)
+-- aider
+map("n", "<leader>ao", ":AiderOpen<cr>", options)
+map("n", "<leader>aa", ":AiderAddModifiedFiles<cr>", options)

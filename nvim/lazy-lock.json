@@ -1,4 +1,5 @@
 {
+  "aider.nvim": { "branch": "main", "commit": "a34a03635a130f16a56e6a50b211bb72cc1aff96" },
   "barbar.nvim": { "branch": "master", "commit": "20f26c940991c528c5e3c6d0d82a6dc1a82b9d4c" },
   "bufdelete.nvim": { "branch": "master", "commit": "f6bcea78afb3060b198125256f897040538bcb81" },
   "ccc.nvim": { "branch": "main", "commit": "7c639042583c7bdc7ce2e37e5a0e0aa6d0659c6a" },
