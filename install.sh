@@ -1,26 +1,8 @@
-########
-# BREW #
-########
-
-# Homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# brew install stuff
-brew install fzf  # fuzzy find
-brew install bat  # cat with syntax highlighting and git markup
-brew install lazygit  # simple git GUI
-brew install zoxide  # quick cd to previously seen directory
-brew install rg  # code-optimized quick grep
-brew install dtrx  # do the right extraction
-brew install postgresql  # postgres
-brew install flyway  # database migration
-brew install node  # JavaScript runtime environment
-
 ###########
 # CONFIGS #
 ###########
 
-# all configs
+# various configs
 cp -r .config ~/
 
 # git
@@ -58,12 +40,25 @@ cp zsh/.zpreztorc ~
 cp zsh/.zprofile ~ 
 touch ~/.hushlogin  # don't display message on new shell
 
-##########
-# PYTHON #
-##########
+########
+# BREW #
+########
 
-# pyenv
-brew install pyenv
+# install and activate Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+source ~/.zshrc
+
+# brew install stuff
+brew install fzf  # fuzzy find
+brew install bat  # cat with syntax highlighting and git markup
+brew install lazygit  # simple git GUI
+brew install zoxide  # quick cd to previously seen directory
+brew install rg  # code-optimized quick grep
+brew install dtrx  # do the right extraction
+brew install postgresql  # postgres
+brew install flyway  # database migration
+brew install node  # JavaScript runtime environment
+brew install pyenv  # Python environment manager
 
 ##########
 # NEOVIM #
