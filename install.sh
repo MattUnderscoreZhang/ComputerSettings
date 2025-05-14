@@ -9,16 +9,12 @@
 brew install fzf  # fuzzy find
 brew install bat  # cat with syntax highlighting and git markup
 brew install lazygit  # simple git GUI
-brew install thefuck  # correct previous command
 brew install zoxide  # quick cd to previously seen directory
 brew install rg  # code-optimized quick grep
 brew install dtrx  # do the right extraction
 brew install postgresql  # postgres
 brew install flyway  # database migration
 brew install node  # JavaScript runtime environment
-brew install awscli  # AWS CLI
-brew install ruby  # Ruby interpreter and tools
-brew install fish  # fish shell
 
 ###########
 # CONFIGS #
@@ -68,13 +64,6 @@ touch ~/.hushlogin  # don't display message on new shell
 
 # pyenv
 brew install pyenv
-pyenv install 3.11  # install Python 3.11
-brew install pyenv-virtualenv
-
-## Pyright
-#brew install pyright
-## install pyenv-pyright to make Pyright work properly with virtual environments
-#git clone https://github.com/alefpereira/pyenv-pyright.git $(pyenv root)/plugins/pyenv-pyright
 
 ##########
 # NEOVIM #

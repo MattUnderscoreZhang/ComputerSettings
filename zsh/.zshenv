@@ -1,8 +1,6 @@
 #
-# Defines environment variables.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+# Runs for every shell (including non-interactive shells for scripts)
+# Run order: .zshenv, .zprofile, .zpreztorc (called via Prezto inside .zprofile), .zshrc
 #
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
