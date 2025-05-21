@@ -20,12 +20,12 @@ return {
                 outputs = {
                     ccc.output.hex,
                     ccc.output.css_rgb,
-                    ccc.output.css_hsl,
-                    ccc.output.css_hwb,
-                    ccc.output.css_lab,
-                    ccc.output.css_lch,
+                    --ccc.output.css_hsl,
+                    --ccc.output.css_hwb,
+                    --ccc.output.css_lab,
+                    --ccc.output.css_lch,
                     ccc.output.css_oklab,
-                    ccc.output.css_oklch,
+                    --ccc.output.css_oklch,
                 },
                 pickers = {  -- There's probably a better way to do this, idk.
                     ccc.picker.hex,
@@ -189,6 +189,14 @@ return {
                 highlighter = {
                     auto_enable = true,
                     lsp = true,
+                    filetypes = {
+                        "css",
+                        "html",
+                        "javascript",
+                        "javascriptreact", -- .jsx
+                        "typescript", -- .ts
+                        "typescriptreact", -- .tsx
+                    },
                 },
             })
         end,
