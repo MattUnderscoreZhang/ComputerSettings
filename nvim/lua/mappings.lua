@@ -6,8 +6,6 @@ vim.g.mapleader = ";"
 -- built-in
 map("n", "<space><space>", "za", options)
 --map("i", "<cr>", "cmp#confirm('<cr>')", {silent=true, expr=true})
-map("i", "jk", "<esc>", options)
-map("t", "jk", "<c-\\><c-n>", options)
 map("n", "<c-h>", "<c-w>h", options)
 map("n", "<c-j>", "<c-w>j", options)
 map("n", "<c-k>", "<c-w>k", options)
