@@ -1,0 +1,15 @@
+keybind = cmd+shift+h=previous_tab
+keybind = cmd+shift+l=next_tab
+keybind = cmd+p=new_split:right
+keybind = cmd+shift+p=new_split:down
+keybind = control+shift+l=goto_split:right
+keybind = control+shift+h=goto_split:left
+keybind = control+shift+k=goto_split:top
+keybind = control+shift+j=goto_split:bottom
+keybind = cmd+left=resize_split:left,10
+keybind = cmd+right=resize_split:right,10
+keybind = cmd+up=resize_split:up,10
+keybind = cmd+down=resize_split:down,10
+keybind = cmd+shift+,=move_tab:-1
+keybind = cmd+shift+.=move_tab:+1
+font-size = 10
