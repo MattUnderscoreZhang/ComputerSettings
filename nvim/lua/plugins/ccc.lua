@@ -24,8 +24,8 @@ return {
                     --ccc.output.css_hwb,
                     --ccc.output.css_lab,
                     --ccc.output.css_lch,
-                    ccc.output.css_oklab,
-                    --ccc.output.css_oklch,
+                    --ccc.output.css_oklab,
+                    ccc.output.css_oklch,
                 },
                 pickers = {  -- There's probably a better way to do this, idk.
                     ccc.picker.hex,
